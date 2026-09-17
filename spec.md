@@ -2,9 +2,9 @@
 
 > Cấu trúc phủ đúng "SPEC 8 phần" của chương trình: Bằng chứng (§1-§2) · Lát cắt (§4) · Canvas (đính kèm CP1) · Augment/Automate (§4) · 4 đường đi của trải nghiệm (§6) · Kiểu lỗi (§5) · Kiểm thử (§7) · Phân công (§8). Hướng dẫn viết từng mục: `02-guide.md`.
 
-# AI SPEC — [Tên lát cắt] · Nhóm [] · Zone [4]
+# AI SPEC — Bot Discord Báo Deadline Chuẩn · Nhóm [Promaxima] · Zone [4]
 Hướng: [ ] A — VLearn  [x] B — Trợ lý Học viên  [ ] C — Làn mở
-Loại: [ ] Tối ưu tính năng có sẵn  [ ] Tính năng mới
+Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 
 ## §1. User & Job
 - Job executor + workflow: Học viên khóa AI Thực Chiến trên Discord muốn xác nhận thời hạn (deadline) nộp bài chính xác cho Lab/bài tập sắp tới.
@@ -64,9 +64,12 @@ Loại: [ ] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 - Kết quả các lượt chạy (bảng % — cập nhật đến trước CP6):
 
 ## §8. Phân công & kế hoạch
-- Phân công có tên: spec / evidence / prompt / code / demo
-- Willing users (≥2 tên) + kế hoạch vòng validation *(bonus, nếu làm)*:
-- Multi-prototype (nếu làm): trục khác biệt của ≥2 phương án + lý do chọn:
+- Phân công có tên: 
+  - **Lâm Quang Anh Quân:** Spec / Design / Trải nghiệm
+  - **Bùi Văn Quang:** Prompt / Lập trình (Code Bot) / Tích hợp API
+  - **Nguyễn Văn Diện:** Evidence / Xây dựng Golden Set / Test & Demo
+- Willing users (≥2 tên) + kế hoạch vòng validation *(bonus, nếu làm)*: Nguyễn Minh Anh (K4), Trần Huy Hoàng (K4). Sẽ nhờ hai bạn test thử vào CP5 (gửi câu hỏi lắt léo xem bot xử lý đúng hay không).
+- Multi-prototype (nếu làm): Không áp dụng.
 
 ## §9. Changelog
 | Thời điểm | Đổi gì | Vì sao (trỏ về feedback/case nào) |
