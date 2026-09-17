@@ -49,7 +49,7 @@
       <button onclick="sendScenario('lab2')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 border border-[#1E1F22]">
         <i class="fa-solid fa-message text-[12px] mt-1 text-[#949BA4]"></i>
         <div class="flex-1">
-          <span class="block text-[13px] font-medium leading-tight">"Hạn nộp Lab 2 là khi nào?"</span>
+          <span class="block text-[13px] font-medium leading-tight">M40677: "[@BOT] tôi nộp codelab bị trễ do lỗi..."</span>
           <span class="block text-[10px] text-[#949BA4] mt-1">Câu hỏi có nguồn chuẩn (G11)</span>
         </div>
       </button>
@@ -57,16 +57,16 @@
       <button onclick="sendScenario('lab7')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 border border-[#1E1F22]">
         <i class="fa-solid fa-message text-[12px] mt-1 text-[#949BA4]"></i>
         <div class="flex-1">
-          <span class="block text-[13px] font-medium leading-tight">"Cho mình hỏi hạn nộp Lab 7 là bao giờ?"</span>
-          <span class="block text-[10px] text-[#949BA4] mt-1">Hỏi lab không tồn tại (G10)</span>
+          <span class="block text-[13px] font-medium leading-tight">M19124: "[@BOT] a ơi sao deadline ghép đội end sớm..."</span>
+          <span class="block text-[10px] text-[#949BA4] mt-1">Hỏi ngoài luồng, cần tag TA (G10)</span>
         </div>
       </button>
 
       <button onclick="sendScenario('diemdanh')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-4 border border-[#1E1F22]">
         <i class="fa-solid fa-message text-[12px] mt-1 text-[#949BA4]"></i>
         <div class="flex-1">
-          <span class="block text-[13px] font-medium leading-tight">"Hôm qua mình có được điểm danh không?"</span>
-          <span class="block text-[10px] text-[#949BA4] mt-1">Hỏi thông tin cá nhân</span>
+          <span class="block text-[13px] font-medium leading-tight">M13974: "[@BOT] cho mình hỏi điểm danh..."</span>
+          <span class="block text-[10px] text-[#949BA4] mt-1">Hỏi thông tin cá nhân bảo mật</span>
         </div>
       </button>
       
@@ -182,9 +182,9 @@
     labelOld.style.color = '#FFFFFF'; // Init highlight
 
     const presetQuestions = {
-      lab2: "Hạn nộp Lab 2 là khi nào vậy bot?",
-      lab7: "Cho mình hỏi hạn nộp Lab 7 (chưa từng công bố) là bao giờ?",
-      diemdanh: "Hôm qua mình có được điểm danh thành công không?"
+      lab2: "[@BOT] tôi nộp codelab trên vlearn đúng giờ deadline như thông báo nhưng commit bị lỗi thì có được tính là nộp đúng hạn không?",
+      lab7: "[@BOT] a ơi sao deadline ghép đội tự do end sớm vậy a?",
+      diemdanh: "[@BOT] cho mình hỏi việc mình được điểm danh hay chưa có thể check ở đâu ạ"
     };
 
     function sendScenario(key) {
@@ -208,7 +208,7 @@
         </div>
         <div class="flex-1">
           <div class="flex items-baseline gap-2">
-            <span class="font-semibold text-[#F2F3F5]">Học Viên</span>
+            <span class="font-semibold text-[#F2F3F5]">Học Viên (D7496)</span>
             <span class="text-xs text-[#949BA4]">Hôm nay lúc \${time}</span>
           </div>
           <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed">
@@ -249,41 +249,40 @@
     function getRuleBaseResponse(text) {
       const lower = text.toLowerCase();
       
-      if (lower.includes('lab 2')) {
+      if (lower.includes('codelab')) {
         if (!isNewBot) {
-          return "Lab 2 hình như hạn chót là cuối tuần này nha bạn, rơi vào khoảng chủ nhật. Cố gắng làm sớm nhé vì có nhiều câu khó lắm.";
+          return "Chào bạn! Về vấn đề nộp bài codelab trên **Vlearn** bị trễ do lỗi commit, mình không có thông tin cụ thể về quy định châm chước cho trường hợp này trong dữ liệu hiện tại.";
         } else {
           return \`
-            Chào bạn, theo thông báo chính thức thì hạn nộp **Lab 2** là **23:59 ngày 20/09/2026**.
+            Chào bạn, theo quy định chính thức thì bài làm trên Vlearn chỉ được ghi nhận thành công khi **đã commit lên hệ thống**. Nếu bạn gặp lỗi kỹ thuật, bạn cần báo ngay cho các TA hỗ trợ kỹ thuật tại #technical-support nhé.
             
             <!-- Discord Embed Mock -->
             <div class="mt-2 border-l-4 border-[#5865F2] bg-[#2B2D31] rounded p-3 max-w-lg">
                <div class="font-bold text-sm text-[#F2F3F5] mb-1">Trích xuất nguồn (HAX G11)</div>
-               <div class="text-sm text-[#DBDEE1]">Thông báo số 5: Lịch nộp bài Tuần 2</div>
-               <a href="#" class="text-xs text-[#00A8FC] hover:underline">Nhấn để xem tin nhắn gốc tại #announcement</a>
+               <div class="text-sm text-[#DBDEE1]">Quy định nộp bài tập - Section 2.3</div>
+               <a href="#" class="text-xs text-[#00A8FC] hover:underline">Nhấn để xem quy chế gốc tại #announcement</a>
             </div>
           \`;
         }
       }
       
-      if (lower.includes('lab 7')) {
+      if (lower.includes('ghép đội')) {
         if (!isNewBot) {
-          return "Lab 7 thường sẽ có deadline 1 tuần sau khi mở. Bạn cứ thong thả mà làm, chắc là sắp có thôi.";
+          return "Thường thì deadline ghép đội sẽ kéo dài thêm nếu nhiều bạn chưa có nhóm. Bạn cứ từ từ tìm đồng đội nha.";
         } else {
           return \`
-            Mình đã rà soát cơ sở dữ liệu nhưng chưa thấy BTC công bố thời hạn cho "Lab 7". 
-            Mình sẽ không tự đoán để tránh sai lệch thông tin.
+            Chào bạn, thông tin về việc kéo dài deadline ghép đội hiện chưa có quyết định chính thức từ BTC trên hệ thống. 
             
-            Mình đã báo cáo @Trợ Giảng (TA) vào kiểm tra giúp bạn. Vui lòng đợi trong ít phút! *(Nguyên tắc HAX G10)*
+            Mình đã chuyển thắc mắc của bạn cho @Trợ Giảng (TA) giải đáp thêm! *(Nguyên tắc HAX G10)*
           \`;
         }
       }
       
       if (lower.includes('điểm danh')) {
         if (!isNewBot) {
-          return "Điểm danh thì mình không rõ, chắc hệ thống lỗi rồi bạn inbox cho TA nhé.";
+          return 'Chào bạn nhé! Để đảm bảo mình được tính điểm danh và nhận XP sau mỗi buổi Workshop, bạn lưu ý giúp mình 2 điều kiện "vàng" này trước đã nha: ... (Bot lan man dài dòng)';
         } else {
-          return "Xin lỗi, mình là AI công cộng nên không được cấp quyền truy cập dữ liệu điểm danh cá nhân của học viên. Vui lòng liên hệ trực tiếp TA nhé.";
+          return "Xin lỗi bạn, mình là AI công cộng (Public) nên không được cấp quyền truy cập vào CSDL điểm danh cá nhân của học viên. Vui lòng liên hệ trực tiếp TA phụ trách lớp nhé.";
         }
       }
       
