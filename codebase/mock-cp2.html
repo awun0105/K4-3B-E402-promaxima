@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CP2 Mock — Web App Trợ lý Học viên</title>
+  <title>Video Demo — Web App Trợ lý Học viên</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
@@ -15,61 +15,52 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .scenario-btn.active { border-color: #3B82F6; background-color: #EFF6FF; }
+    
+    /* Toggle switch styles */
+    .switch-bg { transition: background-color 0.3s; }
+    .switch-knob { transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); }
   </style>
 </head>
 <body class="h-screen flex overflow-hidden text-gray-800">
 
-  <!-- Sidebar: Controls & Scenarios -->
+  <!-- Sidebar: Video Demo Scripts -->
   <aside class="w-80 bg-white border-r border-gray-200 flex flex-col z-20">
     <div class="p-6 border-b border-gray-200">
       <div class="flex items-center gap-3 mb-2">
         <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-xl">
-          <i class="fa-solid fa-robot"></i>
+          <i class="fa-solid fa-video"></i>
         </div>
-        <h1 class="text-xl font-bold text-gray-900">AI Assistant</h1>
+        <h1 class="text-xl font-bold text-gray-900">Demo CP3</h1>
       </div>
-      <p class="text-xs text-gray-500 font-medium tracking-wide uppercase">Mock Web App (CP2)</p>
+      <p class="text-xs text-gray-500 font-medium tracking-wide uppercase">Rule-base Mock</p>
     </div>
 
     <div class="p-6 flex-1 overflow-y-auto">
-      <h2 class="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">Chọn Kịch Bản Lỗi (Flow)</h2>
+      <h2 class="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">Kịch bản gợi ý quay Video</h2>
       
-      <div class="space-y-3">
-        <button onclick="setScenario('happy')" id="btn-happy" class="scenario-btn active w-full text-left p-4 rounded-xl border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-all">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="w-2 h-2 rounded-full bg-green-500"></span>
-            <span class="font-semibold text-gray-900">Happy Path</span>
-          </div>
-          <p class="text-xs text-gray-500">Có nguồn chính thức, AI trả lời tự tin 100%.</p>
-        </button>
+      <div class="space-y-4">
+        <div class="p-3 rounded-xl bg-gray-50 border border-gray-200">
+          <p class="text-xs font-bold text-gray-700 mb-1">Kịch bản 1: Hỏi ngày nộp cụ thể</p>
+          <p class="text-xs text-blue-600 font-mono cursor-pointer hover:underline" onclick="fillInput('Hạn nộp Lab 2 là khi nào?')">"Hạn nộp Lab 2 là khi nào?"</p>
+          <p class="text-[10px] text-gray-500 mt-1">Bot cũ: Trả lời dài dòng, đoán bừa.<br>Bot mới: Nguồn chuẩn, link gốc.</p>
+        </div>
 
-        <button onclick="setScenario('clarify')" id="btn-clarify" class="scenario-btn w-full text-left p-4 rounded-xl border border-gray-200 hover:border-yellow-400 hover:bg-yellow-50 transition-all">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
-            <span class="font-semibold text-gray-900">Low-confidence</span>
-          </div>
-          <p class="text-xs text-gray-500">Câu hỏi chung chung, AI xin thêm thông tin.</p>
-        </button>
+        <div class="p-3 rounded-xl bg-gray-50 border border-gray-200">
+          <p class="text-xs font-bold text-gray-700 mb-1">Kịch bản 2: Hỏi lab không tồn tại</p>
+          <p class="text-xs text-blue-600 font-mono cursor-pointer hover:underline" onclick="fillInput('Cho mình hỏi hạn nộp Lab 7 là bao giờ?')">"Cho mình hỏi hạn nộp Lab 7 là bao giờ?"</p>
+          <p class="text-[10px] text-gray-500 mt-1">Bot cũ: Cố đoán ngày lung tung.<br>Bot mới: Tag TA, không đoán (G10).</p>
+        </div>
 
-        <button onclick="setScenario('nota')" id="btn-nota" class="scenario-btn w-full text-left p-4 rounded-xl border border-gray-200 hover:border-red-400 hover:bg-red-50 transition-all">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="w-2 h-2 rounded-full bg-red-500"></span>
-            <span class="font-semibold text-gray-900">No-grounding</span>
-          </div>
-          <p class="text-xs text-gray-500">Không tìm thấy thông báo, nhường mic cho TA.</p>
-        </button>
+        <div class="p-3 rounded-xl bg-gray-50 border border-gray-200">
+          <p class="text-xs font-bold text-gray-700 mb-1">Kịch bản 3: Câu hỏi cá nhân</p>
+          <p class="text-xs text-blue-600 font-mono cursor-pointer hover:underline" onclick="fillInput('Hôm qua mình có được điểm danh không?')">"Hôm qua mình có được điểm danh không?"</p>
+          <p class="text-[10px] text-gray-500 mt-1">Bot mới: Báo không có quyền truy cập.</p>
+        </div>
       </div>
-
-      <div class="mt-8">
-         <h2 class="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">HAX Principles</h2>
-         <ul class="text-xs text-gray-600 space-y-2">
-           <li><i class="fa-solid fa-check text-green-500 mr-1"></i> <b>G11:</b> Trích dẫn nguồn gốc.</li>
-           <li><i class="fa-solid fa-check text-green-500 mr-1"></i> <b>G10:</b> Từ chối đoán khi mơ hồ.</li>
-           <li><i class="fa-solid fa-check text-green-500 mr-1"></i> <b>G9:</b> Nút báo sai / Tag TA.</li>
-           <li><i class="fa-solid fa-check text-green-500 mr-1"></i> <b>G8:</b> Câu từ chối ngắn gọn.</li>
-         </ul>
-      </div>
+      
+      <button onclick="clearChat()" class="mt-6 w-full py-2 bg-gray-100 text-gray-600 text-sm font-medium rounded-lg hover:bg-gray-200 transition">
+        <i class="fa-solid fa-trash mr-1"></i> Xóa lịch sử chat
+      </button>
     </div>
   </aside>
 
@@ -77,11 +68,20 @@
   <main class="flex-1 flex flex-col bg-white relative">
     <div class="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
     
-    <!-- Header -->
+    <!-- Header with Toggle -->
     <header class="glass-panel z-10 border-b border-gray-200 px-8 py-4 flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
-        <span class="font-medium text-gray-700">Trợ lý Học vụ AI20K</span>
+        <div id="status-dot" class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></div>
+        <span id="bot-name" class="font-bold text-gray-800">Bot Hiện Tại (Lỗi)</span>
+      </div>
+      
+      <!-- Toggle Switch -->
+      <div class="flex items-center gap-3">
+        <span class="text-sm font-medium text-gray-500" id="label-old">Bot Cũ</span>
+        <button id="toggle-btn" class="w-14 h-7 rounded-full bg-red-500 relative flex items-center p-1 switch-bg focus:outline-none shadow-inner">
+          <div id="toggle-knob" class="w-5 h-5 rounded-full bg-white shadow-md switch-knob transform translate-x-0"></div>
+        </button>
+        <span class="text-sm font-bold text-gray-800" id="label-new">Bot AI Mới</span>
       </div>
     </header>
 
@@ -89,28 +89,25 @@
     <div id="chat-container" class="flex-1 overflow-y-auto p-8 space-y-6 z-10 scroll-smooth">
       <!-- Welcome Message -->
       <div class="flex gap-4 chat-bubble">
-        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600">
+        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 text-gray-500">
           <i class="fa-solid fa-robot"></i>
         </div>
         <div class="bg-gray-100 px-5 py-4 rounded-2xl rounded-tl-sm max-w-2xl text-gray-800 shadow-sm">
-          <p>Xin chào! Mình là Trợ lý Học vụ. Mình có thể giúp bạn tra cứu nhanh <b>Lịch học, Hạn nộp bài (Deadline), Nội quy</b> dựa trên các thông báo chính thức.</p>
-          <p class="mt-2 text-sm text-gray-500"><i>Lưu ý: Mình không giải đáp các câu hỏi chuyên môn bài tập.</i></p>
+          <p id="welcome-text">Xin chào! Mình là Bot cũ. Mình hay đoán mò lắm.</p>
         </div>
       </div>
     </div>
 
     <!-- Input Area -->
     <div class="p-6 bg-white border-t border-gray-200 z-10">
-      <div class="max-w-4xl mx-auto relative">
-        <input type="text" id="chat-input" readonly
-          class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block p-4 pr-12 shadow-inner"
-          placeholder="Chọn kịch bản bên trái để mô phỏng tin nhắn...">
-        <button id="send-btn" class="absolute right-3 top-3 w-8 h-8 flex items-center justify-center rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">
-          <i class="fa-solid fa-paper-plane text-sm"></i>
+      <div class="max-w-4xl mx-auto relative flex gap-3">
+        <input type="text" id="chat-input"
+          class="flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block p-4 shadow-inner"
+          placeholder="Nhập câu hỏi hoặc click kịch bản bên trái..."
+          onkeypress="if(event.key === 'Enter') sendMessage()">
+        <button onclick="sendMessage()" class="w-12 h-12 flex flex-shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition shadow-md">
+          <i class="fa-solid fa-paper-plane"></i>
         </button>
-      </div>
-      <div class="text-center mt-3 text-xs text-gray-400">
-        AI có thể mắc lỗi. Vui lòng kiểm tra lại đường link nguồn gốc.
       </div>
     </div>
   </main>
@@ -118,64 +115,55 @@
   <script>
     const chatContainer = document.getElementById('chat-container');
     const chatInput = document.getElementById('chat-input');
+    const toggleBtn = document.getElementById('toggle-btn');
+    const toggleKnob = document.getElementById('toggle-knob');
+    const statusDot = document.getElementById('status-dot');
+    const botName = document.getElementById('bot-name');
+    const welcomeText = document.getElementById('welcome-text');
+    
+    let isNewBot = false;
 
-    const scenarios = {
-      happy: {
-        user: "Hạn nộp Lab 2 là khi nào vậy bot?",
-        bot: `
-          <p class="mb-2">Chào bạn, theo thông báo chính thức, hạn nộp <b>Lab 2</b> là <b>23:59 ngày 20/09/2026</b>.</p>
-          <div class="bg-white border border-gray-200 rounded-lg p-3 mt-3 flex items-start gap-3">
-             <i class="fa-solid fa-link text-blue-500 mt-1"></i>
-             <div>
-               <p class="text-sm font-semibold">Nguồn kiểm chứng (Nguyên tắc G11)</p>
-               <a href="#" class="text-xs text-blue-600 hover:underline">#announcement - Lịch nộp bài Tuần 2</a>
-             </div>
-          </div>
-          <div class="mt-3 flex gap-2">
-            <button onclick="reportError()" class="text-xs flex items-center gap-1 text-gray-500 hover:text-red-500 bg-white border border-gray-200 px-2 py-1 rounded transition">
-              <i class="fa-solid fa-circle-xmark"></i> Báo sai / Gọi TA (G9)
-            </button>
-          </div>
-        `
-      },
-      clarify: {
-        user: "Deadline bài tập là hôm nào nhỉ?",
-        bot: `
-          <p>Mình chưa rõ bạn đang hỏi về bài tập nào (Lab 1, Lab 2 hay Đồ án cuối kỳ)?</p>
-          <p class="mt-2 text-sm text-yellow-700 bg-yellow-50 p-2 rounded border border-yellow-200">
-            <i class="fa-solid fa-shield-halved"></i> <b>G10:</b> AI từ chối đoán bừa khi thông tin mập mờ, yêu cầu làm rõ để tránh sai sót.
-          </p>
-        `
-      },
-      nota: {
-        user: "Cho mình hỏi hạn nộp Lab 7 (chưa từng công bố) là bao giờ?",
-        bot: `
-          <p>Xin lỗi bạn, mình chưa tìm thấy thông báo chính thức nào nhắc đến "Lab 7" trong cơ sở dữ liệu.</p>
-          <p class="mt-2">Mình đã <b>Tag Trợ Giảng (@TA)</b> vào hỗ trợ bạn rồi nhé. Bạn đợi xíu nha!</p>
-          <p class="mt-2 text-sm text-red-700 bg-red-50 p-2 rounded border border-red-200">
-            <i class="fa-solid fa-user-shield"></i> <b>G8 & G10:</b> AI nhường mic ngay lập tức cho con người khi thiếu grounding.
-          </p>
-        `
+    // Toggle Logic
+    toggleBtn.addEventListener('click', () => {
+      isNewBot = !isNewBot;
+      if (isNewBot) {
+        toggleBtn.classList.remove('bg-red-500');
+        toggleBtn.classList.add('bg-blue-600');
+        toggleKnob.classList.remove('translate-x-0');
+        toggleKnob.classList.add('translate-x-7');
+        
+        statusDot.classList.remove('bg-red-500');
+        statusDot.classList.add('bg-blue-500');
+        botName.textContent = "Bot AI Mới (Tối ưu)";
+        welcomeText.innerHTML = "Xin chào! Mình là Bot AI Mới.<br>Mình chỉ trả lời khi có thông báo chính thức. Không có thì mình gọi TA.";
+      } else {
+        toggleBtn.classList.remove('bg-blue-600');
+        toggleBtn.classList.add('bg-red-500');
+        toggleKnob.classList.remove('translate-x-7');
+        toggleKnob.classList.add('translate-x-0');
+        
+        statusDot.classList.remove('bg-blue-500');
+        statusDot.classList.add('bg-red-500');
+        botName.textContent = "Bot Hiện Tại (Lỗi)";
+        welcomeText.innerHTML = "Xin chào! Mình là Bot cũ. Mình hay đoán mò lắm.";
       }
-    };
+      clearChat(false);
+    });
 
-    let currentScenario = 'happy';
+    function fillInput(text) {
+      chatInput.value = text;
+      chatInput.focus();
+    }
 
-    function setScenario(type) {
-      currentScenario = type;
-      
-      // Update buttons
-      document.querySelectorAll('.scenario-btn').forEach(btn => {
-        btn.classList.remove('active', 'border-blue-400', 'bg-blue-50');
-      });
-      document.getElementById('btn-' + type).classList.add('active', 'border-blue-400', 'bg-blue-50');
-      
-      // Set input
-      chatInput.value = scenarios[type].user;
-      
-      // Clear chat except welcome message
-      while (chatContainer.children.length > 1) {
+    function clearChat(keepWelcome = true) {
+      while (chatContainer.children.length > (keepWelcome ? 1 : 0)) {
         chatContainer.removeChild(chatContainer.lastChild);
+      }
+      if(!keepWelcome) {
+         // re-add welcome manually if needed or just let it be empty, we'll just keep the first child
+         const first = chatContainer.firstElementChild;
+         chatContainer.innerHTML = '';
+         chatContainer.appendChild(first);
       }
     }
 
@@ -183,25 +171,26 @@
       const div = document.createElement('div');
       div.className = "flex gap-4 justify-end chat-bubble";
       div.innerHTML = \`
-        <div class="bg-blue-600 px-5 py-4 rounded-2xl rounded-tr-sm max-w-2xl text-white shadow-md">
+        <div class="bg-gray-800 px-5 py-4 rounded-2xl rounded-tr-sm max-w-2xl text-white shadow-md">
           <p>\${text}</p>
-        </div>
-        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 text-gray-500 font-bold overflow-hidden">
-          <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" />
         </div>
       \`;
       chatContainer.appendChild(div);
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
-    function appendBotMessage(htmlContent) {
+    function appendBotMessage(htmlContent, isError = false) {
       const div = document.createElement('div');
       div.className = "flex gap-4 chat-bubble";
+      
+      const iconColor = isNewBot ? 'text-blue-600 bg-blue-100 border-blue-200' : 'text-red-600 bg-red-100 border-red-200';
+      const bgColor = isNewBot ? 'bg-blue-50 border-blue-100' : 'bg-red-50 border-red-100';
+      
       div.innerHTML = \`
-        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600 shadow-sm border border-blue-200">
+        <div class="w-10 h-10 rounded-full \${iconColor} flex items-center justify-center flex-shrink-0 shadow-sm border">
           <i class="fa-solid fa-robot"></i>
         </div>
-        <div class="bg-gray-100 px-5 py-4 rounded-2xl rounded-tl-sm max-w-2xl text-gray-800 shadow-sm border border-gray-200">
+        <div class="\${bgColor} px-5 py-4 rounded-2xl rounded-tl-sm max-w-2xl text-gray-800 shadow-sm border">
           \${htmlContent}
         </div>
       \`;
@@ -209,31 +198,78 @@
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
-    function reportError() {
-      appendUserMessage("Câu trả lời này bị sai rồi!");
-      setTimeout(() => {
-        appendBotMessage(\`
-          <p>Thành thật xin lỗi vì sự nhầm lẫn này! Cảm ơn bạn đã phản hồi.</p>
-          <p class="mt-1">Mình đã tự động thu hồi câu trả lời sai và gọi <b>@TA</b> vào hỗ trợ bạn xử lý.</p>
-        \`);
-      }, 600);
+    function getRuleBaseResponse(text) {
+      const lower = text.toLowerCase();
+      
+      if (lower.includes('lab 2')) {
+        if (!isNewBot) {
+          return "<p>Lab 2 à? Hình như là nộp vào cuối tuần này nha bạn, tầm chủ nhật đó. Nhớ làm bài đầy đủ nhé, bài này khó lắm đó blabla (bot lan man)...</p>";
+        } else {
+          return \`
+            <p class="mb-2">Theo thông báo chính thức, hạn nộp <b>Lab 2</b> là <b>23:59 ngày 20/09/2026</b>.</p>
+            <div class="bg-white border border-blue-200 rounded-lg p-3 mt-3 flex items-start gap-3">
+               <i class="fa-solid fa-link text-blue-500 mt-1"></i>
+               <div>
+                 <p class="text-sm font-semibold">Nguồn trích xuất (G11)</p>
+                 <a href="#" class="text-xs text-blue-600 hover:underline">#announcement - Lịch nộp bài Tuần 2</a>
+               </div>
+            </div>
+          \`;
+        }
+      }
+      
+      if (lower.includes('lab 7')) {
+        if (!isNewBot) {
+          return "<p>Lab 7 thường sẽ nộp sau Lab 6 một tuần nha bạn. Cứ tà tà mà làm.</p>";
+        } else {
+          return \`
+            <p>Mình chưa tìm thấy thông báo chính thức nào về hạn nộp "Lab 7" trong cơ sở dữ liệu.</p>
+            <p class="mt-2 text-red-600 font-semibold"><i class="fa-solid fa-bell"></i> Mình đã Tag Trợ Giảng (@TA) vào hỗ trợ bạn.</p>
+            <p class="mt-2 text-xs text-gray-500">(Áp dụng nguyên tắc G10: Không tự đoán khi thiếu căn cứ).</p>
+          \`;
+        }
+      }
+      
+      if (lower.includes('điểm danh')) {
+        if (!isNewBot) {
+          return "<p>Điểm danh thì bạn check lại với TA nhé, mình không biết đâu.</p>";
+        } else {
+          return "<p>Xin lỗi, mình không được cấp quyền truy cập dữ liệu điểm danh cá nhân của học viên. Vui lòng liên hệ trực tiếp TA nhé.</p>";
+        }
+      }
+      
+      // Default fallback
+      if (!isNewBot) {
+         return "<p>Câu này khó quá, bạn hỏi anh Quân hoặc thầy Diện nhé.</p>";
+      } else {
+         return "<p>Mình chưa hiểu rõ ý của bạn. Bạn có thể cung cấp thêm thông tin bài tập nào được không? (G10)</p>";
+      }
     }
 
-    document.getElementById('send-btn').addEventListener('click', () => {
-      const text = chatInput.value;
+    function sendMessage() {
+      const text = chatInput.value.trim();
       if(!text) return;
       
       appendUserMessage(text);
       chatInput.value = "";
       
-      // Simulate typing delay
+      // Loading state
+      const loadingId = 'loading-' + Date.now();
+      const div = document.createElement('div');
+      div.id = loadingId;
+      div.className = "flex gap-4 chat-bubble opacity-50";
+      div.innerHTML = \`
+        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 text-gray-500"><i class="fa-solid fa-ellipsis"></i></div>
+        <div class="bg-gray-100 px-5 py-4 rounded-2xl rounded-tl-sm text-gray-500 text-sm">Đang suy nghĩ...</div>
+      \`;
+      chatContainer.appendChild(div);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+      
       setTimeout(() => {
-        appendBotMessage(scenarios[currentScenario].bot);
-      }, 800);
-    });
-
-    // Init
-    setScenario('happy');
+        document.getElementById(loadingId).remove();
+        appendBotMessage(getRuleBaseResponse(text));
+      }, 700);
+    }
   </script>
 </body>
 </html>
