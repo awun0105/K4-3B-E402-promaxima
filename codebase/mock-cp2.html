@@ -176,7 +176,7 @@
         
         welcomeText.innerHTML = "Xin chào! Hiện tại hệ thống đang chạy ở phiên bản <b>Bot Cũ</b> (Trả lời hay đoán mò, sai thông tin).";
       }
-      clearChat(false);
+      clearChat();
     });
 
     labelOld.style.color = '#FFFFFF'; // Init highlight
@@ -192,14 +192,9 @@
       processInput();
     }
 
-    function clearChat(keepWelcome = true) {
-      while (chatContainer.children.length > (keepWelcome ? 1 : 0)) {
+    function clearChat() {
+      while (chatContainer.children.length > 1) {
         chatContainer.removeChild(chatContainer.lastChild);
-      }
-      if(!keepWelcome) {
-         const first = chatContainer.firstElementChild;
-         chatContainer.innerHTML = '';
-         chatContainer.appendChild(first);
       }
     }
 
