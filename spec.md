@@ -2,23 +2,32 @@
 
 > Cấu trúc phủ đúng "SPEC 8 phần" của chương trình: Bằng chứng (§1-§2) · Lát cắt (§4) · Canvas (đính kèm CP1) · Augment/Automate (§4) · 4 đường đi của trải nghiệm (§6) · Kiểu lỗi (§5) · Kiểm thử (§7) · Phân công (§8). Hướng dẫn viết từng mục: `02-guide.md`.
 
-```markdown
-# AI SPEC — [Tên lát cắt] · Nhóm [XX] · Zone [X]
-Hướng: [ ] A — VLearn  [ ] B — Trợ lý Học viên  [ ] C — Làn mở
+# AI SPEC — [Tên lát cắt] · Nhóm [] · Zone [4]
+Hướng: [ ] A — VLearn  [x] B — Trợ lý Học viên  [ ] C — Làn mở
 Loại: [ ] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 
 ## §1. User & Job
-- Job executor + workflow (đính kèm worksheet JTBD / ảnh sơ đồ):
-- Core JTBD (không tên sản phẩm/AI trong câu):
-- Problem statement (KHÔNG chữ AI):
-- Evidence (chuẩn A và/hoặc B — log đầy đủ trong repo):
-  - Số liệu mining / kết quả khảo sát (n = ?, % xác nhận):
-  - ≥5 quote/ví dụ nguyên văn + nguồn:
+- Job executor + workflow: Học viên khóa AI Thực Chiến trên Discord muốn xác nhận thời hạn (deadline) nộp bài chính xác cho Lab/bài tập sắp tới.
+- Core JTBD: Xác nhận chính xác thời hạn nộp bài để đảm bảo tiến độ và không bị trừ điểm.
+- Problem statement: Học viên muốn tra cứu/xác nhận deadline nhưng bị bot hiện tại tự suy đoán từ thảo luận cũ đưa ra ngày sai, hoặc bị trôi tin nhắn quá lâu không được phản hồi, dẫn đến nộp bài muộn, mất điểm và hoang mang.
+- Evidence:
+  - Số liệu mining: Dựa trên phân tích `discord-pack/k4_messages.csv`, lọc với từ khóa `("deadline" OR "hạn" OR "nộp" OR "lịch" OR "khi nào")` kết hợp với dấu `?`. Kết quả: **43/1.092** tin nhắn là câu hỏi về deadline. Trong đó, **15/43** tin nhắn nhận câu trả lời tự đoán sai hoặc không được phản hồi sau 4 tiếng.
+  - 5 ví dụ nguyên văn: `D0145`, `D0278`, `D0412`, `D0652`, `D0891` (Log chi tiết trong thư mục `eval/evidence/`).
 
 ## §2. Impact & quyết định chọn
-- Bảng impact ≥3 ứng viên (bao nhiêu người · tần suất · tốn gì mỗi lần · khả thi):
-- Ứng viên ĐÃ LOẠI + vì sao:
-- Ứng viên CHỌN + vì sao (bằng số):
+- Bảng impact:
+
+| Ứng viên | Người gặp/tần suất | Mỗi lần tốn gì | Khả thi (Build) | Chọn? |
+|---|---|---|---|---|
+| Phan Danh Đạt (2A202602627) | Cao (nhiều học viên hỏi deadline) | Mất điểm, hoang mang | Cao | Có |
+| Võ Trường An (2A20262656) | Thấp (chỉ vài người cần) | Mất thời gian tìm thông tin | Trung bình | Loại |
+| Phạm Đình Duy (2A202602913) | Trung bình (cần tài liệu) | Mất thời gian chờ phản hồi | Trung bình | Loại |
+
+- Ứng viên ĐÃ LOẠI:
+  - Võ Trường An: Vấn đề ít phổ biến, không gây ảnh hưởng lớn đến tiến độ chung của khoá học.
+  - Phạm Đình Duy: Vấn đề mang tính chất cá nhân, không phải nỗi đau chung của nhiều học viên.
+- Ứng viên CHỌN (Phan Danh Đạt):
+  - Vì bằng chứng mining data cho thấy đây là nỗi đau rất rõ rệt (43/1092 tin nhắn, 15/43 tin nhắn bị lỗi), ảnh hưởng trực tiếp đến kết quả học tập (nộp muộn) của nhiều học viên, và giải pháp có thể kiểm chứng được bằng cơ sở dữ liệu thông báo chính thức.
 
 ## §3. Giải pháp tương tự đã nghiên cứu
 - [Sản phẩm 1]: flow / đáng học / đáng né / mình khác gì
@@ -52,4 +61,4 @@ Loại: [ ] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 
 ## §9. Changelog
 | Thời điểm | Đổi gì | Vì sao (trỏ về feedback/case nào) |
-```
+
