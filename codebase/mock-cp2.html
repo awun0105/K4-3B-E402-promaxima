@@ -186,7 +186,7 @@
 
     function sendScenario(key) {
       chatInput.value = presetQuestions[key];
-      processInput();
+      chatInput.focus();
     }
 
     function clearChat(keepWelcome = true) {
