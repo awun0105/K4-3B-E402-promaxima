@@ -162,24 +162,24 @@
     toggleBtn.addEventListener('click', () => {
       isNewBot = !isNewBot;
       if (isNewBot) {
-        toggleBtn.classList.replace('bg-[#DA373C]', 'bg-[#23A559]'); // Green for new
-        toggleKnob.classList.replace('translate-x-0', 'translate-x-5');
-        labelNew.classList.replace('text-[#949BA4]', 'text-white');
-        labelOld.classList.replace('text-white', 'text-[#949BA4]');
+        toggleBtn.style.backgroundColor = '#23A559';
+        toggleKnob.style.transform = 'translateX(20px)';
+        labelNew.style.color = '#FFFFFF';
+        labelOld.style.color = '#949BA4';
         
         welcomeText.innerHTML = "Xin chào! Hiện tại hệ thống đang chạy ở phiên bản <b>Bot Mới (Tối ưu)</b>.<br>Áp dụng nguyên tắc HAX: Không đoán bừa, trích xuất chuẩn nguồn, nhường quyền cho TA.";
       } else {
-        toggleBtn.classList.replace('bg-[#23A559]', 'bg-[#DA373C]');
-        toggleKnob.classList.replace('translate-x-5', 'translate-x-0');
-        labelOld.classList.replace('text-[#949BA4]', 'text-white');
-        labelNew.classList.replace('text-white', 'text-[#949BA4]');
+        toggleBtn.style.backgroundColor = '#DA373C';
+        toggleKnob.style.transform = 'translateX(0px)';
+        labelOld.style.color = '#FFFFFF';
+        labelNew.style.color = '#949BA4';
         
         welcomeText.innerHTML = "Xin chào! Hiện tại hệ thống đang chạy ở phiên bản <b>Bot Cũ</b> (Trả lời hay đoán mò, sai thông tin).";
       }
       clearChat(false);
     });
 
-    labelOld.classList.add('text-white'); // Init highlight
+    labelOld.style.color = '#FFFFFF'; // Init highlight
 
     const presetQuestions = {
       lab2: "Hạn nộp Lab 2 là khi nào vậy bot?",
@@ -189,7 +189,7 @@
 
     function sendScenario(key) {
       chatInput.value = presetQuestions[key];
-      chatInput.focus();
+      processInput();
     }
 
     function clearChat(keepWelcome = true) {
