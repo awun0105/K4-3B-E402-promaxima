@@ -202,20 +202,20 @@
       const time = new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'});
       const div = document.createElement('div');
       div.className = "chat-bubble flex gap-4 mt-1";
-      div.innerHTML = \`
+      div.innerHTML = `
         <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white flex-shrink-0">
           <i class="fa-solid fa-user"></i>
         </div>
         <div class="flex-1">
           <div class="flex items-baseline gap-2">
             <span class="font-semibold text-[#F2F3F5]">Học Viên (D7496)</span>
-            <span class="text-xs text-[#949BA4]">Hôm nay lúc \${time}</span>
+            <span class="text-xs text-[#949BA4]">Hôm nay lúc ${time}</span>
           </div>
           <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed">
-            \${text}
+            ${text}
           </div>
         </div>
-      \`;
+      `;
       chatContainer.appendChild(div);
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
@@ -225,7 +225,7 @@
       const div = document.createElement('div');
       div.className = "chat-bubble flex gap-4 mt-1";
       
-      div.innerHTML = \`
+      div.innerHTML = `
         <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white flex-shrink-0">
           <i class="fa-solid fa-robot"></i>
         </div>
@@ -235,13 +235,13 @@
             <span class="bg-[#5865F2] text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1">
                <i class="fa-solid fa-check"></i> BOT
             </span>
-            <span class="text-xs text-[#949BA4]">Hôm nay lúc \${time}</span>
+            <span class="text-xs text-[#949BA4]">Hôm nay lúc ${time}</span>
           </div>
           <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed">
-            \${htmlContent}
+            ${htmlContent}
           </div>
         </div>
-      \`;
+      `;
       chatContainer.appendChild(div);
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
@@ -253,7 +253,7 @@
         if (!isNewBot) {
           return "Chào bạn! Về vấn đề nộp bài codelab trên **Vlearn** bị trễ do lỗi commit, mình không có thông tin cụ thể về quy định châm chước cho trường hợp này trong dữ liệu hiện tại.";
         } else {
-          return \`
+          return `
             Chào bạn, theo quy định chính thức thì bài làm trên Vlearn chỉ được ghi nhận thành công khi **đã commit lên hệ thống**. Nếu bạn gặp lỗi kỹ thuật, bạn cần báo ngay cho các TA hỗ trợ kỹ thuật tại #technical-support nhé.
             
             <!-- Discord Embed Mock -->
@@ -262,7 +262,7 @@
                <div class="text-sm text-[#DBDEE1]">Quy định nộp bài tập - Section 2.3</div>
                <a href="#" class="text-xs text-[#00A8FC] hover:underline">Nhấn để xem quy chế gốc tại #announcement</a>
             </div>
-          \`;
+          `;
         }
       }
       
@@ -270,11 +270,11 @@
         if (!isNewBot) {
           return "Thường thì deadline ghép đội sẽ kéo dài thêm nếu nhiều bạn chưa có nhóm. Bạn cứ từ từ tìm đồng đội nha.";
         } else {
-          return \`
+          return `
             Chào bạn, thông tin về việc kéo dài deadline ghép đội hiện chưa có quyết định chính thức từ BTC trên hệ thống. 
             
             Mình đã chuyển thắc mắc của bạn cho @Trợ Giảng (TA) giải đáp thêm! *(Nguyên tắc HAX G10)*
-          \`;
+          `;
         }
       }
       
@@ -301,7 +301,7 @@
       const div = document.createElement('div');
       div.id = loadingId;
       div.className = "text-xs font-bold text-[#949BA4] mt-2 ml-14 chat-bubble";
-      div.innerHTML = \`<i class="fa-solid fa-pen animate-pulse"></i> Trợ Lý AI đang gõ...\`;
+      div.innerHTML = `<i class="fa-solid fa-pen animate-pulse"></i> Trợ Lý AI đang gõ...`;
       chatContainer.appendChild(div);
       chatContainer.scrollTop = chatContainer.scrollHeight;
       
