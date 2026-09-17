@@ -8,9 +8,9 @@
 
 | Họ và Tên | Mã Học Viên | Vai trò chính | Phần việc đảm nhiệm trong dự án |
 |---|---|---|---|
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
+| Lâm Quang Anh Quân | 2A202602467 |  |  |
+| Bùi Văn Quang | 2A202602688 |  |  |
+| Nguyễn Văn Diện | 2A202602615 |  |  |
 |  |  |  |  |
 
 > Nhóm copy nguyên file README này về repo của mình, rồi điền bảng trên. Cột **Phần việc đảm nhiệm** ghi càng cụ thể càng tốt.
