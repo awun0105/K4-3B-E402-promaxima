@@ -123,29 +123,34 @@
     </header>
 
     <!-- Chat Messages -->
-    <div id="chat-container" class="flex-1 overflow-y-auto px-4 py-6 space-y-4">
-      <div class="chat-bubble flex gap-4 mt-2">
-        <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white flex-shrink-0">
-          <i class="fa-solid fa-robot"></i>
+    
+    <!-- DEMO CHAT STATE -->
+    <div id="chat-container-demo" class="flex-1 overflow-y-auto px-4 py-6 space-y-4 flex flex-col">
+      <div class="mt-4 mb-8">
+        <div class="w-16 h-16 bg-[#404249] rounded-full flex items-center justify-center mb-4">
+          <i class="fa-solid fa-hashtag text-3xl text-white"></i>
         </div>
-        <div>
-          <div class="flex items-baseline gap-2">
-            <span class="font-semibold text-white">Trợ lý kute</span>
-            <span class="bg-[#5865F2] text-[10px] px-1 rounded uppercase font-bold text-white tracking-wide">Bot</span>
-            <span class="text-xs text-[#949BA4]">Hôm nay lúc 08:00</span>
-          </div>
-          <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed">
-            Chào mừng bạn đến với kênh hỏi-trợ-lý-kute! Vui lòng chọn kịch bản ở **Bảng Điều Khiển** bên phải để demo nhé.
-          </div>
-        </div>
+        <h1 class="text-3xl font-bold text-white mb-2">Chào mừng đến với #hỏi-trợ-lý-kute! (Demo Mode)</h1>
+        <p class="text-[#949BA4]">Đây là môi trường Hardcoded Rulebase. Hãy chọn kịch bản ở thanh bên phải.</p>
       </div>
     </div>
-
+    
+    <!-- LIVE CHAT STATE -->
+    <div id="chat-container-live" class="flex-1 overflow-y-auto px-4 py-6 space-y-4 hidden flex-col">
+      <div class="mt-4 mb-8">
+        <div class="w-16 h-16 bg-[#249858] rounded-full flex items-center justify-center mb-4">
+          <i class="fa-solid fa-code-branch text-3xl text-white"></i>
+        </div>
+        <h1 class="text-3xl font-bold text-white mb-2">Chào mừng đến với #hỏi-trợ-lý-kute! (Live API)</h1>
+        <p class="text-[#949BA4]">Môi trường API trực tiếp. Hãy gửi tin nhắn hoặc chọn kịch bản để gọi Backend.</p>
+      </div>
+    </div>
+    
     <!-- Message Input -->
     <div id="chat-input-container" class="px-4 pb-6 pt-2 shrink-0">
       <div class="bg-[#383A40] rounded-lg flex items-center px-4 py-3 relative">
         <i class="fa-solid fa-circle-plus text-[#B5BAC1] text-xl mr-4 cursor-pointer hover:text-[#DBDEE1]"></i>
-        <input type="text" id="chat-input" disabled placeholder="Vui lòng bấm chọn kịch bản demo ở cột bên phải..." 
+        <input type="text" id="chat-input" onkeypress="handleEnterApi(event)" disabled placeholder="Vui lòng bấm chọn kịch bản demo ở cột bên phải..." 
                class="bg-transparent border-none outline-none text-[#DBDEE1] w-full text-[15px] placeholder-[#80848E]" />
         <div class="flex gap-4 text-[#B5BAC1]">
           <i class="fa-solid fa-gift hover:text-[#DBDEE1] cursor-pointer"></i>
@@ -414,7 +419,7 @@
       const pillDemo = document.getElementById('pill-demo');
       const pillLive = document.getElementById('pill-live');
       const rightSidebar = document.getElementById('demo-sidebar');
-      const chatInput = document.getElementById('chat-input-box');
+      const chatInput = document.getElementById('chat-input');
       const serverName = document.getElementById('server-name');
       
       const containerDemo = document.getElementById('chat-container-demo');
