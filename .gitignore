@@ -1,5 +1,22 @@
-.DS_Store
-__pycache__/
+# Environment variables & secrets
 .env
-node_modules/
-data/
+.env.local
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE files
+.vscode/
+.idea/

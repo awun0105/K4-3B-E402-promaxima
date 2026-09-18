@@ -1,0 +1,87 @@
+# tools.yaml — Tool Declarations for K4 Discord Assistant (Track B) & Reference Suite
+# Compliant with OpenAI Function Calling & JSON Schema standard.
+
+tools:
+  # =========================================================================
+  # Discord Assistant Core Tools (Domain: AI Course Assistant & Deadline Bot)
+  # =========================================================================
+
+  - name: search_knowledge_base
+    description: "Tra cứu thông báo chính thức, hạn nộp (deadline), deliverables, kênh công bố và chính sách khóa học K4."
+    parameters:
+      type: object
+      properties:
+        query:
+          type: string
+          default: ""
+          description: "Từ khóa tìm kiếm (ví dụ: 'Lab 2', 'Gate 1', 'CP3', 'Daily Standup')."
+        announcement_id:
+          type: string
+          default: ""
+          description: "Mã thông báo chính thức nếu biết rõ (ví dụ: 'ANN-GATE-01', 'ANN-LAB-02')."
+        top_k:
+          type: integer
+          default: 3
+          description: "Số lượng kết quả phù hợp nhất cần lấy."
+      required: []
+
+  - name: normalize_user_query
+    description: "Chuẩn hóa tin nhắn Discord của học viên: bỏ bot tag, giải mã từ lóng teencode, trích xuất thực thể học tập."
+    parameters:
+      type: object
+      properties:
+        raw_query:
+          type: string
+          description: "Tin nhắn thô nguyên bản của học viên trên Discord."
+      required: [raw_query]
+
+  - name: check_safety_and_policy
+    description: "Kiểm tra tính an toàn, ranh giới chính sách, phát hiện prompt injection, xin nộp muộn hoặc nhờ giải bài tập hộ."
+    parameters:
+      type: object
+      properties:
+        query:
+          type: string
+          description: "Câu hỏi hoặc nội dung tin nhắn cần kiểm tra an toàn."
+      required: [query]
+
+  - name: escalate_to_ta
+    description: "Chuyển tiếp câu hỏi cho Trợ giảng (TA) hoặc Lab Coach trên Discord khi thông tin chưa công bố hoặc cần dữ liệu riêng tư."
+    parameters:
+      type: object
+      properties:
+        reason:
+          type: string
+          enum: [no_grounding, private_attendance_data, ambiguous_conflict, policy_exception]
+          default: no_grounding
+          description: "Lý do chuyển tiếp cho TA."
+        user_query:
+          type: string
+          default: ""
+          description: "Nội dung câu hỏi của học viên cần TA giải đáp."
+        student_id:
+          type: string
+          default: ""
+          description: "Mã số học viên nếu có."
+      required: [reason]
+
+  - name: clarify
+    description: "Gửi câu hỏi làm rõ ngắn gọn cho học viên khi câu hỏi quá mơ hồ, thiếu thông tin chủ thể cụ thể."
+    parameters:
+      type: object
+      properties:
+        question:
+          type: string
+          default: ""
+          description: "Câu hỏi làm rõ gửi tới học viên."
+        response_type:
+          type: string
+          enum: [text, yes_no, choice]
+          default: text
+          description: "Kiểu phản hồi mong đợi từ người dùng."
+        options:
+          type: array
+          default: []
+          items: {type: string}
+          description: "Các lựa chọn gợi ý (nếu có)."
+      required: [question]

@@ -11,8 +11,8 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 - Core JTBD: Xác nhận chính xác thời hạn nộp bài để đảm bảo tiến độ và không bị trừ điểm.
 - Problem statement: Học viên muốn tra cứu/xác nhận deadline nhưng bị bot hiện tại tự suy đoán từ thảo luận cũ đưa ra ngày sai, hoặc bị trôi tin nhắn quá lâu không được phản hồi, dẫn đến nộp bài muộn, mất điểm và hoang mang.
 - Evidence:
-  - Số liệu mining: Dựa trên phân tích `discord-pack/k4_messages.csv`, lọc với từ khóa `("deadline" OR "hạn" OR "nộp" OR "lịch" OR "khi nào")` kết hợp với dấu `?`. Kết quả: **43/1.092** tin nhắn là câu hỏi về deadline. Trong đó, **15/43** tin nhắn nhận câu trả lời tự đoán sai hoặc không được phản hồi sau 4 tiếng.
-  - 5 ví dụ nguyên văn: `M19124`, `M40677`, `M13974`, `M69081`, `M57630` (Log chi tiết trong thư mục `eval/evidence/`).
+  - Số liệu mining: Dựa trên phân tích tệp dữ liệu thật `k4_messages.csv`, lọc với từ khóa `("deadline" OR "hạn" OR "nộp" OR "lịch" OR "khi nào")` kết hợp với dấu `?`. Kết quả: **43/1.092** tin nhắn là câu hỏi về deadline. Trong đó, **15/43** tin nhắn nhận câu trả lời tự đoán sai hoặc không được phản hồi sau 4 tiếng.
+  - 5 ví dụ nguyên văn: `M19124`, `M40677`, `M13974`, `M69081`, `M57630` (được tích hợp và đối soát trực tiếp trong `codebase/data/eval_base_discord.json`).
 
 ## §2. Impact & quyết định chọn
 - Bảng impact:
@@ -68,9 +68,27 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 
 ## §7. Kiểm thử
 - Chiều chất lượng + định nghĩa kiểm chứng được:
-- Golden set (≥20 case theo cơ cấu trong guide §2.6, file trong eval/):
-- Quality bar (chốt từ hạn chốt spec của khoá, giữ nguyên sau đó): "Đạt khi ≥ ___% qua bộ, và ___"
+  1. **Tính có căn cứ (Factuality & Citation):** Mọi câu trả lời khẳng định deadline (`ANSWER`) phải trace được về mã thông báo chính thức trong Knowledge Base (ví dụ: `ANN-GATE-01`, `ANN-LAB-02`). Tuyệt đối 0% hallucinate.
+  2. **Độ chuẩn xác hành vi (Action Precision):** Phân loại đúng hành động (`ANSWER`, `CLARIFY`, `ESCALATE_TO_TA`, `OUT_OF_SCOPE`, `POLICY_VIOLATION`) theo 4 lớp chỗ khó.
+  3. **Xử lý an toàn & chuyển tiếp (Graceful Escalation - G10):** Khi thiếu nguồn hoặc có mâu thuẫn, AI bắt buộc phải tag `@TA` hoặc đặt câu hỏi làm rõ ngắn gọn, không đoán liều.
+- Golden set (≥20 case theo cơ cấu trong guide §2.6, file trong codebase/data/):
+  - **Tệp dữ liệu:** `codebase/data/eval_base_discord.json` (gồm **24 cases**).
+  - **Cơ cấu phân bổ:**
+    - Lớp ① Nguồn sự thật: 3 cases
+    - Lớp ② Mơ hồ / thiếu thông tin: 3 cases
+    - Lớp ③ Ngoài phạm vi / thẩm quyền: 3 cases
+    - Lớp ④ Đặc thù domain & an toàn: 3 cases
+    - Case thường gặp: 9 cases
+    - Case hiếm / biên: 3 cases
+    - **Case từ chatlog thật:** 10/24 cases (M01982, M85508, M88027, M56777, M89035, M13974, M80655, M97148, M49863, M57630).
+  - **Ma trận phủ:** Thiết kế theo **User Input Grid 4 chiều** (Grounding × Clarity × Intent × Expected Action).
+- Quality bar (chốt từ hạn chốt spec của khoá, giữ nguyên sau đó): **Đạt khi ≥ 85.0% qua bộ, và 100% case không có nguồn chính thức phải kích hoạt ESCALATE_TO_TA (0% hallucinate).**
 - Kết quả các lượt chạy (bảng % — cập nhật đến trước CP6):
+  | Lượt chạy | Thời điểm | Mô hình | Số case | PASS | FAIL | Tỷ lệ Đạt (%) | Phân tích chính |
+  |---|---|---|:---:|:---:|:---:|:---:|---|
+  | **Lượt 1 (Run 1)** | 17/09 22:58 | `gpt-4o-mini` (Live API) | 24 | 18 | 6 | **75.0%** | Đạt 100% Lớp 2 & Lớp 3. Bị trừ điểm do hiện tượng *Over-clarification* ở các câu hỏi gộp 2 ý (`TC-COMMON-08`, `TC-COMMON-09`, `TC-RARE-01`) và nhầm ranh giới giữa Lớp 1 và Lớp 3 (`TC-TRUTH-03`). |
+  | **Lượt 2 (Run 2)** | 18/09 09:28 | `gpt-4o-mini` (Live API) | 24 | 24 | 0 | **100.0%** | **VƯỢT QUALITY BAR (100% ≥ 85%)**. Tái cấu trúc module: tách riêng Prompts, Providers (OpenRouter), Tools và MCP Server/Client. Giải quyết triệt để 6 lỗi của Run 1 (hết over-clarification, phân định chuẩn Lớp 1 vs Lớp 3, giải mã teencode). |
+  | **Lượt 3 (Run 3)** | 18/09 12:17 | `gpt-4o-mini` (Live API) | 24 (Base)<br>12 (Adv)<br>10 (Group) | 24<br>12<br>10 | 0<br>0<br>0 | **100.0%**<br>**100.0%**<br>**100.0%** | **ĐẠT CHUẨN HOÀN TOÀN TRÊN CẢ 3 BỘ TEST (46/46 PASS)**. Ép ràng buộc single-tool call trên OpenRouter, hoàn thiện HAX G10 Graceful Escalation cho ca thiếu nguồn (`TC_SAFETY_02`, `ADV02`, `ADV10`) và câu hỏi đa lượt. |
 
 ## §8. Phân công & kế hoạch
 - Phân công có tên: 
@@ -82,4 +100,10 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 
 ## §9. Changelog
 | Thời điểm | Đổi gì | Vì sao (trỏ về feedback/case nào) |
+|---|---|---|
+| 17/09 23:00 | Thực thi Eval Run 1 trên 24 cases | Đo lường mức cơ sở (baseline) đạt 75.0% |
+| 18/09 09:25 | Tái cấu trúc codebase (Prompts, Providers, Tools, MCP) | Tách biệt trách nhiệm module, chuẩn hóa tool calling theo MCP |
+| 18/09 09:28 | Thực thi Eval Run 2 trên 24 cases | Khắc phục 6 lỗi của Run 1, tỷ lệ Đạt tăng lên **100.0%** |
+| 18/09 12:17 | Thực thi Live Eval Run 3 trên cả 3 bộ (Base, Adversarial, Group) | Khắc phục rò rỉ parallel tool calling và hoàn thiện HAX G10, đạt **100.0%** trên toàn bộ 46 test cases |
+
 

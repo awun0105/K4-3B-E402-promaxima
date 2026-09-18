@@ -1,0 +1,148 @@
+[
+  {
+    "id": "ANN-GATE-01",
+    "topic": "Gate 1 — Chốt đề tài dự án Build Phase",
+    "deadline": "23:59:00 ngày 20/09/2026",
+    "channel": "#thông-báo-build",
+    "message_ref": "M01982",
+    "deliverables": [
+      "Brief bài toán (1-page brief)",
+      "PRD",
+      "Wireframe / UI Flow",
+      "GitHub Repo Setup AI Log"
+    ],
+    "submission_method": "Nộp 1 link gồm đủ các deliverables (GitHub, Docs, Google Drive) tại thread nộp bài của team.",
+    "policy": "Bắt buộc mọi thành viên setup AI Log Hook và ghi log prompt. Hoàn thành được +100 XP/thành viên."
+  },
+  {
+    "id": "ANN-LAB-01",
+    "topic": "Lab 1 — AI-LLM Foundation",
+    "deadline": "23:59:00 ngày 11/09/2026",
+    "channel": "#thông-báo-lớp-học",
+    "message_ref": "ANN-L1-OFFICIAL",
+    "deliverables": [
+      "Repository hoàn thiện các bài tập Lab 1 fork từ repo gốc của khóa học"
+    ],
+    "submission_method": "Push code lên repo fork thuộc GitHub Org AI20K và nộp link qua VLearn.",
+    "policy": "Phải fork repo chính thức, không clone độc lập ngoài Org để hệ thống ghi nhận điểm."
+  },
+  {
+    "id": "ANN-LAB-02",
+    "topic": "Lab 2 — Prompt Engineering & Tool Calling",
+    "deadline": "23:59:00 ngày 12/09/2026",
+    "channel": "#thông-báo-lớp-học",
+    "message_ref": "ANN-L2-OFFICIAL",
+    "deliverables": [
+      "Bài tập hoàn thiện module Tool Calling và Prompt Chain trên hệ thống VLearn"
+    ],
+    "submission_method": "Nộp link commit trên GitHub và submit bài làm trên VLearn.",
+    "policy": "Hệ thống tự động khóa cổng nộp vào 23:59:00. Không chấp nhận bài nộp qua tin nhắn riêng cho TA."
+  },
+  {
+    "id": "ANN-HACKATHON-CP1",
+    "topic": "Mini Hackathon Lớp 3B — Checkpoint CP1 (Canvas)",
+    "deadline": "19:30:00 ngày 17/09/2026",
+    "channel": "#hackathon-announcements",
+    "message_ref": "ANN-HACK-CP1",
+    "deliverables": [
+      "Canvas 7 dòng theo scaffold trong 02-guide.md §1.5",
+      "Họ tên và mã học viên đội trưởng",
+      "Link repo GitHub công khai",
+      "Khai báo tối thiểu 2 willing users"
+    ],
+    "submission_method": "Nộp qua biểu mẫu Form CP1 do BTC phát hành.",
+    "policy": "Mốc 5 điểm nộp. Đúng hạn 5 điểm, muộn 0 điểm."
+  },
+  {
+    "id": "ANN-HACKATHON-CP2",
+    "topic": "Mini Hackathon Lớp 3B — Checkpoint CP2 (Bấm được / Luồng hoạt động)",
+    "deadline": "21:00:00 ngày 17/09/2026",
+    "channel": "#hackathon-announcements",
+    "message_ref": "ANN-HACK-CP2",
+    "deliverables": [
+      "Bản mock bấm được (Figma / Web tĩnh) hoặc sơ đồ luồng chi tiết",
+      "Commit đầu tiên trên repository"
+    ],
+    "submission_method": "Cập nhật repo và nộp link Form CP2.",
+    "policy": "Mốc hỗ trợ kỹ thuật; chưa cần AI chạy thật."
+  },
+  {
+    "id": "ANN-HACKATHON-CP3",
+    "topic": "Mini Hackathon Lớp 3B — Checkpoint CP3 (Video 30s + Đo lượt đầu)",
+    "deadline": "16:00:00 ngày 18/09/2026",
+    "channel": "#hackathon-announcements",
+    "message_ref": "ANN-HACK-CP3",
+    "deliverables": [
+      "Video thao tác 30 giây quay màn hình AI chạy thật",
+      "Module quyết định trung tâm gọi AI thật",
+      "Golden set tối thiểu 20 case trong eval/",
+      "Bảng kết quả chạy thử lượt đầu có tỷ lệ %"
+    ],
+    "submission_method": "Commit vào repo và điền Form CP3.",
+    "policy": "Bắt buộc có ít nhất 1 lời gọi AI thật, không hardcode kết quả."
+  },
+  {
+    "id": "ANN-HACKATHON-CP4",
+    "topic": "Mini Hackathon Lớp 3B — Checkpoint CP4 (Hạn chốt Spec & Quality Bar)",
+    "deadline": "21:00:00 ngày 18/09/2026",
+    "channel": "#hackathon-announcements",
+    "message_ref": "ANN-HACK-CP4",
+    "deliverables": [
+      "File spec.md hoàn thiện §1-§9 theo template",
+      "Quality bar bằng con số % cam kết (khóa cố định từ thời điểm này)"
+    ],
+    "submission_method": "Commit spec.md vào repo và nộp Form CP4.",
+    "policy": "Quality bar chốt cứng từ thời điểm này, không được sửa đổi sau khi đo."
+  },
+  {
+    "id": "ANN-HACKATHON-CP5",
+    "topic": "Mini Hackathon Lớp 3B — Checkpoint CP5 (Nộp slide PDF + Video dự phòng)",
+    "deadline": "22:30:00 ngày 18/09/2026",
+    "channel": "#hackathon-announcements",
+    "message_ref": "ANN-HACK-CP5",
+    "deliverables": [
+      "demo-slides.pdf (Slide thuyết trình 6 trang)",
+      "Video demo dự phòng (phòng live hỏng)",
+      "Dry run thuyết trình hoàn tất"
+    ],
+    "submission_method": "Commit slide PDF và nộp Form CP5.",
+    "policy": "Sau mốc này không nhận thêm bài nộp bổ sung."
+  },
+  {
+    "id": "ANN-HACKATHON-CP6",
+    "topic": "Mini Hackathon Lớp 3B — Checkpoint CP6 (Vòng thuyết trình chung kết)",
+    "deadline": "09:00:00 ngày 19/09/2026",
+    "channel": "#hackathon-announcements",
+    "message_ref": "ANN-HACK-CP6",
+    "deliverables": [
+      "Thuyết trình live 5 phút + 5 phút Q&A",
+      "Chạy thẻ giám khảo 1 case lạ trực tiếp"
+    ],
+    "submission_method": "Trực tiếp tại phòng LAB E402 / E403.",
+    "policy": "Mỗi thành viên phải trình bày ít nhất 1 phần theo quy tắc vibe-coding."
+  },
+  {
+    "id": "ANN-DAILY-STANDUP",
+    "topic": "Quy định nộp báo cáo Daily Standup",
+    "deadline": "23:59:00 hàng ngày (trong suốt Build Phase)",
+    "channel": "#bắt-đầu-tại-đây",
+    "message_ref": "M98506",
+    "deliverables": [
+      "Báo cáo tiến độ cá nhân thông qua lệnh /daily-standup"
+    ],
+    "submission_method": "Thực hiện lệnh /daily-standup trong Forum Thread riêng của team (dạng t-xxx). Không tag cá nhân.",
+    "policy": "Bắt buộc cho từng thành viên để cộng điểm XP cá nhân và theo dõi blocker."
+  },
+  {
+    "id": "ANN-TEAM-FORMATION",
+    "topic": "Hạn chót ghép đội tự do / Thành lập team Build Phase",
+    "deadline": "23:59:00 ngày 13/09/2026",
+    "channel": "#thông-báo-build",
+    "message_ref": "M56777-REF",
+    "deliverables": [
+      "Ghép đủ đội 3-4 thành viên và đăng ký mã đội qua lệnh bot"
+    ],
+    "submission_method": "Dùng lệnh bot đăng ký tại kênh #🤖-bot-commands.",
+    "policy": "Sau thời hạn này các thành viên chưa có đội sẽ được BTC tự động ghép đội."
+  }
+]
