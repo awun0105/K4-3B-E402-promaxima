@@ -2,41 +2,84 @@
 
 **SPEC → Prototype → Demo.** Đây không phải cuộc thi code — đây là cuộc thi **tư duy sản phẩm AI**.
 
-## 👥 Thành viên nhóm & Phân công vai trò
+### 👥 Thành viên nhóm & Phân công vai trò
 
-**Lớp:** 3B · **Phòng:** ____ · **Cụm:** ____ · **Track:** ____
+**Lớp:** 3B · **Phòng:** E402 · **Cụm:** Zone 4 · **Track:** B — Trợ lý Học viên Discord
 
 | Họ và Tên | Mã Học Viên | Vai trò chính | Phần việc đảm nhiệm trong dự án |
 |---|---|---|---|
-| Lâm Quang Anh Quân | 2A202602467 |  |  |
-| Bùi Văn Quang | 2A202602688 |  |  |
-| Nguyễn Văn Diện | 2A202602615 |  |  |
-|  |  |  |  |
+| Lâm Quang Anh Quân | 2A202602467 | Product Lead & UX/Spec | Thiết kế Spec, Canvas, luồng hội thoại HAX/PAIR, UI Discord Web Mock |
+| Bùi Văn Quang | 2A202602688 | Lead Engineer & Agent Architecture | Kiến trúc Agent Loop, Tool Calling, System Prompt, Decoupled Providers |
+| Nguyễn Văn Diện | 2A202602615 | QA & Eval Benchmark Engineer | Xây dựng Golden Set 24 cases, Dataset 10 cases nhóm, Eval runner, Benchmarks |
 
-> Nhóm copy nguyên file README này về repo của mình, rồi điền bảng trên. Cột **Phần việc đảm nhiệm** ghi càng cụ thể càng tốt.
+> Chi tiết phân công và bản tự nhận xét cá nhân xem tại [TEAM.md](TEAM.md) và báo cáo kỹ thuật [codebase/artifacts/REPORT.md](codebase/artifacts/REPORT.md).
 
-- Thời lượng: **39 giờ** từ phát đề đến thuyết trình (ca 3B) — LAB 5 (phát đề + build) · LEC 6 (tiếp tục build theo ca) · LAB 6 (vòng thi)
-- Nhóm: **3-4 người** · thi theo phòng (E403 / E402), chia cụm rồi chung kết phòng — xem *Thể thức thi*
-- **Chia cụm theo bàn**, không cần chung đề tài. Chủ đề tự chọn trong khuôn khổ đề bài
-- Nhóm nhỏ thì **chọn lát cắt nhỏ**, và phải có **khảo sát nỗi đau thật** — đây là chỗ ăn điểm nặng nhất
+---
 
-## Bắt đầu từ đâu?
+## 🚀 Cấu Trúc Mã Nguồn Chuẩn Hóa (Day04 & Mini Hackathon)
 
-1. Đọc **`01-challenge-brief.md`** để hiểu khung chung và 5 tiêu chí, rồi **`tracks/README.md`** để chọn track và đề.
-2. Mở **`02-guide.md`** — hướng dẫn từng giai đoạn, đứng ở đâu đọc mục đó.
-3. Viết spec theo **`03-ai-spec-template.md`** — deliverable trung tâm của cả sự kiện.
-4. Đọc **`04-rubric.md`** ngay từ đầu — biết trước bài được chấm theo tiêu chí nào.
+Toàn bộ mã nguồn, cấu hình công cụ (tools), prompt, dữ liệu kiểm thử và báo cáo kỹ thuật được tổ chức chặt chẽ theo đúng chuẩn quy ước tại thư mục **[`codebase/`](codebase/)**:
+
+```text
+codebase/
+├── artifacts/
+│   ├── REPORT.md               # Báo cáo kỹ thuật chi tiết v0-v3, failure analysis, evidence
+│   ├── system_prompt.md        # System prompt có versioning quản lý qua SHA-256
+│   ├── tools.yaml              # Khai báo tool calling chuẩn OpenAPI / JSON Schema
+│   └── version_log.csv         # Nhật ký version hóa qua các mốc thử nghiệm
+├── tools/                      # Kiến trúc tool modular độc lập
+│   ├── search_knowledge_base/  # Tool tra cứu thông báo và hạn nộp chính thức
+│   ├── normalize_user_query/   # Tool làm sạch bot tag và giải mã teencode tiếng Việt
+│   ├── check_safety_and_policy/# Tool kiểm tra an toàn và vi phạm quy chế
+│   ├── escalate_to_ta/         # Tool chuyển giao cho TA khi thiếu nguồn (HAX G10)
+│   ├── clarify/                # Tool làm rõ khi câu hỏi thiếu chủ thể
+│   ├── mcp/                    # Chuẩn giao thức MCP Server / Client cho Knowledge Base
+│   ├── _shared.py              # Thư viện hàm dùng chung
+│   └── __init__.py             # Tool Registry tập trung
+├── providers/                  # Tầng adapter LLM trừu tượng (OpenRouter, OpenAI, Mock...)
+├── data/                       # Bộ kiểm thử chuẩn hóa (eval_base_discord, eval_group, adversarial)
+├── discord_data/               # Dữ liệu tri thức domain (announcements.json, markdown KB)
+├── scripts/                    # Scripts kiểm tra preflight và phân tích runs
+├── agent.py                    # Vòng lặp Agent thực thi tool calling
+├── chat.py                     # Giao diện chat CLI tương tác có ghi log transcript
+├── run_eval.py                 # Bộ đo lường chất lượng tự động
+├── env_loader.py               # Nạp an toàn biến môi trường
+└── versioning.py               # Tính toán artifact hash SHA-256
+```
+
+### Hướng Dẫn Chạy & Kiểm Thử
+
+```powershell
+# 1. Kích hoạt môi trường và cài đặt dependencies
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+# 2. Chạy kiểm tra kết nối Provider (OpenRouter live tool calling)
+python codebase/scripts/preflight_provider.py --provider openrouter
+
+# 3. Chạy đánh giá bộ 10 cases nhóm (5 single-turn + 5 multi-turn)
+python run_eval.py --provider openrouter --version v3 --suite group --eval-cases codebase/data/eval_group.json
+
+# 4. Chạy đánh giá bộ 24 cases Golden Set (Track B Discord Assistant)
+python run_eval.py --provider openrouter --version v3 --suite base --eval-cases codebase/data/eval_base_discord.json
+
+# 5. Khởi động Chat CLI tương tác trực tiếp
+python chat.py --provider openrouter --model openai/gpt-4o-mini --version v3
+
+# 6. Chạy CLI Test tương tác trực quan cho giám khảo & học viên (hiển thị tool calls)
+python interactive_test.py
+```
+
+## Tài Liệu & Artifacts Dự Án
 
 | File / thư mục | Nội dung |
 |---|---|
-| `01-challenge-brief.md` | Đề bài: bảng 5 track · lát cắt · ràng buộc chung · 5 tiêu chí nghiệm thu |
-| `02-guide.md` | Hướng dẫn 5 giai đoạn: khám phá → spec → build → đo & validate → demo |
-| `03-ai-spec-template.md` | Template AI Spec (nộp tại **hạn chốt spec** — xem Lịch) |
-| `04-rubric.md` | Rubric 100 điểm (25 nộp checkpoint + 67 chấm bài + 8 điểm R6) + checklist xác minh 6 mốc |
-| `examples/` | Ví dụ bài nộp của khoá trước (đã ẩn tên): `canvas-cp1.md` — mẫu trống Canvas 7 dòng + 3 ví dụ đạt (track A, A/D, B) |
-| `tracks/` | **5 track**, mỗi đề cùng một khung mục: A VLearn Tutor · B Trợ lý Discord · C Lesson Studio · D Học tập thích ứng & tương tác · E Làn mở (trong phạm vi AI20k) — bắt đầu từ `tracks/README.md` |
-| `data/` | Dữ liệu thật đã ẩn danh: `vlearn-pack/` (chatlog VLearn tutor + 6 transcript bài giảng + 2 bộ slide bản hackathon) và **`discord-pack/` (tin nhắn Discord khoá 4 + bản tin bot)** — dùng để tìm bằng chứng và xây golden set. **Đọc `data/README.md` trước** |
-| `further-reading/` | Tài liệu tham khảo có tóm lược tiếng Việt: **Mom Test** (phỏng vấn), **PAIR Guidebook** (Google, 6 chương), **HAX Toolkit** (Microsoft, 18 nguyên tắc), **JTBD Playbook** + worksheet — bắt đầu từ `further-reading/README.md` |
+| [`spec.md`](spec.md) | AI Spec hoàn chỉnh: Bằng chứng (§1-§2) · Lát cắt (§4) · HAX Principles · 4 lớp chỗ khó (§5) · Kiểm thử (§7) |
+| [`canvas.md`](canvas.md) | Canvas 7 dòng chốt bài toán, JTBD và phân công vai trò tại CP1 |
+| [`TEAM.md`](TEAM.md) | Danh sách thành viên, cam kết phân công, tự nhận xét đóng góp cá nhân (INDIVIDUAL) |
+| [`flow-diagram-cp2.md`](flow-diagram-cp2.md) | Sơ đồ luồng hội thoại & kiến trúc điều phối Agent CP2 |
+| [`mock-cp2.html`](mock-cp2.html) | Web App giao diện giả lập Discord tương tác trực quan |
+| [`codebase/artifacts/REPORT.md`](codebase/artifacts/REPORT.md) | Báo cáo kỹ thuật chi tiết v0-v3, failure analysis và bảng đối chiếu metric |
 
 ## Lịch — 6 checkpoint (ca 3B · 39 giờ)
 

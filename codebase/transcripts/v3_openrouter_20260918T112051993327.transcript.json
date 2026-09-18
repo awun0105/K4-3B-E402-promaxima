@@ -1,0 +1,16 @@
+{
+  "transcript_id": "v3_openrouter_20260918T112051993327",
+  "version": "v3",
+  "artifact_version": "v3+pa0ffe0647625+t22e2e4a5ef53",
+  "prompt_hash": "a0ffe06476250f10cfd581a4c77c0fc0c53f33e4decdf58d9d6c958deeac13a2",
+  "tools_hash": "22e2e4a5ef53fdcf72aef4d2b3eddff5f801b37ba9e9ef21c187e28c34a048c7",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "C:\\Users\\DMX\\Desktop\\VIN\\LAB\\K4-3B-E402-promaxima\\codebase\\artifacts\\system_prompt.md",
+  "tools": "C:\\Users\\DMX\\Desktop\\VIN\\LAB\\K4-3B-E402-promaxima\\codebase\\artifacts\\tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-09-18T11:20:51",
+  "updated_at": "2026-09-18T11:20:51",
+  "turns": []
+}
