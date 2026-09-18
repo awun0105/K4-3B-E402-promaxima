@@ -20,6 +20,9 @@ run-cli:
 
 # Chạy cả Backend và UI cùng lúc (tiện nhất)
 start:
+	@echo "🧹 Đang dọn dẹp (kill) các tiến trình cũ trên cổng 8081 và 8082..."
+	@fuser -k 8081/tcp 2>/dev/null || true
+	@fuser -k 8082/tcp 2>/dev/null || true
 	@echo "Đang khởi động Backend (port 8081) và UI Server (port 8082)..."
 	@kill -9 $$(lsof -t -i:8081 -i:8082) 2>/dev/null || true
 	@cd codebase && python server.py &
