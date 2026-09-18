@@ -9,8 +9,8 @@
 | Họ và Tên | Mã Học Viên | Vai trò chính | Phần việc đảm nhiệm trong dự án |
 |---|---|---|---|
 | Lâm Quang Anh Quân | 2A202602467 | Product Lead & UX/Spec | Thiết kế Spec, Canvas, luồng hội thoại HAX/PAIR, UI Discord Web Mock |
-| Bùi Văn Quang | 2A202602688 | Lead Engineer & Agent Architecture | Kiến trúc Agent Loop, Tool Calling, System Prompt, Decoupled Providers |
-| Nguyễn Văn Diện | 2A202602615 | QA & Eval Benchmark Engineer | Xây dựng Golden Set 24 cases, Dataset 10 cases nhóm, Eval runner, Benchmarks |
+| Bùi Văn Quang | 2A202602688 | QA & Eval Benchmark Engineer | Xây dựng Golden Set 24 cases, Eval runner, Thiết kế Slide CP5 |
+| Nguyễn Văn Diện | 2A202602615 | Lead Engineer & Agent Architecture | Kiến trúc Agent Loop, Tool Calling, System Prompt, Decoupled Providers |
 
 > Chi tiết phân công và bản tự nhận xét cá nhân xem tại [TEAM.md](TEAM.md) và báo cáo kỹ thuật [codebase/artifacts/REPORT.md](codebase/artifacts/REPORT.md).
 

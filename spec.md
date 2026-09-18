@@ -99,9 +99,9 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 ## §8. Phân công & kế hoạch
 - Phân công có tên: 
   - **Lâm Quang Anh Quân:** Spec / Design / Trải nghiệm
-  - **Bùi Văn Quang:** Prompt / Lập trình (Code Bot) / Tích hợp API
-  - **Nguyễn Văn Diện:** Evidence / Xây dựng Golden Set / Test & Demo
-- Willing users (≥2 tên) + kế hoạch vòng validation *(bonus, nếu làm)*: Nguyễn Minh Anh (K4), Trần Huy Hoàng (K4). Sẽ nhờ hai bạn test thử vào CP5 (gửi câu hỏi lắt léo xem bot xử lý đúng hay không).
+  - **Nguyễn Văn Diện:** Prompt / Lập trình (Code Bot) / Tích hợp API
+  - **Bùi Văn Quang:** Evidence / Xây dựng Golden Set / Test & Demo
+- Willing users (≥2 tên) + kế hoạch vòng validation *(bonus, nếu làm)*: Võ Trường An (K4), Phạm Đình Duy (K4). Sẽ nhờ hai bạn test thử vào CP5 (gửi câu hỏi lắt léo xem bot xử lý đúng hay không).
 - Multi-prototype (nếu làm): Không áp dụng.
 
 ## §9. Changelog
@@ -126,3 +126,4 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 | 18/09 17:55 | Hoàn thiện spec.md cho CP4: bổ sung cột "Nguyên tắc áp dụng" vào §5, chốt quality bar §7 | Đáp ứng đầy đủ cấu trúc §1–§9 theo template, đóng băng ngưỡng chất lượng trước hạn 21:00 |
 
 
+| 18/09 21:00 | Thực hiện R6 Validation với 2 willing users | Hoàn thiện CP5 bonus, kiểm chứng lỗi teencode và hallucination theo HAX G10 |
