@@ -758,74 +758,112 @@
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
-    function getRuleBaseResponse(text) {
-      const lower = text.toLowerCase();
-      
-      if (lower.includes('codelab')) {
-        if (!isNewBot) {
-          return "Chào bạn! Về vấn đề nộp bài codelab trên **Vlearn** bị trễ do lỗi commit, mình không có thông tin cụ thể về quy định châm chước cho trường hợp này trong dữ liệu hiện tại.";
-        } else {
-          return `
-            Chào bạn, theo quy định chính thức thì bài làm trên Vlearn chỉ được ghi nhận thành công khi **đã commit lên hệ thống**. Nếu bạn gặp lỗi kỹ thuật, bạn cần báo ngay cho các TA hỗ trợ kỹ thuật tại <span class="text-[#00A8FC] hover:underline cursor-pointer">#technical-support</span> nhé.
-            
-            <div class="mt-2 border-l-4 border-[#5865F2] bg-[#2B2D31] rounded p-3 max-w-lg">
-               <div class="font-bold text-sm text-[#F2F3F5] mb-1">Trích xuất nguồn (HAX G11)</div>
-               <div class="text-sm text-[#DBDEE1]">Quy định nộp bài tập - Section 2.3</div>
-               <a href="#" class="text-xs text-[#00A8FC] hover:underline">Nhấn để xem quy chế gốc tại #bắt-đầu-tại-đây</a>
-            </div>
-          `;
-        }
-      } else if (lower.includes('ghép đội')) {
-        if (!isNewBot) {
-          return "Chào bạn! Thường thì các bài tập sẽ có chung deadline cho cả nhóm nhé.";
-        } else {
-          return "Câu hỏi của bạn liên quan đến quy định ghép đội nằm ngoài Cơ sở dữ liệu hiện tại của mình (HAX G10). Mình xin phép tag <span class='bg-[#3C4270] text-[#C9CDFB] px-1 rounded hover:bg-[#5865F2] hover:text-white cursor-pointer'>@TA</span> vào hỗ trợ bạn giải đáp nhé!";
-        }
-      } else if (lower.includes('điểm danh')) {
-        if (!isNewBot) {
-          return "<i>(Không có phản hồi — Tin nhắn bị trôi do học viên không tag @BOT)</i>";
-        } else {
-          return `Chào bạn! Để check điểm danh, bạn có thể xem trên hệ thống VLearn nhé.
-            <div class="mt-2 border-l-4 border-[#5865F2] bg-[#2B2D31] rounded p-3 max-w-lg">
-               <div class="font-bold text-sm text-[#F2F3F5] mb-1">Cải tiến UX/UI</div>
-               <div class="text-sm text-[#DBDEE1]">Bot mới tự động nhận diện câu hỏi từ khóa mà không cần bắt buộc phải tag @BOT</div>
-            </div>
-          `;
-        }
+    
+    function sendScenario(type) {
+      if (document.getElementById('header-chan-name').innerText !== 'hỏi-trợ-lý-kute') {
+        alert("Vui lòng chuyển về kênh #hỏi-trợ-lý-kute để chat với bot nhé!");
+        return;
       }
-      return "Xin lỗi, mình không hiểu ý bạn.";
+      
+      let userText = "";
+      switch(type) {
+        case 'M73605': userText = `Anh ơi cho e hỏi chút ạ. Vì buổi sáng học 13h mới tan, mà chiều em có lịch bận nên em có thể xin tan sớm vào buổi sáng không ạ?`; break;
+        case 'M19124': userText = `a ơi sao deadline ghép đội tự do end sớm vậy a?`; break;
+        case 'M37211': userText = `các bạn labcoach cho mình hỏi, mình quét mã điểm danh đầy đủ nhưng tsao trên app ko có lịch sử điểm danh nhỉ? mình cảm ơn`; break;
+        case 'M49945': userText = `[@BOT] khi nào thì bắt đầu tính điểm xp?`; break;
+        case 'M56777': userText = `[@BOT] hạn thành lập team là ngày nào? team không đủ 4 người có bị giải tán không`; break;
+        case 'M88027': userText = `cho em hỏi Lab2 có được extend thời gian submit thêm không v ạ? Em lỡ nộp muộn 1 phút không submit bài được ạ`; break;
+        case 'M40677': userText = `[@BOT] tôi nộp codelab trên vlearn đúng giờ deadline như thông báo (23:59) nhưng commit trên máy bị lỗi và sau thời gian đó mới lên thì có được tính là nộp đúng hạn không ?`; break;
+        case 'M80655': userText = `[@user] Cho mình hỏi là: Email cá nhân nhận lịch mã số 02, sau đó nhận thêm mã số 03. Còn email outlook thì ngược lại nhận lịch mã số 03, sau đó nhận mã số 02. Vậy mình nên học theo lịch nào?`; break;
+        case 'M85508': userText = `[@BOT]  tối nay có lịch gì không?`; break;
+        case 'M49863': userText = `[@BOT] trả lời cả 3 Nộp báo cáo daily day ở đâu trên Discord?
+Nộp báo cáo daily day như thế nào khi chưa có đề tài team?
+Có cần nộp báo cáo daily day khi chưa có đề tài team không?`; break;
+        case 'M58536': userText = `[@BOT] daily day là thành viên nào cũng phải tag nhỉ trường hợp "Nộp như thế nào khi chưa có đề tài team?
+Bạn vẫn sử dụng lệnh /daily-standup như bình thường nha. Trong phần nội dung báo cáo, bạn có thể ghi rõ là team đang trong quá trình thảo luận, tìm kiếm hoặc lựa chọn đề tài. Nếu có khó khăn gì trong việc chọn đề, bạn có thể điền vào phần blocker (trường này là tùy chọn, không bắt buộc nè).
+" thì như nào`; break;
+        case 'M76564': userText = `[@BOT] trường hợp "Nộp như thế nào khi chưa có đề tài?
+Dù team chưa chốt đề tài chính thức, nhưng chắc chắn bạn vẫn đang có những hoạt động để chuẩn bị cho dự án mà, đúng không? Bạn có thể ghi nội dung báo cáo như sau:
+Ví dụ 1: "Đang cùng team thảo luận và brainstorm để chọn đề tài dự án."
+Ví dụ 2: "Nghiên cứu các công nghệ liên quan để đề xuất ý tưởng cho team."
+Ví dụ 3: "Đã họp team 30 phút để lọc ra top 3 đề tài tiềm năng."" cần ghi cả field yesterday và today không`; break;
+        case 'M15491': userText = `[@BOT]  trường hợp "Nộp như thế nào khi chưa có đề tài?
+Dù team chưa chốt đề tài chính thức, nhưng chắc chắn bạn vẫn đang có những hoạt động để chuẩn bị cho dự án mà, đúng không? Bạn có thể ghi nội dung báo cáo như sau:
+Ví dụ 1: "Đang cùng team thảo luận và brainstorm để chọn đề tài dự án."
+Ví dụ 2: "Nghiên cứu các công nghệ liên quan để đề xuất ý tưởng cho team."
+Ví dụ 3: "Đã họp team 30 phút để lọc ra top 3 đề tài tiềm năng."" cần ghi cả field yesterday và today không`; break;
+        case 'M60145': userText = `[@BOT] trường hợp "Nộp như thế nào khi chưa có đề tài?
+Dù team chưa chốt đề tài chính thức, nhưng chắc chắn bạn vẫn đang có những hoạt động để chuẩn bị cho dự án mà, đúng không? Bạn có thể ghi nội dung báo cáo như sau:
+Ví dụ 1: "Đang cùng team thảo luận và brainstorm để chọn đề tài dự án."
+Ví dụ 2: "Nghiên cứu các công nghệ liên quan để đề xuất ý tưởng cho team."
+Ví dụ 3: "Đã họp team 30 phút để lọc ra top 3 đề tài tiềm năng."" cần ghi cả field yesterday và today không`; break;
+        case 'M95655': userText = `[@BOT] nộp đề tài như nào?`; break;
+        case 'M98092': userText = `[@BOT] -activity để làm gì? khi nào có "commit mới lên sóng"`; break;
+        case 'M57734': userText = `[@BOT]  quy cách nộp daily standup, cả nhóm có phải nộp ko? hình thức nộp như nào, viết ra sao, có mẫu ko? Nộp vào đâu?`; break;
+        case 'M79664': userText = `[@BOT] nộp daily standup cả nhóm có phải nộp ko hay 1 người thôi? hình thức nộp như nào, viết ra sao, có mẫu ko? Nộp vào đâu?`; break;
+        case 'M37039': userText = `[@BOT] ngoài daily-standup còn phải nộp gì trong discord nhóm nữa không? và làm sao xem số XP hiện tại?`; break;
+        case 'M78574': userText = `[@BOT] nộp daily standup chỉ ở nội dung build phase thôi hay có cả học LAB và LEC trên giảng đường vinuni?`; break;
+        case 'M80377': userText = `[@BOT] Em có giấy gọi khám sơ tuyển NVQS nhưng không về địa phương kịp thì BTC có hỗ trợ giấy tờ xác nhận hay gì không, để em nộp cho địa phương?`; break;
+        case 'M34960': userText = `[@BOT] Có xếp hạng cả XP nhóm không hay chỉ xếp hạng XP cá nhân thôi ?`; break;
+        case 'M98666': userText = `[@BOT] thời gian mở daily standup và kết thúc là khi nào vậy? hôm qua mình gửi sớm daily standup thì không được, chiều nay quá deadline thì nó lại blocked mình.`; break;
+        case 'M65517': userText = `[@BOT] có xem được lịch sử +XP ko ?`; break;
+      }
+      
+      appendUserMessage(userText);
+      document.getElementById('chat-input').value = "";
+      
+      // Typing indicator
+      const typingId = 'typing-' + Date.now();
+      const typingHtml = `
+      <div id="${typingId}" class="chat-bubble flex gap-4 mt-2 opacity-70">
+        <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="flex items-center text-[#949BA4] text-sm italic">
+          Trợ lý kute đang nhập...
+        </div>
+      </div>`;
+      chatContainer.insertAdjacentHTML('beforeend', typingHtml);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId).remove();
+        appendBotMessage(getBotResponse(type, isNewBot));
+      }, isNewBot ? 1500 : 500);
     }
 
-    function sendScenario(type) {
-      let q = "";
-      if (type === 'lab2') q = "[@BOT] tôi nộp codelab trên vlearn đúng giờ deadline như thông báo (23:59) nhưng trên hệ thống báo trễ do lỗi mạng commit. Cho hỏi có được châm chước không?";
-      if (type === 'lab7') q = "[@BOT] a ơi sao deadline ghép đội tự do end sớm vậy a?";
-      if (type === 'no_bot') q = "cho mình hỏi việc mình được điểm danh hay chưa có thể check ở đâu ạ";
+    function getBotResponse(type, isNewBot) {
+      if (isNewBot) {
+        return "Tính năng RAG (Bot Mới) đang chờ được tích hợp ở vòng CP3...";
+      }
       
-      appendUserMessage(q);
-      
-      const isNoBotAndOld = (type === 'no_bot' && !isNewBot);
-      
-      // Typing effect
-      setTimeout(() => {
-        if(isNoBotAndOld) {
-             appendBotMessage(getRuleBaseResponse(q));
-        } else {
-             const html = `<div id="typing" class="text-xs text-[#949BA4] mt-1 ml-14 font-medium flex items-center gap-1">
-               <div class="w-1.5 h-1.5 bg-[#949BA4] rounded-full animate-bounce"></div>
-               <div class="w-1.5 h-1.5 bg-[#949BA4] rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
-               <div class="w-1.5 h-1.5 bg-[#949BA4] rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
-               Trợ lý kute đang nhập...
-             </div>`;
-             chatContainer.insertAdjacentHTML('beforeend', html);
-             chatContainer.scrollTop = chatContainer.scrollHeight;
-             
-             setTimeout(() => {
-               document.getElementById('typing').remove();
-               appendBotMessage(getRuleBaseResponse(q));
-             }, 800);
-        }
-      }, 300);
+      switch(type) {
+        case 'M73605': return "<i>(Không có phản hồi — Tin nhắn bị trôi do học viên không tag @BOT)</i>";
+        case 'M19124': return "<i>(Không có phản hồi — Tin nhắn bị trôi do học viên không tag @BOT)</i>";
+        case 'M37211': return "<i>(Không có phản hồi — Tin nhắn bị trôi do học viên không tag @BOT)</i>";
+        case 'M49945': return `Bạn muốn hỏi về điểm XP trong ngữ cảnh nào?<br><br>1. Điểm XP khi tham gia Zoom meetings<br>2. Điểm XP liên quan đến bot commands<br>3. Điểm XP trong quá trình onboarding<br><br>Hoặc bạn mô tả rõ hơn giúp mình nhé!`;
+        case 'M56777': return `Chào bạn! Về thắc mắc của bạn, mình xin giải đáp như sau nhé:<br><br>1.  **Hạn thành lập team:** Hiện tại mình không có thông tin về ngày cụ thể cho hạn chót thành lập team trong dữ liệu. Để chắc chắn nhất, bạn hãy kiểm tra lại kênh [#channel] (thông báo Build) hoặc xem lịch trình chi tiết tại trang [Events của Phoenix](https://phoenix.note.transformerlabs.ai/events) nha.<br><br>2.  **Team không đủ 4 người:** Thông thường, BTC khuyến khích các team có đủ thành viên để cùng nhau gánh vác khối lượng công việc của Build Phase. Nếu team bạn hiện tại chưa đủ người, bạn có thể:<br>    *   Ghé qua kênh [#channel] để "rao tin" tìm thêm đồng đội đang lẻ bóng.<br>    *   Nếu vẫn gặp khó khăn, bạn hãy mở một ticket tại kênh [#channel], chọn loại \`general\` để nhờ BTC hỗ trợ ghép thêm thành viên hoặc tư vấn về trường hợp cụ thể của team mình nhé.<br><br>Đừng lo lắng quá, cứ chủ động tìm kiếm hoặc nhờ BTC hỗ trợ sớm là được nè! Bạn còn cần mình giúp gì nữa không?`;
+        case 'M88027': return "<i>(Không có phản hồi — Tin nhắn bị trôi do học viên không tag @BOT)</i>";
+        case 'M40677': return `Chào bạn! Về vấn đề nộp bài codelab trên **Vlearn** bị trễ do lỗi commit, mình không có thông tin cụ thể về quy định châm chước cho trường hợp này trong dữ liệu hiện tại.<br><br>Tuy nhiên, để đảm bảo quyền lợi của mình, bạn nên thực hiện ngay các bước sau nhé:<br><br>1.  **Liên hệ Admin:** Bạn hãy nhắn tin trực tiếp cho **@Vlearn Admin** để trình bày về lỗi kỹ thuật bạn gặp phải (kèm ảnh chụp màn hình lỗi commit nếu có để làm minh chứng).<br>2.  **Tạo Ticket:** Bạn có thể vào kênh [hỏi-đáp-bot]([link:discord.com]), dùng lệnh \`/ticket create\` để mở một thread hỗ trợ. Khi đó, BTC sẽ xem xét trường hợp cụ thể của bạn và đưa ra quyết định cuối cùng.<br><br>Bạn cứ yên tâm liên hệ sớm với các anh chị để được hỗ trợ nhé. Chúc bạn giải quyết vấn đề suôn sẻ!`;
+        case 'M80655': return "<i>(Không có phản hồi — Tin nhắn bị trôi do học viên không tag @BOT)</i>";
+        case 'M85508': return `Bạn muốn hỏi về lịch trình gì tối nay ạ?<br><br>1. Lịch trình các buổi học/hoạt động trong khóa học?<br>2. Lịch trình các kênh hỗ trợ/họp mặt (Office Hours, Tickets)?<br>3. Lịch trình các lệnh bot có thể sử dụng?<br><br>Hoặc bạn mô tả rõ hơn giúp mình nhé!`;
+        case 'M49863': return `Chào bạn nhé! Mình xin giải đáp 3 thắc mắc của bạn về vụ daily standup nè:<br><br>1.  **Nộp báo cáo daily day ở đâu trên Discord?**<br>    Bạn chỉ nộp báo cáo trong **forum thread riêng của team mình** thôi nhé. Khi các bạn lập đội, hệ thống sẽ tạo một forum team (có tên dạng \`t-001\`, \`t-002\`...) dành riêng cho team bạn đó.<br><br>2.  **Nộp như thế nào khi chưa có đề tài team?**<br>    Bạn vẫn sử dụng lệnh **\`/daily-standup\`** như bình thường nha. Trong phần nội dung báo cáo, bạn có thể ghi rõ là team đang trong quá trình thảo luận, tìm kiếm hoặc lựa chọn đề tài. Nếu có khó khăn gì trong việc chọn đề, bạn có thể điền vào phần \`blocker\` (trường này là tùy chọn, không bắt buộc nè).<br><br>3.  **Có cần nộp báo cáo khi chưa có đề tài không?**<br>    **Có bạn nha!** Vì đây là báo cáo tiến độ hàng ngày (\`daily-standup\`), việc team đang tích cực thảo luận để chốt đề tài cũng là một phần tiến độ quan trọng cần được ghi nhận đó.<br><br>Nếu cần hỗ trợ gì thêm về các lệnh \`/topic\`, cứ nhắn mình nha! ✨`;
+        case 'M58536': return `Chào bạn nha! Về thắc mắc của bạn, mình xin giải thích rõ hơn để bạn dễ hình dung nè:<br><br>1.  **Ai là người nộp?**<br>    Đúng rồi, **từng thành viên** trong team đều nên thực hiện lệnh \`/daily-standup\` cho riêng mình nhé. Việc này giúp hệ thống ghi nhận sự tích cực và cộng XP cá nhân cho chính bạn đó.<br><br>2.  **Có phải tag (ping) mọi người không?**<br>    **Không cần thiết** phải tag các thành viên khác khi bạn nộp daily đâu nè. Khi bạn dùng lệnh \`/daily-standup\`, hệ thống đã tự động ghi nhận đó là báo cáo của riêng bạn rồi.<br><br>3.  **Nộp như thế nào khi chưa có đề tài?**<br>    Dù team chưa chốt đề tài chính thức, nhưng chắc chắn bạn vẫn đang có những hoạt động để chuẩn bị cho dự án mà, đúng không? Bạn có thể ghi nội dung báo cáo như sau:<br>    *   *Ví dụ 1:* "Đang cùng team thảo luận và brainstorm để chọn đề tài dự án."<br>    *   *Ví dụ 2:* "Nghiên cứu các công nghệ liên quan để đề xuất ý tưởng cho team."<br>    *   *Ví dụ 3:* "Đã họp team 30 phút để lọc ra top 3 đề tài tiềm năng."<br><br>**Tóm lại là:** Cứ mỗi ngày bạn có tham gia đóng góp, thảo luận hay nghiên cứu cho team (dù là bước sơ khai nhất) thì bạn cứ mạnh dạn nộp daily để tích lũy XP và duy trì tiến độ nha! ✨<br><br>Nếu bạn còn chỗ nào chưa rõ, cứ hỏi mình nhé!`;
+        case 'M76564': return `💬 Mình cần xả hơi tí xíu 😄 Quay lại sau **2 phút** nhé! Càng build nhiều, càng lên level — level cao hơn là chat thoải mái hơn đó 🚀`;
+        case 'M15491': return `💬 Mình cần xả hơi tí xíu 😄 Quay lại sau **1 phút** nhé! Càng build nhiều, càng lên level — level cao hơn là chat thoải mái hơn đó 🚀`;
+        case 'M60145': return `Chào bạn nha! Câu trả lời là: **Có, bạn nên điền cả hai trường \`yesterday\` và \`today\`** để báo cáo được đầy đủ và rõ ràng nhất nhé! ✨<br><br>Việc điền cả hai trường giúp Mod và các thành viên khác thấy được sự kết nối trong công việc của bạn. Dù chưa có đề tài chính thức, bạn có thể ghi như sau:<br><br>*   **Yesterday (Hôm qua):** Bạn đã làm gì để tìm kiếm đề tài?<br>    *   *Ví dụ:* "Đã tìm hiểu về các ứng dụng AI trong giáo dục" hoặc "Đã liệt kê ra 3 ý tưởng cá nhân".<br>*   **Today (Hôm nay):** Bạn dự định làm gì tiếp theo?<br>    *   *Ví dụ:* "Thảo luận cùng team để chọn ra ý tưởng tốt nhất" hoặc "Tiếp tục nghiên cứu tính khả thi của ý tưởng A".<br><br>**Một vài lưu ý nhỏ cho bạn:**<br>*   Việc ghi rõ ràng giúp bạn duy trì thói quen làm việc chuyên nghiệp.<br>*   Trường **Blocker** (Khó khăn) thì vẫn là **tùy chọn**, nếu bạn thấy việc chưa có đề tài là một trở ngại lớn cần hỗ trợ thì hãy ghi vào đó nhé.<br><br>Chúc bạn và team sớm tìm được đề tài thật "xịn" nha! Nếu cần hỗ trợ gì thêm cứ nhắn mình nè. 🚀`;
+        case 'M95655': return `bạn gõ /topic pick để chọn đề tài nha`;
+        case 'M98092': return `Commit và PR vào main thành công sẽ được ghi nhận trên kênh [link:discord.com] nhé`;
+        case 'M57734': return `Bạn đang hỏi về quy cách nộp daily standup cho nhóm hay về một loại nộp bài khác?<br><br>1. Quy cách nộp daily standup cho nhóm<br>2. Quy định về việc nộp bài nói chung<br><br>Hoặc bạn mô tả rõ hơn giúp mình nhé!`;
+        case 'M79664': return `Bạn đang hỏi về quy cách nộp daily standup cho cả nhóm hay chỉ cho cá nhân?<br><br>1. Quy cách nộp daily standup cho cả nhóm<br>2. Quy cách nộp daily standup cho cá nhân<br><br>Hoặc bạn mô tả rõ hơn giúp mình nhé!`;
+        case 'M37039': return `Bạn nộp daily standup trong thread \`Thảo luận\` trong channel riêng của team mình nhé (t-xxx)<br>Cách thức nộp: gõ /daily`;
+        case 'M78574': return `Chào bạn nè! Câu trả lời là: **Daily Standup chỉ tập trung vào nội dung Build Phase thôi nhé!** 🛠️<br><br>Cụ thể để bạn dễ phân biệt giữa hai hoạt động này:<br><br>*   **Hoạt động Build (Online):** Đây là nơi bạn dùng lệnh \`/daily-standup\`. Mục đích là để báo cáo tiến độ dự án, những việc team đã làm, kế hoạch tiếp theo và các khó khăn (blockers) trong quá trình xây dựng sản phẩm.<br>*   **Hoạt động trên lớp (LAB/LEC tại VinUni):** Phần này thuộc về chương trình học offline, được quản lý trên nền tảng **Vlearn**. Các vấn đề liên quan đến bài giảng, điểm danh hay thủ tục lớp học bạn sẽ theo dõi tại danh mục \`LỚP HỌC - KHOÁ 4\` và liên hệ **Vlearn Admin** nếu cần hỗ trợ nha.<br><br>Tóm lại, khi làm Standup, bạn cứ tập trung "khoe" tiến độ build dự án của team mình là chuẩn bài luôn! Nếu cần hỗ trợ gì thêm về các lệnh bot, cứ nhắn mình nhé. ✨`;
+        case 'M80377': return `Chào bạn! Về vấn đề xin giấy xác nhận để nộp cho địa phương do vướng lịch trình của chương trình, bạn cần thực hiện theo hướng dẫn sau để được hỗ trợ chính thức nhé:<br><br>1.  **Gửi email yêu cầu:** Bạn hãy gửi email trình bày rõ lý do và yêu cầu hỗ trợ giấy tờ về địa chỉ:<br>    *   **Email chính:** \`AIthucchien@vinuni.edu.vn\`<br>    *   **CC:** \`[EMAIL]\`<br>    *   *Nội dung:* Bạn nên đính kèm ảnh chụp giấy gọi khám và thông tin cá nhân (MSSV, lớp, đội nhóm) để BTC có cơ sở xác nhận nhanh nhất cho bạn.<br><br>2.  **Tạo Ticket hỗ trợ (nếu cần):** Nếu bạn cần hỏi thêm về việc vắng mặt trong các hoạt động cụ thể của Build Phase, bạn có thể dùng lệnh \`/ticket create\` tại kênh [🎫-tickets]([link:discord.com]) và chọn loại \`general\` để trao đổi trực tiếp với các anh chị Admin/Mod.<br><br>Vì đây là thủ tục hành chính quan trọng, bạn nên gửi email sớm nhất có thể để BTC kịp thời xử lý giúp bạn nhé. Chúc bạn giải quyết công việc thuận lợi! ✨`;
+        case 'M34960': return `Chào bạn! Hiện tại hệ thống đang tập trung hiển thị bảng xếp hạng cá nhân để mọi người cùng thi đua nè.<br><br>Cụ thể:<br>*   Bạn dùng lệnh \`/leaderboard users\` để xem bảng xếp hạng cá nhân toàn server nhé.<br>*   Để xem XP và level của riêng mình (hoặc của một bạn cụ thể), bạn dùng lệnh \`/rank\`.<br><br>Về phần **XP nhóm**: Mặc dù các hoạt động như commit hay Pull Request đều được ghi nhận theo từng repo của team trong tổ chức \`AI20K-Build-Phase-Cohort-4\`, nhưng lệnh hiển thị bảng xếp hạng riêng cho nhóm hiện chưa được liệt kê phổ biến như bảng cá nhân.<br><br>**Mẹo nhỏ cho bạn:**<br>Bạn có thể thử gõ \`/leaderboard\` vào khung chat Discord để xem hệ thống có gợi ý thêm tùy chọn nào khác (như \`teams\`) không nhé. Nếu cần thông tin chính xác nhất về cách tính điểm tổng cho cả đội, bạn có thể nhắn tin hỏi các @Mod để được hỗ trợ nha! 🚀`;
+        case 'M98666': return `[@role]<br><br>Mình chưa rõ thông tin câu này lắm, để chắc chắn không sai sót thì mình nhờ Mod vào trả lời giúp bạn ạ!`;
+        case 'M65517': return `Các bạn có thể theo dõi hoặc tìm kiếm điểm XP của mình bằng Discord ID tại kênh [link:discord.com] hoặc xem lịch sử XP của bản thân bằng \`/rank\``;
+      }
+      return "Kịch bản chưa được định nghĩa.";
     }
 
     function clearChat() {
