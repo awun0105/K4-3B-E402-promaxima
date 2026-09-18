@@ -417,8 +417,16 @@
       const chatInput = document.getElementById('chat-input-box');
       const serverName = document.getElementById('server-name');
       
+      const containerDemo = document.getElementById('chat-container-demo');
+      const containerLive = document.getElementById('chat-container-live');
+      
       if (mode === 'live') {
         isLiveApiMode = true;
+        
+        containerDemo.classList.add('hidden');
+        containerDemo.classList.remove('flex');
+        containerLive.classList.add('flex');
+        containerLive.classList.remove('hidden');
         
         // Update Server Icons
         demoIcon.className = "w-12 h-12 bg-[#313338] rounded-[24px] hover:rounded-[16px] hover:bg-[#5865F2] flex items-center justify-center text-white font-bold cursor-pointer transition-all duration-200 relative group shadow-lg";
@@ -442,6 +450,11 @@
       } else {
         isLiveApiMode = false;
         
+        containerLive.classList.add('hidden');
+        containerLive.classList.remove('flex');
+        containerDemo.classList.add('flex');
+        containerDemo.classList.remove('hidden');
+        
         // Update Server Icons
         liveIcon.className = "w-12 h-12 bg-[#313338] rounded-[24px] hover:rounded-[16px] hover:bg-[#249858] flex items-center justify-center text-[#249858] hover:text-white cursor-pointer transition-all duration-200 relative group mt-2";
         pillLive.classList.add('hidden');
@@ -461,8 +474,7 @@
         chatInput.classList.add('cursor-not-allowed', 'opacity-50');
       }
       
-      // Clear chat on switch
-      clearChat();
+      // No longer clearing chat, preserving state!
     }
 
     function handleEnterApi(e) {
@@ -854,58 +866,56 @@
 
     const chatContainer = document.getElementById('chat-container');
 
+    function getActiveChatContainer() {
+      return isLiveApiMode ? document.getElementById('chat-container-live') : document.getElementById('chat-container-demo');
+    }
+    
     function appendUserMessage(text) {
-      const time = new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'});
+      const chatContainer = getActiveChatContainer();
       const html = `
-      <div class="chat-bubble flex gap-4 mt-4">
-        <div class="w-10 h-10 rounded-full bg-[#F39C3B] flex items-center justify-center text-white flex-shrink-0">
-          <i class="fa-brands fa-discord"></i>
+      <div class="chat-bubble flex gap-4 mt-2">
+        <div class="w-10 h-10 rounded-full bg-[#35373C] flex items-center justify-center text-[#DBDEE1] flex-shrink-0">
+          <i class="fa-solid fa-user"></i>
         </div>
-        <div class="flex-1">
+        <div>
           <div class="flex items-baseline gap-2">
-            <span class="font-semibold text-[#F2F3F5]">Học Viên</span>
-            <span class="text-xs text-[#949BA4]">Hôm nay lúc ${time}</span>
+            <span class="font-medium text-white hover:underline cursor-pointer">Học viên</span>
+            <span class="text-xs text-[#949BA4]">Hôm nay lúc ${new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'})}</span>
           </div>
-          <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed">
-            ${text}
-          </div>
+          <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed whitespace-pre-wrap">${text}</div>
         </div>
       </div>`;
-      chatContainer.insertAdjacentHTML('beforeend', html);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+      getActiveChatContainer().insertAdjacentHTML('beforeend', html);
+      getActiveChatContainer().scrollTop = getActiveChatContainer().scrollHeight;
     }
 
     function appendBotMessage(text) {
+      const chatContainer = getActiveChatContainer();
       const time = new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'});
+      const isNew = isNewBot;
+      const botName = isNew ? "Trợ lý kute (Mới)" : "Trợ lý kute (Cũ)";
+      const botTagColor = isNew ? "bg-[#249858]" : "bg-[#ED4245]";
+      const botIcon = isNew ? "fa-robot" : "fa-ghost";
+      const botColor = isNew ? "bg-indigo-500" : "bg-gray-500";
+      
       const html = `
       <div class="chat-bubble flex gap-4 mt-2">
-        <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white flex-shrink-0">
-          <i class="fa-solid fa-robot"></i>
+        <div class="w-10 h-10 rounded-full ${botColor} flex items-center justify-center text-white flex-shrink-0">
+          <i class="fa-solid ${botIcon}"></i>
         </div>
-        <div class="flex-1">
+        <div>
           <div class="flex items-baseline gap-2">
-            <span class="font-semibold text-[#F2F3F5] hover:underline cursor-pointer">Trợ lý kute</span>
-            <span class="bg-[#5865F2] text-[10px] px-1 rounded uppercase font-bold text-white tracking-wide flex items-center gap-1">
-              <i class="fa-solid fa-check text-[8px]"></i> Bot
-            </span>
+            <span class="font-semibold text-white">${botName}</span>
+            <span class="${botTagColor} text-[10px] px-1 rounded uppercase font-bold text-white tracking-wide">Bot</span>
             <span class="text-xs text-[#949BA4]">Hôm nay lúc ${time}</span>
           </div>
           <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed">
             ${text}
           </div>
-          <!-- Reaction Toolbar -->
-          <div class="flex gap-2 mt-2">
-            <div class="bg-[#2B2D31] hover:bg-[#35373C] border border-[#1E1F22] rounded px-2 py-0.5 text-xs cursor-pointer flex items-center gap-1 text-[#B5BAC1]">
-               👍 1
-            </div>
-            <div class="bg-[#2B2D31] hover:bg-[#35373C] border border-[#1E1F22] rounded px-2 py-0.5 text-xs cursor-pointer flex items-center gap-1 text-[#B5BAC1]">
-               ❌ Báo sai
-            </div>
-          </div>
         </div>
       </div>`;
-      chatContainer.insertAdjacentHTML('beforeend', html);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+      getActiveChatContainer().insertAdjacentHTML('beforeend', html);
+      getActiveChatContainer().scrollTop = getActiveChatContainer().scrollHeight;
     }
 
     
@@ -973,8 +983,8 @@ Ví dụ 3: "Đã họp team 30 phút để lọc ra top 3 đề tài tiềm nă
           Trợ lý kute đang nhập...
         </div>
       </div>`;
-      chatContainer.insertAdjacentHTML('beforeend', typingHtml);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+      getActiveChatContainer().insertAdjacentHTML('beforeend', typingHtml);
+      getActiveChatContainer().scrollTop = getActiveChatContainer().scrollHeight;
 
       setTimeout(() => {
         document.getElementById(typingId).remove();
