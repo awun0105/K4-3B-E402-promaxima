@@ -210,19 +210,25 @@
       'bat-dau': {
         name: 'bắt-đầu-tại-đây',
         content: `
-      <div class="flex flex-col items-center justify-center h-full text-center px-10">
-        <div class="w-20 h-20 bg-[#35373C] rounded-full flex items-center justify-center mb-4">
-           <i class="fa-solid fa-book-open text-3xl text-[#DBDEE1]"></i>
+      <div class="chat-bubble flex gap-4 mt-6">
+        <div class="w-10 h-10 rounded-full bg-[#E3452F] flex items-center justify-center text-white flex-shrink-0">
+          <i class="fa-solid fa-crown"></i>
         </div>
-        <h2 class="text-2xl font-bold text-white mb-2">Chào mừng đến với Khóa 4!</h2>
-        <p class="text-[#949BA4] mb-6">Đây là kênh lưu trữ quy chế chung của lớp học. Mọi người vui lòng đọc kỹ trước khi bắt đầu.</p>
-        <div class="bg-[#2B2D31] border border-[#1E1F22] rounded-lg p-6 text-left w-full max-w-2xl">
-          <h3 class="text-lg font-bold text-[#F2F3F5] mb-4">📜 Quy chế lớp học (Ground Truth)</h3>
-          <ul class="list-disc pl-5 text-[#DBDEE1] space-y-2 text-sm leading-relaxed">
-            <li><strong>Điều 1:</strong> Mọi bài tập phải được nộp qua hệ thống LMS VLearn. Không nhận bài qua tin nhắn.</li>
-            <li><strong>Điều 2:</strong> Không hỗ trợ ghép đội tự do ngoài hệ thống do BTC quy định. Mọi câu hỏi về việc ghép đội cá nhân ngoài luồng sẽ do Teaching Assistant (TA) giải quyết.</li>
-            <li><strong>Điều 3:</strong> Vui lòng sử dụng kênh <span class="text-[#00A8FC]">#technical-support</span> nếu gặp lỗi kỹ thuật trên LMS.</li>
-          </ul>
+        <div class="w-full max-w-3xl">
+          <div class="flex items-baseline gap-2">
+            <span class="font-semibold text-white">BTC Khóa 4</span>
+            <span class="bg-[#F39C3B] text-[10px] px-1 rounded uppercase font-bold text-white tracking-wide">Admin</span>
+            <span class="text-xs text-[#949BA4]">01/09/2026 lúc 09:00</span>
+          </div>
+          <div class="text-[#DBDEE1] mt-2 text-[15px] leading-relaxed bg-[#2B2D31] p-4 rounded-lg border border-[#1E1F22]">
+            <h3 class="text-lg font-bold text-[#F2F3F5] mb-2">📜 Chào mừng đến với Khóa 4 - Quy chế lớp học (Ground Truth)</h3>
+            <p class="mb-2 text-[#949BA4]">Đây là kênh lưu trữ quy chế chung của lớp học. Mọi người vui lòng đọc kỹ trước khi bắt đầu:</p>
+            <ul class="list-disc pl-5 text-[#DBDEE1] space-y-2 text-sm leading-relaxed">
+              <li><strong>Điều 1:</strong> Mọi bài tập phải được nộp qua hệ thống LMS VLearn. Không nhận bài qua tin nhắn.</li>
+              <li><strong>Điều 2:</strong> Không hỗ trợ ghép đội tự do ngoài hệ thống do BTC quy định. Mọi câu hỏi về việc ghép đội cá nhân ngoài luồng sẽ do Teaching Assistant (TA) giải quyết.</li>
+              <li><strong>Điều 3:</strong> Vui lòng sử dụng kênh <span class="text-[#00A8FC]">#technical-support</span> nếu gặp lỗi kỹ thuật trên LMS.</li>
+            </ul>
+          </div>
         </div>
       </div>`,
         showControls: false
