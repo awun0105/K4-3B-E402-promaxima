@@ -11,8 +11,8 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 - Core JTBD: Xác nhận chính xác thời hạn nộp bài để đảm bảo tiến độ và không bị trừ điểm.
 - Problem statement: Học viên muốn tra cứu/xác nhận deadline nhưng bị bot hiện tại tự suy đoán từ thảo luận cũ đưa ra ngày sai, hoặc bị trôi tin nhắn quá lâu không được phản hồi, dẫn đến nộp bài muộn, mất điểm và hoang mang.
 - Evidence:
-  - Số liệu mining: Dựa trên phân tích `discord-pack/k4_messages.csv`, lọc với từ khóa `("deadline" OR "hạn" OR "nộp" OR "lịch" OR "khi nào")` kết hợp với dấu `?`. Kết quả: **43/1.092** tin nhắn là câu hỏi về deadline. Trong đó, **15/43** tin nhắn nhận câu trả lời tự đoán sai hoặc không được phản hồi sau 4 tiếng.
-  - 5 ví dụ nguyên văn của học viên: `M19124`, `M40677`, `M13974`, `M69081`, `M84993` (Log chi tiết trong thư mục `eval/evidence/`).
+  - Số liệu mining: Dựa trên phân tích `discord-pack/k4_messages.csv`, lọc các tin nhắn của học viên (`is_bot = False`) với từ khóa `("deadline" OR "hạn" OR "nộp" OR "lịch" OR "khi nào")` kết hợp với dấu `?`. Kết quả: **24/1.092** tin nhắn là câu hỏi về deadline. Trong đó, **24/24** tin nhắn (100%) đều nhận câu trả lời tự đoán sai của bot hoặc bị bỏ sót không được phản hồi.
+  - 5 ví dụ nguyên văn của học viên: `M19124`, `M40677`, `M13974`, `M69081`, `M84993` (Log chi tiết trong thư mục `eval/evidence/` và báo cáo `data-analysis.md`).
 
 ## §2. Impact & quyết định chọn
 - Bảng impact:
