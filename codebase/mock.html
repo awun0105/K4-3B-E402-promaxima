@@ -146,6 +146,11 @@
       </div>
     </div>
     
+    
+    <!-- ANNOUNCEMENT STATE -->
+    <div id="chat-container-announcements" class="flex-1 overflow-y-auto px-4 py-6 space-y-4 hidden flex-col">
+    </div>
+    
     <!-- Message Input -->
     <div id="chat-input-container" class="px-4 pb-6 pt-2 shrink-0">
       <div class="bg-[#383A40] rounded-lg flex items-center px-4 py-3 relative">
@@ -867,11 +872,7 @@
       if (data.showControls) {
         document.getElementById('header-toggle').style.display = 'flex';
         document.getElementById('chat-input-container').style.display = 'block';
-        if (typeof isLiveApiMode !== 'undefined' && isLiveApiMode) {
-          document.getElementById('demo-sidebar').style.display = 'none';
-        } else {
-          document.getElementById('demo-sidebar').style.display = 'flex';
-        }
+        document.getElementById('demo-sidebar').style.display = 'flex';
       } else {
         document.getElementById('header-toggle').style.display = 'none';
         document.getElementById('chat-input-container').style.display = 'none';
