@@ -1080,7 +1080,7 @@
         
         if (round.tool_results && round.tool_results.length > 0) {
           round.tool_results.forEach(res => {
-             logHtml += `<div class="text-green-400 mb-3 ml-4 font-semibold">📚 Ground Truth (Từ Cơ sở dữ liệu):
+             logHtml += `<div class="text-green-400 mb-3 ml-4 font-semibold">✅ Tool Result:
                 <pre class="bg-black text-green-300 p-2 mt-1 rounded text-[12px] font-mono overflow-auto max-h-[250px] font-normal">${JSON.stringify(res.result, null, 2)}</pre>
              </div>`;
           });
