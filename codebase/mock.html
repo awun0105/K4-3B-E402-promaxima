@@ -680,8 +680,8 @@
                Đang chờ phản hồi từ API Backend...
              </div>
            </div>`;
-           document.getElementById('chat-container').insertAdjacentHTML('beforeend', typingHtml);
-           document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
+           getActiveChatContainer().insertAdjacentHTML('beforeend', typingHtml);
+           getActiveChatContainer().scrollTop = getActiveChatContainer().scrollHeight;
            
            const payload = {
              message: val,
