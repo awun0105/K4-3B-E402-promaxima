@@ -594,6 +594,11 @@
   </aside>
 
   <script>
+    let goldenSetData = [];
+    fetch('../eval/eval_base_discord.json')
+      .then(res => res.json())
+      .then(data => { goldenSetData = data; })
+      .catch(err => console.log("Không tải được Golden Set:", err));
 
     let isLiveApiMode = false;
     
@@ -1017,6 +1022,23 @@
     
     function appendSystemLog(userMsg, data) {
       if (!data || !data.rounds) return;
+      
+      let matchedCase = null;
+      if (typeof goldenSetData !== 'undefined') {
+          matchedCase = goldenSetData.find(c => c.query === userMsg || c.input === userMsg || (c.turns && c.turns.join('\n').includes(userMsg)));
+      }
+      
+      let expectHtml = '';
+      if (matchedCase) {
+          expectHtml = `
+          <div class="bg-[#2B2D31] border-l-4 border-[#F39C3B] p-3 mb-4 rounded mt-2">
+            <div class="text-[#F39C3B] font-bold text-[12px] uppercase mb-1"><i class="fa-solid fa-bullseye"></i> Expected Behavior (Golden Set)</div>
+            <div class="text-[#949BA4] text-[11px] mb-2 font-sans italic">Mục đích test: ${matchedCase.metadata?.what_it_tests || 'N/A'}</div>
+            <pre class="bg-black text-[#DBDEE1] p-2 rounded text-[11px] font-mono whitespace-pre-wrap">${JSON.stringify(matchedCase.expect, null, 2)}</pre>
+          </div>
+          `;
+      }
+
       let logHtml = `<div class="chat-bubble flex gap-4 mt-4 border-t border-[#3F4147] pt-4">
         <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0">
           <i class="fa-solid fa-bolt"></i>
@@ -1026,6 +1048,7 @@
             <span class="font-semibold text-white">Agent Trace</span>
             <span class="text-xs text-[#949BA4]">Query: "${userMsg}"</span>
           </div>
+          ${expectHtml}
           <div class="text-[#DBDEE1] mt-2 text-[13px] leading-relaxed font-mono bg-[#1E1F22] p-3 rounded">
       `;
       
