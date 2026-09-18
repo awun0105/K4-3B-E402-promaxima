@@ -22,7 +22,7 @@ TOOL_DECLARATIONS = load_tool_declarations(ARTIFACTS_DIR / "tools.yaml")
 OPENAI_TOOLS = to_openai_tools(TOOL_DECLARATIONS)
 
 # Use Gemini by default since it's fast and we might have Google keys loaded in this environment
-PROVIDER = make_provider("gemini")
+PROVIDER = make_provider("openrouter")
 MODEL = getattr(PROVIDER, "default_model", None)
 
 class ChatAPIHandler(BaseHTTPRequestHandler):
@@ -89,7 +89,9 @@ class ChatAPIHandler(BaseHTTPRequestHandler):
 
                 response_data = {
                     "response": assistant_text,
-                    "status": result.get("status", "success")
+                    "status": result.get("status", "success"),
+                    "tool_events": tool_events,
+                    "rounds": result.get("rounds", [])
                 }
                 
                 self._set_headers()

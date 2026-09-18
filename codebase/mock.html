@@ -82,7 +82,7 @@
           <i class="fa-solid fa-hashtag text-lg"></i> <span class="font-medium text-[15px]">hỏi-trợ-lý-kute</span>
         </div>
         <div id="chan-support" onclick="switchChannel('support')" class="flex items-center gap-1.5 px-2 py-1 text-[#949BA4] hover:bg-[#35373C] hover:text-[#DBDEE1] rounded cursor-pointer">
-          <i class="fa-solid fa-hashtag text-lg"></i> <span class="font-medium text-[15px]">technical-support</span>
+          <i class="fa-solid fa-hashtag text-lg"></i> <span class="font-medium text-[15px]">agent-trace-logs</span>
         </div>
       </div>
     </div>
@@ -697,6 +697,7 @@
            .then(data => {
              document.getElementById(typingId).remove();
              appendBotMessage(data.response || "Lỗi: Backend không trả về response.");
+          appendSystemLog(payload.message, data);
            })
            .catch(err => {
              document.getElementById(typingId).remove();
@@ -987,16 +988,78 @@
         showControls: false
       },
       'support': {
-        name: 'technical-support',
+        name: 'agent-trace-logs',
         content: `
-      <div class="flex flex-col items-center justify-center h-full text-center px-10 opacity-70">
-        <i class="fa-solid fa-wrench text-5xl text-[#949BA4] mb-4"></i>
-        <h2 class="text-xl font-bold text-white mb-2">Hỗ Trợ Kỹ Thuật</h2>
-        <p class="text-[#949BA4]">Kênh này hiện tại chưa có nội dung. Đội ngũ TA sẽ túc trực ở đây.</p>
+      <div id="logs-container" class="flex flex-col h-full text-left w-full space-y-4">
+        <div class="chat-bubble flex gap-4">
+          <div class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white flex-shrink-0">
+            <i class="fa-solid fa-terminal"></i>
+          </div>
+          <div class="w-full">
+            <div class="flex items-baseline gap-2">
+              <span class="font-semibold text-white">System</span>
+              <span class="bg-[#F39C3B] text-[10px] px-1 rounded uppercase font-bold text-white tracking-wide">Logger</span>
+            </div>
+            <div class="text-[#DBDEE1] mt-1 text-[14px] leading-relaxed">
+              Trang này hiển thị log chi tiết của Bot Mới (Server 2) khi gọi API và thực thi Tools. Các log sẽ xuất hiện ở đây sau khi bạn hỏi bot.
+            </div>
+          </div>
+        </div>
       </div>`,
         showControls: false
       }
     };
+
+    
+    function appendSystemLog(userMsg, data) {
+      if (!data || !data.rounds) return;
+      let logHtml = `<div class="chat-bubble flex gap-4 mt-4 border-t border-[#3F4147] pt-4">
+        <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div class="w-full">
+          <div class="flex items-baseline gap-2">
+            <span class="font-semibold text-white">Agent Trace</span>
+            <span class="text-xs text-[#949BA4]">Query: "${userMsg}"</span>
+          </div>
+          <div class="text-[#DBDEE1] mt-2 text-[13px] leading-relaxed font-mono bg-[#1E1F22] p-3 rounded">
+      `;
+      
+      data.rounds.forEach((round, i) => {
+        logHtml += `<div class="text-blue-400 mb-1">▶ [Round ${round.round}] Reasoning / Call:</div>`;
+        
+        if (round.assistant_text) {
+          logHtml += `<div class="text-[#949BA4] mb-2">${round.assistant_text}</div>`;
+        }
+        
+        if (round.tool_calls && round.tool_calls.length > 0) {
+          round.tool_calls.forEach(call => {
+             logHtml += `<div class="text-yellow-400 mb-1 ml-4">- Tool Call: ${call.name}(${JSON.stringify(call.args)})</div>`;
+          });
+        }
+        
+        if (round.tool_results && round.tool_results.length > 0) {
+          round.tool_results.forEach(res => {
+             logHtml += `<div class="text-green-400 mb-2 ml-4">- Tool Result: ${JSON.stringify(res.result).substring(0, 150)}...</div>`;
+          });
+        }
+      });
+      
+      logHtml += `
+          </div>
+        </div>
+      </div>`;
+      
+      // Update channelsData so it persists
+      const logsContainer = document.getElementById('logs-container');
+      if (logsContainer) {
+        logsContainer.insertAdjacentHTML('beforeend', logHtml);
+        channelsData['support'].content = document.getElementById('chat-container-announcements').innerHTML;
+        document.getElementById('chat-container-announcements').scrollTop = document.getElementById('chat-container-announcements').scrollHeight;
+      } else {
+        channelsData['support'].content = channelsData['support'].content.replace('</div>\n</div>', logHtml + '</div>\n</div>');
+      }
+    }
 
     function switchChannel(channelId) {
       // Update UI active state
@@ -1171,6 +1234,7 @@
         .then(data => {
           document.getElementById(typingId).remove();
           appendBotMessage(data.response || "Lỗi: Backend không trả về response.");
+          appendSystemLog(payload.message, data);
         })
         .catch(err => {
           document.getElementById(typingId).remove();
@@ -1268,6 +1332,7 @@ Ví dụ 3: "Đã họp team 30 phút để lọc ra top 3 đề tài tiềm nă
         .then(data => {
           document.getElementById(typingId).remove();
           appendBotMessage(data.response || "Lỗi: Backend không trả về response.");
+          appendSystemLog(payload.message, data);
         })
         .catch(err => {
           document.getElementById(typingId).remove();
