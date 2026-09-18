@@ -12,7 +12,7 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 - Problem statement: Học viên muốn tra cứu/xác nhận deadline nhưng bị bot hiện tại tự suy đoán từ thảo luận cũ đưa ra ngày sai, hoặc bị trôi tin nhắn quá lâu không được phản hồi, dẫn đến nộp bài muộn, mất điểm và hoang mang.
 - Evidence:
   - Số liệu mining: Dựa trên phân tích `discord-pack/k4_messages.csv`, lọc với từ khóa `("deadline" OR "hạn" OR "nộp" OR "lịch" OR "khi nào")` kết hợp với dấu `?`. Kết quả: **43/1.092** tin nhắn là câu hỏi về deadline. Trong đó, **15/43** tin nhắn nhận câu trả lời tự đoán sai hoặc không được phản hồi sau 4 tiếng.
-  - 5 ví dụ nguyên văn: `M19124`, `M40677`, `M13974`, `M69081`, `M57630` (Log chi tiết trong thư mục `eval/evidence/`).
+  - 5 ví dụ nguyên văn của học viên: `M19124`, `M40677`, `M13974`, `M69081`, `M84993` (Log chi tiết trong thư mục `eval/evidence/`).
 
 ## §2. Impact & quyết định chọn
 - Bảng impact:
