@@ -12,7 +12,7 @@
 | Bùi Văn Quang | 2A202602688 | Lead Engineer & Agent Architecture | Kiến trúc Agent Loop, Tool Calling, System Prompt, Decoupled Providers |
 | Nguyễn Văn Diện | 2A202602615 | QA & Eval Benchmark Engineer | Xây dựng Golden Set 24 cases, Dataset 10 cases nhóm, Eval runner, Benchmarks |
 
-> Chi tiết phân công và bản tự nhận xét cá nhân xem tại [TEAM.md](TEAM.md) và báo cáo kỹ thuật [codebase/artifacts/REPORT.md](codebase/artifacts/REPORT.md).
+> Chi tiết phân công và vai trò thành viên xem tại bảng trên và báo cáo kỹ thuật [codebase/artifacts/REPORT.md](codebase/artifacts/REPORT.md).
 
 ---
 
@@ -43,6 +43,9 @@ codebase/
 ├── agent.py                    # Vòng lặp Agent thực thi tool calling
 ├── chat.py                     # Giao diện chat CLI tương tác có ghi log transcript
 ├── run_eval.py                 # Bộ đo lường chất lượng tự động
+├── server.py                   # Backend API Server phục vụ Web Mockup Demo (cổng 8081)
+├── mock.html                   # Giao diện Discord Web Mockup tương tác trực quan
+├── flow.md                     # Sơ đồ luồng hội thoại & kiến trúc điều phối Agent
 ├── env_loader.py               # Nạp an toàn biến môi trường
 └── versioning.py               # Tính toán artifact hash SHA-256
 ```
@@ -52,22 +55,26 @@ codebase/
 ```powershell
 # 1. Kích hoạt môi trường và cài đặt dependencies
 .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+pip install -r codebase/requirements.txt
 
 # 2. Chạy kiểm tra kết nối Provider (OpenRouter live tool calling)
 python codebase/scripts/preflight_provider.py --provider openrouter
 
 # 3. Chạy đánh giá bộ 10 cases nhóm (5 single-turn + 5 multi-turn)
-python run_eval.py --provider openrouter --version v3 --suite group --eval-cases codebase/data/eval_group.json
+python codebase/run_eval.py --provider openrouter --version v3 --suite group --eval-cases codebase/data/eval_group.json
 
 # 4. Chạy đánh giá bộ 24 cases Golden Set (Track B Discord Assistant)
-python run_eval.py --provider openrouter --version v3 --suite base --eval-cases codebase/data/eval_base_discord.json
+python codebase/run_eval.py --provider openrouter --version v3 --suite base --eval-cases codebase/data/eval_base_discord.json
 
 # 5. Khởi động Chat CLI tương tác trực tiếp
-python chat.py --provider openrouter --model openai/gpt-4o-mini --version v3
+python codebase/chat.py --provider openrouter --model openai/gpt-4o-mini --version v3
 
-# 6. Chạy CLI Test tương tác trực quan cho giám khảo & học viên (hiển thị tool calls)
-python interactive_test.py
+# 6. Khởi động Web Mock Demo (Giao diện Discord giả lập kết nối Live AI)
+# Bước 6a: Khởi động Backend API Server (cổng 8081)
+python codebase/server.py
+
+# Bước 6b: Mở file codebase/mock.html trên trình duyệt hoặc Live Server
+# (Bật toggle "Live API Mode" ở thanh trên cùng để tương tác live với mô hình và xem trace tool calls tại kênh #agent-trace-logs)
 ```
 
 ## Tài Liệu & Artifacts Dự Án
@@ -76,9 +83,8 @@ python interactive_test.py
 |---|---|
 | [`spec.md`](spec.md) | AI Spec hoàn chỉnh: Bằng chứng (§1-§2) · Lát cắt (§4) · HAX Principles · 4 lớp chỗ khó (§5) · Kiểm thử (§7) |
 | [`canvas.md`](canvas.md) | Canvas 7 dòng chốt bài toán, JTBD và phân công vai trò tại CP1 |
-| [`TEAM.md`](TEAM.md) | Danh sách thành viên, cam kết phân công, tự nhận xét đóng góp cá nhân (INDIVIDUAL) |
-| [`flow-diagram-cp2.md`](flow-diagram-cp2.md) | Sơ đồ luồng hội thoại & kiến trúc điều phối Agent CP2 |
-| [`mock-cp2.html`](mock-cp2.html) | Web App giao diện giả lập Discord tương tác trực quan |
+| [`codebase/flow.md`](codebase/flow.md) | Sơ đồ luồng hội thoại & kiến trúc điều phối Agent CP2 |
+| [`codebase/mock.html`](codebase/mock.html) | Web App giao diện giả lập Discord tương tác trực quan |
 | [`codebase/artifacts/REPORT.md`](codebase/artifacts/REPORT.md) | Báo cáo kỹ thuật chi tiết v0-v3, failure analysis và bảng đối chiếu metric |
 
 ## Lịch — 6 checkpoint (ca 3B · 39 giờ)

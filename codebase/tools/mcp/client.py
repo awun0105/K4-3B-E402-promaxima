@@ -1,7 +1,9 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
-from codebase.tools.mcp.server import DiscordKBMcpServer
+try:
+    from codebase.tools.mcp.server import DiscordKBMcpServer
+except (ImportError, ValueError):
+    from .server import DiscordKBMcpServer
 
 
 class DiscordKBMcpClient:

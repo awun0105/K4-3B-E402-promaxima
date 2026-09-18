@@ -23,9 +23,9 @@ env/
 
 # AI20K Project Specific / Temp Scripts
 node_modules/
-data/
-*.py
-*.js
+/data/
+/*.py
+/*.js
 !test.js
-*.json
+/*.json
 !eval_base_discord.json

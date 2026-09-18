@@ -17,7 +17,7 @@
 ## Team
 
 - **Team:** Promaxima (Zone 4 · Phòng E402 · Lớp 3B)
-- **Thành viên và INDIVIDUAL:** [TEAM.md](../../TEAM.md)
+- **Thành viên:** Bảng phân công chi tiết xem tại [README.md](../../README.md#thành-viên-nhóm--phân-công-vai-trò).
 - **Members:**
   - Lâm Quang Anh Quân (2A202602467) — Product Lead & Spec
   - Bùi Văn Quang (2A202602688) — Lead Engineer & Tool Calling
@@ -33,8 +33,8 @@
 Trợ lý Discord K4 là agent thông minh hỗ trợ giải đáp 24/7 mọi thắc mắc về lịch trình, thời hạn nộp bài và quy chế học tập cho học viên khóa AI Thực Chiến K4. Agent cam kết 100% câu trả lời có căn cứ trích dẫn chính thức từ BTC, loại bỏ hoàn toàn hiện tượng ảo giác (hallucination) về deadline, tự động xử lý teencode và biết nhường quyền hỗ trợ cho Trợ giảng (TA) khi vượt thẩm quyền dữ liệu.
 
 **Link dùng thử & Giao diện:**
-- CLI Chat: `python chat.py --provider openrouter --model openai/gpt-4o-mini`
-- Web Mock Demo: `mock-cp2.html` (Mô phỏng kênh chat Discord sinh động).
+- CLI Chat: `python codebase/chat.py --provider openrouter --model openai/gpt-4o-mini`
+- Web Mock Demo: [`codebase/mock.html`](../mock.html) (Mô phỏng kênh chat Discord sinh động).
 
 ## A2. Tool agent có
 
@@ -58,10 +58,9 @@ Trợ lý Discord K4 là agent thông minh hỗ trợ giải đáp 24/7 mọi th
 
 | Scenario | Tool trace cần thấy | Cải thiện version | Fallback run/transcript |
 |---|---|---|---|
-| 1. Tra cứu deadline Gate 1 | `search_knowledge_base(query='Gate 1')` | v0 -> v1 | `samples/transcripts/example_discord_grounded.transcript.json` |
-| 2. Gõ sai chính tả & teencode | `normalize_user_query` -> `search_knowledge_base` | v1 -> v2 | `samples/transcripts/example_discord_grounded.transcript.json` |
-| 3. Câu hỏi chưa công bố (Lab 7) | `escalate_to_ta(reason='no_grounding')` | v2 -> v3 | `samples/transcripts/example_discord_escalation.transcript.json` |
-| 4. Prompt Injection bẫy dời hạn | `check_safety_and_policy` -> Refuse | v2 -> v3 | `samples/transcripts/example_discord_multiturn.transcript.json` |
+| 1. Tra cứu deadline Lab 2 có căn cứ nguồn | `search_knowledge_base(query='Lab 2')` | v0 -> v1 | `codebase/samples/transcripts/example_discord_grounded.transcript.json` |
+| 2. Câu hỏi chưa công bố (Lab 7) — HAX G10 | `escalate_to_ta(reason='no_grounding')` | v1 -> v2 | `codebase/samples/transcripts/example_discord_escalation.transcript.json` |
+| 3. Hội thoại đa lượt: Làm rõ rồi trả lời chuẩn | `clarify()` -> `search_knowledge_base(query='Lab 2')` | v2 -> v3 | `codebase/samples/transcripts/example_discord_multiturn.transcript.json` |
 
 ---
 
@@ -119,13 +118,13 @@ Trợ lý Discord K4 là agent thông minh hỗ trợ giải đáp 24/7 mọi th
 1. **CLI Interactive Chat (`chat.py`):**
    - Hỗ trợ stream phản hồi, in rõ ràng: Tên Tool được gọi, tham số đầu vào (Arguments), kết quả trả về (Results) và câu trả lời hoàn chỉnh.
    - Thể hiện chính xác phiên bản artifact hiện hành (`v3+p97965d2b27bd+t7f558fc187c6`).
-2. **Discord Web Mockup (`mock-cp2.html`):**
+2. **Discord Web Mockup (`mock.html`):**
    - Tái hiện chân thực giao diện chat Discord của cộng đồng K4.
    - Hiển thị badge `@BOT`, nút phản hồi và chức năng gắn nhãn HAX G9/G11 (giải thích căn cứ & hỗ trợ sửa lỗi).
 
 ## C2. Minh chứng transcript
 
-Các file transcript mẫu lưu trữ tại thư mục `samples/transcripts/`:
+Các file transcript mẫu lưu trữ tại thư mục `codebase/samples/transcripts/`:
 - `example_discord_grounded.transcript.json`: Tra cứu thành công deadline Lab 2.
 - `example_discord_escalation.transcript.json`: Bàn giao an toàn cho TA khi hỏi Lab 7.
 - `example_discord_multiturn.transcript.json`: Hội thoại 3 lượt từ mơ hồ đến làm rõ và trả lời chuẩn xác.

@@ -4,14 +4,24 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from codebase.tools import TOOL_FUNCTIONS, load_tool_declarations
-from codebase.tools._shared import ANNOUNCEMENTS_FILE
-from codebase.tools.mcp.protocol import (
-    JSONRPCRequest,
-    JSONRPCResponse,
-    MCPResourceDefinition,
-    MCPToolDefinition,
-)
+try:
+    from codebase.tools import TOOL_FUNCTIONS, load_tool_declarations
+    from codebase.tools._shared import ANNOUNCEMENTS_FILE
+    from codebase.tools.mcp.protocol import (
+        JSONRPCRequest,
+        JSONRPCResponse,
+        MCPResourceDefinition,
+        MCPToolDefinition,
+    )
+except (ImportError, ValueError):
+    from tools import TOOL_FUNCTIONS, load_tool_declarations
+    from tools._shared import ANNOUNCEMENTS_FILE
+    from tools.mcp.protocol import (
+        JSONRPCRequest,
+        JSONRPCResponse,
+        MCPResourceDefinition,
+        MCPToolDefinition,
+    )
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
 TOOLS_YAML_PATH = ROOT_DIR / "artifacts" / "tools.yaml"
