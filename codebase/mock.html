@@ -398,8 +398,12 @@
         <div class="text-[11px] font-bold text-[#F39C3B] uppercase tracking-wider mb-2 mt-2 flex items-center gap-1">
           <i class="fa-solid fa-star"></i> 24 GOLDEN SET CASES
         </div>
+        
+        <button onclick="runBatchEval()" class="w-full flex items-center justify-center gap-1.5 px-2 py-1.5 rounded bg-blue-600 text-white text-[11px] font-bold hover:bg-blue-700 transition shadow-sm mb-3 mt-1 tracking-wide">
+          <i class="fa-solid fa-rocket text-[10px]"></i> CHẠY BATCH EVALUATION
+        </button>
 
-        <div class="text-[10px] font-bold text-[#F39C3B] uppercase mb-1 mt-4 border-b border-[#3F4147] pb-1">Lớp 1: Nguồn Sự Thật</div>
+        <div class="text-[10px] font-bold text-[#F39C3B] uppercase mb-1 mt-2 border-b border-[#3F4147] pb-1">Lớp 1: Nguồn Sự Thật</div>
 
         <button onclick="sendArbitraryMessage('Hạn nộp bài Lab 7 là khi nào vậy bot?')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
           <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
@@ -1484,6 +1488,51 @@ Ví dụ 3: "Đã họp team 30 phút để lọc ra top 3 đề tài tiềm nă
           </div>
         </div>
       </div>`;
+    }
+    function runBatchEval() {
+      if (document.getElementById('header-chan-name').innerText !== 'hỏi-trợ-lý-kute') {
+        alert("Vui lòng chuyển về kênh #hỏi-trợ-lý-kute để chạy Evaluation nhé!");
+        return;
+      }
+      
+      const typingId = 'typing-' + Date.now();
+      const typingHtml = `<div id="${typingId}" class="chat-bubble flex gap-4 mt-2">
+        <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+          <i class="fa-solid fa-cogs"></i>
+        </div>
+        <div class="flex items-center text-[#949BA4] text-sm italic">
+          Hệ thống đang chạy ngầm bộ Golden Set 24 cases (sẽ mất khoảng 30s)...
+        </div>
+      </div>`;
+      getActiveChatContainer().insertAdjacentHTML('beforeend', typingHtml);
+      getActiveChatContainer().scrollTop = getActiveChatContainer().scrollHeight;
+
+      if (typeof isLiveApiMode !== 'undefined' && isLiveApiMode) {
+        fetch('http://localhost:8081/run-eval', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({})
+        })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById(typingId).remove();
+          if (data.status === 'success') {
+            const summaryHtml = `<div class="bg-[#1E1F22] p-4 rounded mt-2 border border-[#3F4147]"><div class="text-[#249858] font-bold mb-2">✅ CHẠY BATCH EVALUATION XONG!</div><pre class="text-[#949BA4] text-[12px] font-mono leading-relaxed whitespace-pre-wrap">${data.summary}</pre></div>`;
+            appendBotMessage(summaryHtml);
+          } else {
+            appendBotMessage("⚠️ Lỗi chạy eval: " + data.error);
+          }
+        })
+        .catch(err => {
+          document.getElementById(typingId).remove();
+          appendBotMessage("⚠️ **[LỖI MẠNG]** Không thể gọi API /run-eval.");
+        });
+      } else {
+        setTimeout(() => {
+          document.getElementById(typingId).remove();
+          appendBotMessage("🤖 Vui lòng chuyển sang **Live API (Server 2)** để chạy tự động Evaluation.");
+        }, 1000);
+      }
     }
   </script>
 </body>

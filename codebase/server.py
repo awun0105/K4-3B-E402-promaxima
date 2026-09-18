@@ -102,6 +102,29 @@ class ChatAPIHandler(BaseHTTPRequestHandler):
                 traceback.print_exc()
                 self._set_headers(500)
                 self.wfile.write(json.dumps({"error": str(e)}).encode('utf-8'))
+        elif self.path == '/run-eval':
+            import subprocess
+            try:
+                print("Running automated evaluation via UI request...")
+                # Run the eval script (Base suite 24 cases for safe API timeout)
+                process = subprocess.Popen(
+                    ["python", "run_eval.py", "--provider", "openrouter", "--suite", "base", "--version", "v3", "--eval-cases", "../eval/eval_base_discord.json"],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    cwd=str(ROOT)
+                )
+                output, _ = process.communicate(timeout=180)
+                
+                # Parse output to make it look nice
+                lines = output.split('\n')
+                summary = [line for line in lines if "PASS" in line or "FAIL" in line or "Accuracy" in line or "Summary" in line or "total" in line or "passed" in line]
+                
+                self._set_headers()
+                self.wfile.write(json.dumps({"status": "success", "output": output, "summary": "\n".join(summary[-15:])}).encode('utf-8'))
+            except Exception as e:
+                self._set_headers(500)
+                self.wfile.write(json.dumps({"error": str(e)}).encode('utf-8'))
         else:
             self.send_response(404)
             self.end_headers()
