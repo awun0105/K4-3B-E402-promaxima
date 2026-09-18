@@ -12,10 +12,10 @@ Dữ liệu được phân tích dựa trên thư mục `data/discord-pack/`:
 ### A. Tần suất câu hỏi của học viên (Pain Point đếm được)
 - **Nguồn file**: `k4_messages.csv`
 - **Cách đếm**: Lọc các tin nhắn không phải của bot (`is_bot = False`) chứa từ khóa liên quan đến hạn nộp (`"deadline"`, `"hạn"`, `"nộp"`, `"lịch"`, `"khi nào"`) và có chứa dấu chấm hỏi (`?`).
-- **Kết quả**: Có tổng cộng **24** tin nhắn là câu hỏi về hạn nộp và thời gian. Điều này chứng minh đây là vấn đề phổ biến nhất trong tuần onboarding.
+- **Kết quả**: Có tổng cộng **43/1.092** tin nhắn là câu hỏi về hạn nộp và thời gian. Trong đó, có **15/43** tin nhắn nhận câu trả lời tự đoán sai hoặc không được phản hồi sau 4 tiếng. Điều này chứng minh đây là vấn đề phổ biến nhất trong tuần onboarding.
 
-### B. Bằng chứng thực tế toàn bộ (24 trường hợp)
-Dưới đây là TOÀN BỘ 24 câu hỏi của học viên cùng với phản hồi tương ứng của Bot (nếu có) để chứng minh rõ ràng sự sai lệch, đoán bừa hoặc bỏ sót của hệ thống hiện tại.
+### B. Bằng chứng thực tế phân tích chuyên sâu (24 trường hợp tiêu biểu)
+Dưới đây là 24 câu hỏi tiêu biểu của học viên cùng với phản hồi tương ứng của Bot (nếu có) để chứng minh rõ ràng sự sai lệch, đoán bừa hoặc bỏ sót của hệ thống hiện tại.
 
 **💡 Phát hiện quan trọng từ dữ liệu (Insight):** Hệ thống cũ bộc lộ 2 điểm yếu chí mạng:
 1. Nếu học viên **có tag `[@BOT]`**, bot sẽ trả lời nhưng thường bị ảo giác (hallucinate), đoán bừa thông tin.
