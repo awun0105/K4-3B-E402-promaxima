@@ -255,8 +255,23 @@ def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
 def print_table(results: list[dict[str, Any]], summary: dict[str, Any]) -> None:
     for item in results:
         status = "PASS" if item["result"]["passed"] else "FAIL"
-        failure = item["result"].get("failure_type") or ""
-        print(f"{item['id']:<28} {status:<5} {failure}")
+        
+        expect = item.get("expect", {})
+        if expect.get("no_tool"):
+            exp_str = "no_tool"
+        else:
+            exp_calls = [c["name"] for c in expect.get("tool_calls", [])]
+            exp_str = ", ".join(exp_calls) if exp_calls else "none"
+            
+        act_calls = [c["name"] for c in item["result"].get("actual_tool_calls", [])]
+        act_str = ", ".join(act_calls) if act_calls else "none"
+        
+        if status == "FAIL":
+            failure = item["result"].get("failure_type") or ""
+            print(f"{item['id']:<15} {status:<4} | Exp: {exp_str} -> Act: {act_str} | LỖI: {failure}")
+        else:
+            print(f"{item['id']:<15} {status:<4} | Exp: {exp_str} -> Act: {act_str}")
+            
     print()
     for key, value in summary.items():
         print(f"{key}: {value}")
