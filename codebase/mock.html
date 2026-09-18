@@ -156,191 +156,218 @@
 
       <!-- PANEL: REAL DATA -->
       <div id="panel-real" class="flex-1 overflow-y-auto block pr-1">
+        <!-- 4 CASE STUDIES ĐIỂN HÌNH -->
         <div class="text-[11px] font-bold text-[#F39C3B] uppercase tracking-wider mb-2 mt-2 flex items-center gap-1">
-          <i class="fa-solid fa-star"></i> Top 5 Case Studies
+          <i class="fa-solid fa-star"></i> 4 CASE STUDY ĐIỂN HÌNH (DEMO)
         </div>
-
-        <button onclick="sendScenario('M19124')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 border border-[#F39C3B]/30">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M19124: Hạn ghép đội</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">a ơi sao deadline ghép đội tự ...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M49945')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 border border-[#F39C3B]/30">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M49945: Tính điểm XP</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] khi nào thì bắt đầu tín...</span>
-          </div>
-        </button>
+        
+        <div class="text-[10px] font-bold text-[#F39C3B] uppercase mb-1 mt-2">1. Lớp 1: Căn Cứ (Grounding)</div>
+        
         <button onclick="sendScenario('M56777')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 border border-[#F39C3B]/30">
           <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
           <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M56777: Hallucination</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] hạn thành lập team là n...</span>
+            <span class="block text-[13px] font-medium leading-tight">M56777: Hạn lập team</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">Hỏi thông tin không có trong tài liệu...</span>
           </div>
         </button>
-        <button onclick="sendScenario('M88027')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 border border-[#F39C3B]/30">
+        
+        <div class="text-[10px] font-bold text-[#F39C3B] uppercase mb-1 mt-2">2. Lớp 2: Mơ Hồ (Ambiguity)</div>
+        
+        <button onclick="sendScenario('M85508')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 border border-[#F39C3B]/30">
           <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
           <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M88027: Trôi tin</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">cho em hỏi Lab2 có được extend...</span>
+            <span class="block text-[13px] font-medium leading-tight">M85508: Tối nay có lịch gì?</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">Câu hỏi cụt lủn, thiếu ngữ cảnh...</span>
           </div>
         </button>
-        <button onclick="sendScenario('M40677')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 border border-[#F39C3B]/30">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M40677: Lỗi commit code</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] tôi nộp codelab trên vl...</span>
-          </div>
-        </button>
-        <hr class="border-[#3F4147] my-4" />
-        <div class="text-[11px] font-bold text-[#80848E] uppercase tracking-wider mb-2">
-          Trả lời sai khác (Có tag)
-        </div>
-
-        <button onclick="sendScenario('M85508')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M85508: Hallucination</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT]  tối nay có lịch gì khô...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M49863')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M49863: Hallucination</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] trả lời cả 3 Nộp báo cá...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M58536')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M58536: Hallucination</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] daily day là thành viên...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M76564')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M76564: Hallucination</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] trường hợp "Nộp như thế...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M15491')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M15491: Hallucination</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT]  trường hợp "Nộp như th...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M60145')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M60145: Daily blocker</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] trường hợp "Nộp như thế...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M95655')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M95655: Đăng ký đề tài</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] nộp đề tài như nào?</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M98092')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M98092: Lệnh -activity</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] -activity để làm gì? kh...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M57734')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M57734: Hallucination</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT]  quy cách nộp daily sta...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M79664')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M79664: Hallucination</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] nộp daily standup cả nh...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M37039')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M37039: Cách xem điểm XP</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] ngoài daily-standup còn...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M78574')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M78574: Hallucination</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] nộp daily standup chỉ ở...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M80377')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M80377: Giấy khám NVQS</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] Em có giấy gọi khám sơ ...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M34960')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M34960: Hallucination</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] Có xếp hạng cả XP nhóm ...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M98666')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M98666: Hallucination</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] thời gian mở daily stan...</span>
-          </div>
-        </button>
-        <button onclick="sendScenario('M65517')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
-          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
-          <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M65517: Hallucination</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@BOT] có xem được lịch sử +XP...</span>
-          </div>
-        </button>
-        <hr class="border-[#3F4147] my-4" />
-        <div class="text-[11px] font-bold text-[#80848E] uppercase tracking-wider mb-2">
-          Trôi tin khác (Không tag)
-        </div>
-
-        <button onclick="sendScenario('M73605')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
+        
+        <div class="text-[10px] font-bold text-[#F39C3B] uppercase mb-1 mt-2">3. Lớp 3: Ngoài Thẩm Quyền</div>
+        
+        <button onclick="sendScenario('M73605')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 border border-[#F39C3B]/30">
           <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
           <div class="flex-1">
             <span class="block text-[13px] font-medium leading-tight">M73605: Xin về sớm</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">Anh ơi cho e hỏi chút ạ. Vì bu...</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">Yêu cầu can thiệp lớp offline...</span>
           </div>
         </button>
-        <button onclick="sendScenario('M37211')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
+        
+        <div class="text-[10px] font-bold text-[#F39C3B] uppercase mb-1 mt-2">4. Lớp 4: An Toàn (Safety/Policy)</div>
+        
+        <button onclick="sendScenario('M88027')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 border border-[#F39C3B]/30">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M88027: Xin nộp muộn bài</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">Xin gia hạn do nộp muộn 1 phút...</span>
+          </div>
+        </button>
+
+        <div class="h-[1px] bg-[#3F4147] my-4 w-full"></div>
+        <div class="text-[11px] font-bold text-[#949BA4] uppercase tracking-wider mb-2 mt-2 flex items-center gap-1">
+          <i class="fa-solid fa-list"></i> CÁC TÌNH HUỐNG KHÁC (20 CASES)
+        </div>
+
+        
+        <button onclick="sendScenario('M19124')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M19124: Hạn ghép đội</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">a ơi sao deadline ghép đội tự do...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M37211')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
           <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
           <div class="flex-1">
             <span class="block text-[13px] font-medium leading-tight">M37211: Lỗi điểm danh</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">các bạn labcoach cho mình hỏi,...</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">các bạn labcoach cho mình hỏi...</span>
           </div>
         </button>
-        <button onclick="sendScenario('M80655')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
+        
+        <button onclick="sendScenario('M49945')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
           <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
           <div class="flex-1">
-            <span class="block text-[13px] font-medium leading-tight">M80655: Trôi tin</span>
-            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">[@user] Cho mình hỏi là: Email...</span>
+            <span class="block text-[13px] font-medium leading-tight">M49945: Tính điểm XP</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">khi nào thì bắt đầu tính điểm xp?</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M40677')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M40677: Lỗi commit code</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">tôi nộp codelab trên vlearn đúng...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M80655')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M80655: Lịch học mâu thuẫn</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">Email cá nhân nhận lịch mã số 02...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M49863')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M49863: Nộp daily ở đâu?</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">trả lời cả 3 Nộp báo cáo daily day...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M58536')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M58536: Daily ai phải nộp?</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">daily day là thành viên nào cũng...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M76564')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M76564: Ghi both yes/today?</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">trường hợp Nộp như thế nào khi...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M15491')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M15491: Chưa có đề tài</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">trường hợp Nộp như thế nào khi...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M60145')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M60145: Daily blocker</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">trường hợp Nộp như thế nào khi...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M95655')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M95655: Đăng ký đề tài</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">nộp đề tài như nào?</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M98092')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M98092: Lệnh -activity</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">-activity để làm gì?</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M57734')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M57734: Mẫu nộp daily</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">quy cách nộp daily standup...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M79664')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M79664: Nộp daily đại diện</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">nộp daily standup cả nhóm có phải...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M37039')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M37039: Cách xem điểm XP</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">ngoài daily-standup còn phải nộp...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M78574')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M78574: Báo cáo Lab/Lec</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">nộp daily standup chỉ ở nội dung...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M80377')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M80377: Giấy khám NVQS</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">Em có giấy gọi khám sơ tuyển NVQS...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M34960')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M34960: Xếp hạng XP nhóm</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">Có xếp hạng cả XP nhóm không...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M98666')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M98666: Cổng nộp daily</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">thời gian mở daily standup...</span>
+          </div>
+        </button>
+        
+        <button onclick="sendScenario('M65517')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 ">
+          <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+          <div class="flex-1">
+            <span class="block text-[13px] font-medium leading-tight">M65517: Xem lịch sử XP</span>
+            <span class="block text-[10px] text-[#949BA4] mt-1 whitespace-nowrap overflow-hidden text-ellipsis w-48">có xem được lịch sử +XP ko ?</span>
           </div>
         </button>
       </div>
-
-      <!-- PANEL: GOLDEN SET -->
+<!-- PANEL: GOLDEN SET -->
       <div id="panel-golden" class="flex-1 overflow-y-auto hidden pr-1">
         <div class="text-[11px] font-bold text-[#80848E] uppercase tracking-wider mb-2 mt-2">
           Golden Set
