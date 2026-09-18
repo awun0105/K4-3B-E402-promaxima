@@ -428,7 +428,7 @@
         pillLive.classList.remove('hidden');
         
         // Hide right sidebar
-        rightSidebar.style.display = 'none';
+        rightSidebar.style.display = 'flex';
         
         // Update Header
         serverName.innerText = 'AI20K Live (API)';
@@ -485,11 +485,25 @@
            document.getElementById('chat-container').insertAdjacentHTML('beforeend', typingHtml);
            document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
            
-           // TODO: Real fetch call to backend API will go here!
-           setTimeout(() => {
-              document.getElementById(typingId).remove();
-              appendBotMessage('Tính năng gọi API đang chờ kết nối Backend Python...');
-           }, 1500);
+           const payload = {
+             message: val,
+             bot_type: isNewBot ? "new" : "old"
+           };
+           
+           fetch('http://localhost:8000/chat', {
+             method: 'POST',
+             headers: { 'Content-Type': 'application/json' },
+             body: JSON.stringify(payload)
+           })
+           .then(res => res.json())
+           .then(data => {
+             document.getElementById(typingId).remove();
+             appendBotMessage(data.response || "Lỗi: Backend không trả về response.");
+           })
+           .catch(err => {
+             document.getElementById(typingId).remove();
+             appendBotMessage("⚠️ **[LỖI MẠNG]** Không thể kết nối tới Backend API tại `http://localhost:8000/chat`. Hãy đảm bảo server Python đang chạy nhé!");
+           });
          }
       }
     }
