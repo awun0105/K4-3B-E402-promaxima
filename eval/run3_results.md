@@ -1,4 +1,4 @@
-# Báo cáo kết quả kiểm thử sơ bộ (CP3 - Run 1)
+# Báo cáo kết quả kiểm thử sơ bộ (CP3 - Run 3)
 
 ## 1. Thống kê tổng quan
 - **Tổng số case kiểm thử:** 46 cases (Gồm 24 Base, 12 Adversarial, 10 Group).
