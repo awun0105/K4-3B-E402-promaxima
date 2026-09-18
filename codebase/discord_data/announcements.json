@@ -124,19 +124,19 @@
   {
     "id": "ANN-DAILY-STANDUP",
     "topic": "Quy định nộp báo cáo Daily Standup",
-    "deadline": "23:59:00 hàng ngày (trong suốt Build Phase)",
+    "deadline": "0h00 - 10h00 sáng hàng ngày (trong suốt Build Phase)",
     "channel": "#bắt-đầu-tại-đây",
     "message_ref": "M98506",
     "deliverables": [
       "Báo cáo tiến độ cá nhân thông qua lệnh /daily-standup"
     ],
     "submission_method": "Thực hiện lệnh /daily-standup trong Forum Thread riêng của team (dạng t-xxx). Không tag cá nhân.",
-    "policy": "Bắt buộc cho từng thành viên để cộng điểm XP cá nhân và theo dõi blocker."
+    "policy": "Khung giờ daily standup để được cộng XP là 0h-10h sáng. Nộp trễ vẫn ghi nhận tiến độ nhưng không được cộng XP."
   },
   {
     "id": "ANN-TEAM-FORMATION",
     "topic": "Hạn chót ghép đội tự do / Thành lập team Build Phase",
-    "deadline": "23:59:00 ngày 13/09/2026",
+    "deadline": "21:00:00 ngày 13/09/2026",
     "channel": "#thông-báo-build",
     "message_ref": "M56777-REF",
     "deliverables": [
@@ -144,5 +144,25 @@
     ],
     "submission_method": "Dùng lệnh bot đăng ký tại kênh #🤖-bot-commands.",
     "policy": "Sau thời hạn này các thành viên chưa có đội sẽ được BTC tự động ghép đội."
+  },
+  {
+    "id": "ANN-XP-POLICY",
+    "topic": "Quy định cộng/trừ điểm XP và Lịch sử Rank",
+    "deadline": "Áp dụng toàn khóa",
+    "channel": "#thông-báo-lớp-học",
+    "message_ref": "M-XP-RULES",
+    "deliverables": [],
+    "submission_method": "Sử dụng lệnh /rank trong các kênh bot cho phép để xem lịch sử.",
+    "policy": "XP thể hiện sự năng nổ. Điểm danh Workshop, làm Daily Standup đúng hạn 0h-10h sáng sẽ được cộng XP. Nộp trễ Standup không được cộng XP. Dùng lệnh /rank để kiểm tra lịch sử cộng điểm và các buổi đã điểm danh."
+  },
+  {
+    "id": "ANN-ATTENDANCE-PENALTY",
+    "topic": "Vấn đề vắng mặt, xin phép và sự cố nộp trễ",
+    "deadline": "Áp dụng toàn khóa",
+    "channel": "#hỗ-trợ-kỹ-thuật",
+    "message_ref": "M-PENALTY-RULES",
+    "deliverables": [],
+    "submission_method": "Mở ticket hỗ trợ hoặc gửi mail IT nếu gặp sự cố hệ thống.",
+    "policy": "Hệ thống tự động đóng cổng nộp bài đúng giờ (ví dụ 23:59:00). Mọi lý do nộp trễ (nghẽn mạng, máy lag, trễ 1 phút) đều KHÔNG được gia hạn riêng lẻ. Nếu vắng mặt không phép tại sự kiện bắt buộc sẽ bị trừ XP. Nếu gặp lỗi kỹ thuật từ phía hệ thống, vui lòng mở ticket đối soát."
   }
 ]
