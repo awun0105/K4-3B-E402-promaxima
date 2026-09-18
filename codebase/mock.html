@@ -52,10 +52,10 @@
         <div class="text-xs font-bold text-[#949BA4] hover:text-[#DBDEE1] cursor-pointer flex items-center gap-1 mb-1">
           <i class="fa-solid fa-angle-down text-[10px] w-3"></i> LỚP HỌC - KHÓA 4
         </div>
-        <div class="flex items-center gap-1.5 px-2 py-1 text-[#949BA4] hover:bg-[#35373C] hover:text-[#DBDEE1] rounded cursor-pointer">
+        <div id="chan-bat-dau" onclick="switchChannel('bat-dau')" class="flex items-center gap-1.5 px-2 py-1 text-[#949BA4] hover:bg-[#35373C] hover:text-[#DBDEE1] rounded cursor-pointer">
           <i class="fa-solid fa-hashtag text-lg"></i> <span class="font-medium text-[15px]">bắt-đầu-tại-đây</span>
         </div>
-        <div class="flex items-center gap-1.5 px-2 py-1 text-[#949BA4] hover:bg-[#35373C] hover:text-[#DBDEE1] rounded cursor-pointer">
+        <div id="chan-thong-bao" onclick="switchChannel('thong-bao')" class="flex items-center gap-1.5 px-2 py-1 text-[#949BA4] hover:bg-[#35373C] hover:text-[#DBDEE1] rounded cursor-pointer">
           <i class="fa-solid fa-hashtag text-lg"></i> <span class="font-medium text-[15px]">thông-báo-lớp-học</span>
         </div>
       </div>
@@ -63,10 +63,10 @@
         <div class="text-xs font-bold text-[#949BA4] hover:text-[#DBDEE1] cursor-pointer flex items-center gap-1 mb-1">
           <i class="fa-solid fa-angle-down text-[10px] w-3"></i> BOT & TIỆN ÍCH
         </div>
-        <div class="flex items-center gap-1.5 px-2 py-1 text-[#DBDEE1] bg-[#404249] rounded cursor-pointer">
+        <div id="chan-hoi-bot" onclick="switchChannel('hoi-bot')" class="flex items-center gap-1.5 px-2 py-1 text-[#DBDEE1] bg-[#404249] rounded cursor-pointer">
           <i class="fa-solid fa-hashtag text-lg"></i> <span class="font-medium text-[15px]">hỏi-trợ-lý-kute</span>
         </div>
-        <div class="flex items-center gap-1.5 px-2 py-1 text-[#949BA4] hover:bg-[#35373C] hover:text-[#DBDEE1] rounded cursor-pointer">
+        <div id="chan-support" onclick="switchChannel('support')" class="flex items-center gap-1.5 px-2 py-1 text-[#949BA4] hover:bg-[#35373C] hover:text-[#DBDEE1] rounded cursor-pointer">
           <i class="fa-solid fa-hashtag text-lg"></i> <span class="font-medium text-[15px]">technical-support</span>
         </div>
       </div>
@@ -95,10 +95,10 @@
     <header class="h-12 border-b border-[#1E1F22] flex justify-between items-center px-4 shadow-sm z-10 flex-shrink-0">
       <div class="flex items-center gap-2 text-white font-bold">
         <i class="fa-solid fa-hashtag text-[#80848E] text-xl"></i>
-        hỏi-trợ-lý-kute
+        <span id="header-chan-name">hỏi-trợ-lý-kute</span>
       </div>
       <!-- Old vs New Toggle -->
-      <div class="flex items-center gap-3 bg-[#1E1F22] px-3 py-1.5 rounded-lg border border-[#3F4147]">
+      <div id="header-toggle" class="flex items-center gap-3 bg-[#1E1F22] px-3 py-1.5 rounded-lg border border-[#3F4147]">
         <span class="text-xs font-semibold text-[#949BA4]" id="label-old">Bot Cũ (Lỗi)</span>
         <button id="toggle-btn" class="w-10 h-5 rounded-full bg-[#DA373C] relative flex items-center p-0.5 transition-colors focus:outline-none">
           <div id="toggle-knob" class="w-4 h-4 rounded-full bg-white shadow-md transform translate-x-0 transition-transform"></div>
@@ -127,7 +127,7 @@
     </div>
 
     <!-- Message Input -->
-    <div class="px-4 pb-6 pt-2 shrink-0">
+    <div id="chat-input-container" class="px-4 pb-6 pt-2 shrink-0">
       <div class="bg-[#383A40] rounded-lg flex items-center px-4 py-3 relative">
         <i class="fa-solid fa-circle-plus text-[#B5BAC1] text-xl mr-4 cursor-pointer hover:text-[#DBDEE1]"></i>
         <input type="text" id="chat-input" disabled placeholder="Vui lòng bấm chọn kịch bản demo ở cột bên phải..." 
@@ -142,7 +142,7 @@
   </main>
 
   <!-- Right Sidebar: Demo Control Panel -->
-  <aside class="w-72 bg-[#2B2D31] flex flex-col flex-shrink-0 z-10 border-l border-[#1E1F22]">
+  <aside id="demo-sidebar" class="w-72 bg-[#2B2D31] flex flex-col flex-shrink-0 z-10 border-l border-[#1E1F22]">
     <div class="h-12 border-b border-[#1E1F22] flex items-center px-4 font-bold shadow-sm">
       <i class="fa-solid fa-gamepad text-[#949BA4] mr-2"></i> Bảng Điều Khiển Demo
     </div>
@@ -185,6 +185,117 @@
   </aside>
 
   <script>
+
+    const channelsData = {
+      'hoi-bot': {
+        name: 'hỏi-trợ-lý-kute',
+        content: `
+      <div class="chat-bubble flex gap-4 mt-2">
+        <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white flex-shrink-0">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div>
+          <div class="flex items-baseline gap-2">
+            <span class="font-semibold text-white">Trợ lý kute</span>
+            <span class="bg-[#5865F2] text-[10px] px-1 rounded uppercase font-bold text-white tracking-wide">Bot</span>
+            <span class="text-xs text-[#949BA4]">Hôm nay lúc 08:00</span>
+          </div>
+          <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed">
+            Chào mừng bạn đến với kênh hỏi trợ lý kute! Vui lòng chọn kịch bản ở **Bảng Điều Khiển** bên phải để demo nhé.
+          </div>
+        </div>
+      </div>`,
+        showControls: true
+      },
+      'bat-dau': {
+        name: 'bắt-đầu-tại-đây',
+        content: `
+      <div class="flex flex-col items-center justify-center h-full text-center px-10">
+        <div class="w-20 h-20 bg-[#35373C] rounded-full flex items-center justify-center mb-4">
+           <i class="fa-solid fa-book-open text-3xl text-[#DBDEE1]"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-white mb-2">Chào mừng đến với Khóa 4!</h2>
+        <p class="text-[#949BA4] mb-6">Đây là kênh lưu trữ quy chế chung của lớp học. Mọi người vui lòng đọc kỹ trước khi bắt đầu.</p>
+        <div class="bg-[#2B2D31] border border-[#1E1F22] rounded-lg p-6 text-left w-full max-w-2xl">
+          <h3 class="text-lg font-bold text-[#F2F3F5] mb-4">📜 Quy chế lớp học (Ground Truth)</h3>
+          <ul class="list-disc pl-5 text-[#DBDEE1] space-y-2 text-sm leading-relaxed">
+            <li><strong>Điều 1:</strong> Mọi bài tập phải được nộp qua hệ thống LMS VLearn. Không nhận bài qua tin nhắn.</li>
+            <li><strong>Điều 2:</strong> Không hỗ trợ ghép đội tự do ngoài hệ thống do BTC quy định. Mọi câu hỏi về việc ghép đội cá nhân ngoài luồng sẽ do Teaching Assistant (TA) giải quyết.</li>
+            <li><strong>Điều 3:</strong> Vui lòng sử dụng kênh <span class="text-[#00A8FC]">#technical-support</span> nếu gặp lỗi kỹ thuật trên LMS.</li>
+          </ul>
+        </div>
+      </div>`,
+        showControls: false
+      },
+      'thong-bao': {
+        name: 'thông-báo-lớp-học',
+        content: `
+      <div class="chat-bubble flex gap-4 mt-6">
+        <div class="w-10 h-10 rounded-full bg-[#E3452F] flex items-center justify-center text-white flex-shrink-0">
+          <i class="fa-solid fa-bullhorn"></i>
+        </div>
+        <div class="w-full max-w-3xl">
+          <div class="flex items-baseline gap-2">
+            <span class="font-semibold text-white">BTC AI Hackathon</span>
+            <span class="bg-[#F39C3B] text-[10px] px-1 rounded uppercase font-bold text-white tracking-wide">Admin</span>
+            <span class="text-xs text-[#949BA4]">Hôm qua lúc 20:00</span>
+          </div>
+          <div class="text-[#DBDEE1] mt-2 text-[15px] leading-relaxed bg-[#2B2D31] p-4 rounded-lg border border-[#1E1F22]">
+            <h3 class="font-bold text-[#F2F3F5] text-lg mb-2">🚨 THÔNG BÁO QUAN TRỌNG: DEADLINE CODELAB</h3>
+            <p class="mb-2">Chào các bạn học viên Khóa 4,</p>
+            <p class="mb-2">BTC xin nhắc lại quy định nộp bài như sau:</p>
+            <ul class="list-disc pl-5 mb-2 space-y-1">
+              <li>Deadline nộp Codelab qua hệ thống VLearn là <strong>23:59 ngày Chủ Nhật</strong>.</li>
+              <li>Bài nộp chỉ được ghi nhận thành công khi <strong>đã được commit</strong> lên hệ thống.</li>
+              <li>Nếu xảy ra lỗi mạng hoặc lỗi hệ thống không thể commit, các bạn <strong>không được tự ý nộp trễ</strong>. Bắt buộc phải liên hệ TA hỗ trợ kỹ thuật trước giờ deadline.</li>
+            </ul>
+            <p class="text-[#DA373C] font-semibold mt-4">Lưu ý: Mọi trường hợp báo lỗi sau 23:59 sẽ không được châm chước.</p>
+          </div>
+        </div>
+      </div>`,
+        showControls: false
+      },
+      'support': {
+        name: 'technical-support',
+        content: `
+      <div class="flex flex-col items-center justify-center h-full text-center px-10 opacity-70">
+        <i class="fa-solid fa-wrench text-5xl text-[#949BA4] mb-4"></i>
+        <h2 class="text-xl font-bold text-white mb-2">Hỗ Trợ Kỹ Thuật</h2>
+        <p class="text-[#949BA4]">Kênh này hiện tại chưa có nội dung. Đội ngũ TA sẽ túc trực ở đây.</p>
+      </div>`,
+        showControls: false
+      }
+    };
+
+    function switchChannel(channelId) {
+      // Update UI active state
+      const channels = ['bat-dau', 'thong-bao', 'hoi-bot', 'support'];
+      channels.forEach(id => {
+        const el = document.getElementById('chan-' + id);
+        if (id === channelId) {
+          el.className = 'flex items-center gap-1.5 px-2 py-1 text-[#DBDEE1] bg-[#404249] rounded cursor-pointer';
+        } else {
+          el.className = 'flex items-center gap-1.5 px-2 py-1 text-[#949BA4] hover:bg-[#35373C] hover:text-[#DBDEE1] rounded cursor-pointer';
+        }
+      });
+
+      // Update content
+      const data = channelsData[channelId];
+      document.getElementById('header-chan-name').innerText = data.name;
+      chatContainer.innerHTML = data.content;
+
+      // Toggle elements
+      if (data.showControls) {
+        document.getElementById('header-toggle').style.display = 'flex';
+        document.getElementById('chat-input-container').style.display = 'block';
+        document.getElementById('demo-sidebar').style.display = 'flex';
+      } else {
+        document.getElementById('header-toggle').style.display = 'none';
+        document.getElementById('chat-input-container').style.display = 'none';
+        document.getElementById('demo-sidebar').style.display = 'none';
+      }
+    }
+
     let isNewBot = false;
     
     // Toggle Logic
