@@ -3,3 +3,11 @@ __pycache__/
 .env
 node_modules/
 data/
+analyze.py
+test.js
+count.py
+check_tags.py
+# Temporary script files
+*.py
+*.js
+!test.js
