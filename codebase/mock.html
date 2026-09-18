@@ -597,7 +597,7 @@
     let goldenSetData = [];
     fetch('../eval/eval_base_discord.json')
       .then(res => res.json())
-      .then(data => { goldenSetData = data; })
+      .then(data => { goldenSetData = data.cases || []; })
       .catch(err => console.log("Không tải được Golden Set:", err));
 
     let isLiveApiMode = false;
