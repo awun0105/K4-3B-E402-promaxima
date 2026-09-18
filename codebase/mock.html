@@ -414,6 +414,7 @@
     let isLiveApiMode = false;
     
     function switchServer(mode) {
+      switchChannel('hoi-bot');
       const demoIcon = document.getElementById('server-demo');
       const liveIcon = document.getElementById('server-live');
       const pillDemo = document.getElementById('pill-demo');
@@ -829,16 +830,48 @@
         }
       });
 
-      // Update content
       const data = channelsData[channelId];
       document.getElementById('header-chan-name').innerText = data.name;
-      chatContainer.innerHTML = data.content;
+
+      const containerDemo = document.getElementById('chat-container-demo');
+      const containerLive = document.getElementById('chat-container-live');
+      const containerAnnouncements = document.getElementById('chat-container-announcements');
+
+      if (channelId === 'hoi-bot') {
+        containerAnnouncements.classList.add('hidden');
+        containerAnnouncements.classList.remove('flex');
+        
+        if (typeof isLiveApiMode !== 'undefined' && isLiveApiMode) {
+            containerLive.classList.remove('hidden');
+            containerLive.classList.add('flex');
+            containerDemo.classList.add('hidden');
+            containerDemo.classList.remove('flex');
+        } else {
+            containerDemo.classList.remove('hidden');
+            containerDemo.classList.add('flex');
+            containerLive.classList.add('hidden');
+            containerLive.classList.remove('flex');
+        }
+      } else {
+        containerDemo.classList.add('hidden');
+        containerDemo.classList.remove('flex');
+        containerLive.classList.add('hidden');
+        containerLive.classList.remove('flex');
+        
+        containerAnnouncements.classList.remove('hidden');
+        containerAnnouncements.classList.add('flex');
+        containerAnnouncements.innerHTML = data.content;
+      }
 
       // Toggle elements
       if (data.showControls) {
         document.getElementById('header-toggle').style.display = 'flex';
         document.getElementById('chat-input-container').style.display = 'block';
-        document.getElementById('demo-sidebar').style.display = 'flex';
+        if (typeof isLiveApiMode !== 'undefined' && isLiveApiMode) {
+          document.getElementById('demo-sidebar').style.display = 'none';
+        } else {
+          document.getElementById('demo-sidebar').style.display = 'flex';
+        }
       } else {
         document.getElementById('header-toggle').style.display = 'none';
         document.getElementById('chat-input-container').style.display = 'none';
@@ -869,8 +902,7 @@
       }
     });
 
-    const chatContainer = document.getElementById('chat-container');
-
+    
     function getActiveChatContainer() {
       return isLiveApiMode ? document.getElementById('chat-container-live') : document.getElementById('chat-container-demo');
     }
@@ -1095,8 +1127,8 @@ Ví dụ 3: "Đã họp team 30 phút để lọc ra top 3 đề tài tiềm nă
     }
 
     function clearChat() {
-      chatContainer.innerHTML = `
-      <div class="chat-bubble flex gap-4 mt-2">
+      const active = getActiveChatContainer();
+      active.innerHTML = `<div class="chat-bubble flex gap-4 mt-2">
         <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white flex-shrink-0">
           <i class="fa-solid fa-robot"></i>
         </div>
@@ -1105,6 +1137,13 @@ Ví dụ 3: "Đã họp team 30 phút để lọc ra top 3 đề tài tiềm nă
             <span class="font-semibold text-white">Trợ lý kute</span>
             <span class="bg-[#5865F2] text-[10px] px-1 rounded uppercase font-bold text-white tracking-wide">Bot</span>
             <span class="text-xs text-[#949BA4]">Hôm nay lúc ${new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'})}</span>
+          </div>
+          <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed">
+            Đã xóa lịch sử chat! Vui lòng chọn lại kịch bản bên phải.
+          </div>
+        </div>
+      </div>`;
+    })}</span>
           </div>
           <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed">
             Đã xóa lịch sử chat! Vui lòng chọn lại kịch bản bên phải.
