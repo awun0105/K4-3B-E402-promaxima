@@ -858,13 +858,13 @@ Ví dụ 3: "Đã họp team 30 phút để lọc ra top 3 đề tài tiềm nă
           
           case 'M49945': return `Theo quy định tại ${chanBatDau} (Mã: <b>ANN-HACKATHON-CP1</b>), điểm XP sẽ bắt đầu được tính ngay khi vòng Build Phase (Hackathon) chính thức khởi động. <br><br><span class='text-xs text-[#249858] font-mono'>[Action: search_knowledge_base(query: "CP1")]</span>`;
           
-          case 'M56777': return `Bạn yên tâm nhé, theo thông báo <b>[ANN-TEAM-FORMATION]</b> ở ${chanThongBao}, team không đủ 4 người sẽ được BTC hỗ trợ ghép thêm thành viên lẻ, hoàn toàn không bị giải tán! <br><br><span class='text-xs text-[#249858] font-mono'>[Action: search_knowledge_base(query: "ghép đội")]</span>`;
+          case 'M56777': return `Chào bạn! Hiện tại trong tài liệu nội bộ mình chưa có thông tin chính thức về ngày hạn chót thành lập team cũng như quy định giải tán đối với team không đủ 4 người. Để tránh cung cấp thông tin sai, mình đã tag các anh chị ${roleTA} vào hỗ trợ giải đáp cho bạn nhé! <br><br><span class='text-xs text-[#FEE75C] font-mono'>[Action: escalate_to_ta(reason: "missing_info")]</span>`;
           
           case 'M88027': return `Rất tiếc, theo quy chế nghiêm ngặt của chương trình, hệ thống nộp bài tự động đóng lúc 23:59:00. BTC không giải quyết bất kỳ trường hợp xin gia hạn (extend) nào dù chỉ 1 phút. Bạn rút kinh nghiệm lần sau nhé! <br><br><span class='text-xs text-[#ED4245] font-mono'>[Action: Reject - Safety Policy Triggered (Xin nộp muộn)]</span>`;
           
           case 'M40677': return `Theo quy chế tại ${chanBatDau}, thời gian nộp bài được tính bằng thời gian bạn submit link trên Vlearn. Việc commit code trên Github/Gitlab sau deadline sẽ không được tính là nộp đúng hạn nhé. <br><br><span class='text-xs text-[#249858] font-mono'>[Action: search_knowledge_base(query: "nộp bài")]</span>`;
           
-          case 'M80655': return `Thông tin lịch học của bạn đang bị mâu thuẫn giữa các email. Bạn vui lòng cung cấp MSSV để mình chuyển cho ${roleTA} kiểm tra đối soát trên hệ thống nhé! <br><br><span class='text-xs text-[#FEE75C] font-mono'>[Action: clarify(question: "Vui lòng cung cấp MSSV")]</span>`;
+          case 'M80655': return `Trường hợp lỗi hiển thị mã số lịch học giữa 2 email chưa được đề cập trong tài liệu xử lý sự cố. Mình không dám chắc chắn để hướng dẫn bạn. Nhờ ${roleAdmin} hoặc ${roleTA} kiểm tra log hệ thống giúp bạn nhé! <br><br><span class='text-xs text-[#FEE75C] font-mono'>[Action: escalate_to_ta(reason: "missing_info")]</span>`;
           
           case 'M85508': return `Bạn đang hỏi về lịch học trên lớp (Lab/Lec) hay lịch các sự kiện online (Workshop/Q&A) vậy? Cho mình xin thêm thông tin để tra cứu chính xác nhé! <br><br><span class='text-xs text-[#FEE75C] font-mono'>[Action: clarify(question: "Lịch học offline hay online?")]</span>`;
           
