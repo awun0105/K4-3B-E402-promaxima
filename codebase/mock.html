@@ -10,7 +10,6 @@
     @import url('https://fonts.googleapis.com/css2?family=gg+sans:wght@400;500;600;700&display=swap');
     body { font-family: 'gg sans', 'Inter', sans-serif; }
     
-    /* Custom Scrollbar for Discord feel */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #2B2D31; }
     ::-webkit-scrollbar-thumb { background: #1A1B1E; border-radius: 4px; }
@@ -26,62 +25,54 @@
 
   <!-- Server Sidebar -->
   <nav class="w-[72px] bg-[#1E1F22] flex flex-col items-center py-3 gap-2 flex-shrink-0 z-20">
-    <div class="w-12 h-12 bg-[#5865F2] rounded-[16px] flex items-center justify-center text-white font-bold cursor-pointer hover:rounded-xl transition-all">
+    <div class="w-12 h-12 bg-[#313338] rounded-[24px] flex items-center justify-center text-[#DBDEE1] cursor-pointer hover:rounded-[16px] hover:bg-[#5865F2] hover:text-white transition-all">
       <i class="fa-brands fa-discord text-2xl"></i>
     </div>
     <div class="w-8 h-[2px] bg-[#313338] rounded-full my-1"></div>
-    <div class="w-12 h-12 bg-[#313338] rounded-[24px] flex items-center justify-center text-[#DBDEE1] font-bold cursor-pointer hover:rounded-[16px] hover:bg-[#5865F2] hover:text-white transition-all">
+    <div class="w-12 h-12 bg-[#5865F2] rounded-[16px] flex items-center justify-center text-white font-bold cursor-pointer hover:rounded-xl transition-all">
       AI
+    </div>
+    <div class="w-12 h-12 bg-[#313338] rounded-[24px] flex items-center justify-center text-[#249858] cursor-pointer hover:rounded-[16px] hover:bg-[#249858] hover:text-white transition-all">
+      <i class="fa-solid fa-plus text-xl"></i>
+    </div>
+    <div class="w-12 h-12 bg-[#313338] rounded-[24px] flex items-center justify-center text-[#249858] cursor-pointer hover:rounded-[16px] hover:bg-[#249858] hover:text-white transition-all">
+      <i class="fa-solid fa-compass text-xl"></i>
     </div>
   </nav>
 
-  <!-- Channels Sidebar (Video Scenarios) -->
-  <aside class="w-60 bg-[#2B2D31] flex flex-col flex-shrink-0 z-10 border-r border-[#1E1F22]">
-    <div class="h-12 border-b border-[#1E1F22] flex items-center px-4 font-bold shadow-sm">
+  <!-- Channels Sidebar (Like Real Discord) -->
+  <aside class="w-60 bg-[#2B2D31] flex flex-col flex-shrink-0 z-10">
+    <div class="h-12 border-b border-[#1E1F22] flex items-center justify-between px-4 font-bold shadow-sm hover:bg-[#35373C] cursor-pointer text-white">
       Khoá AI Thực Chiến
-    </div>
-    <div class="p-3 flex-1 overflow-y-auto">
-      <div class="text-[11px] font-bold text-[#80848E] uppercase tracking-wider mb-1">
-        Kênh Test Mẫu
-      </div>
-      
-      <!-- Scenario Buttons -->
-      <button onclick="sendScenario('lab2')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 border border-[#1E1F22]">
-        <i class="fa-solid fa-message text-[12px] mt-1 text-[#949BA4]"></i>
-        <div class="flex-1">
-          <span class="block text-[13px] font-medium leading-tight">M40677: "[@BOT] tôi nộp codelab bị trễ do lỗi..."</span>
-          <span class="block text-[10px] text-[#949BA4] mt-1">Câu hỏi có nguồn chuẩn (G11)</span>
-        </div>
-      </button>
-
-      <button onclick="sendScenario('lab7')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2 border border-[#1E1F22]">
-        <i class="fa-solid fa-message text-[12px] mt-1 text-[#949BA4]"></i>
-        <div class="flex-1">
-          <span class="block text-[13px] font-medium leading-tight">M19124: "[@BOT] a ơi sao deadline ghép đội end sớm..."</span>
-          <span class="block text-[10px] text-[#949BA4] mt-1">Hỏi ngoài luồng, cần tag TA (G10)</span>
-        </div>
-      </button>
-
-      <button onclick="sendScenario('diemdanh')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-4 border border-[#1E1F22]">
-        <i class="fa-solid fa-message text-[12px] mt-1 text-[#949BA4]"></i>
-        <div class="flex-1">
-          <span class="block text-[13px] font-medium leading-tight">M13974: "[@BOT] cho mình hỏi điểm danh..."</span>
-          <span class="block text-[10px] text-[#949BA4] mt-1">Hỏi thông tin cá nhân bảo mật</span>
-        </div>
-      </button>
-      
-      <div class="w-full h-[1px] bg-[#3F4147] my-3"></div>
-      
-      <button onclick="clearChat()" class="w-full flex items-center gap-2 px-2 py-1.5 rounded bg-transparent hover:bg-[#DA373C] text-[#949BA4] hover:text-white transition group text-left">
-        <i class="fa-solid fa-trash text-sm"></i>
-        <span class="block text-[14px]">Xóa Chat (Làm lại)</span>
-      </button>
+      <i class="fa-solid fa-chevron-down text-sm text-[#DBDEE1]"></i>
     </div>
     
-    <!-- User Profile Area -->
+    <div class="flex-1 overflow-y-auto pt-4 px-2 space-y-4">
+      <div>
+        <div class="text-xs font-bold text-[#949BA4] hover:text-[#DBDEE1] cursor-pointer flex items-center gap-1 mb-1">
+          <i class="fa-solid fa-angle-down text-[10px] w-3"></i> THÔNG TIN CHUNG
+        </div>
+        <div class="flex items-center gap-1.5 px-2 py-1 text-[#949BA4] hover:bg-[#35373C] hover:text-[#DBDEE1] rounded cursor-pointer">
+          <i class="fa-solid fa-hashtag text-lg"></i> <span class="font-medium text-[15px]">announcements</span>
+        </div>
+        <div class="flex items-center gap-1.5 px-2 py-1 text-[#DBDEE1] bg-[#404249] rounded cursor-pointer">
+          <i class="fa-solid fa-hashtag text-lg"></i> <span class="font-medium text-[15px]">general</span>
+        </div>
+      </div>
+      <div>
+        <div class="text-xs font-bold text-[#949BA4] hover:text-[#DBDEE1] cursor-pointer flex items-center gap-1 mb-1">
+          <i class="fa-solid fa-angle-down text-[10px] w-3"></i> HỖ TRỢ
+        </div>
+        <div class="flex items-center gap-1.5 px-2 py-1 text-[#949BA4] hover:bg-[#35373C] hover:text-[#DBDEE1] rounded cursor-pointer">
+          <i class="fa-solid fa-hashtag text-lg"></i> <span class="font-medium text-[15px]">technical-support</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- User Profile Bar -->
     <div class="bg-[#232428] flex items-center px-2 py-1.5 text-[#F2F3F5] h-[52px] flex-shrink-0">
-      <div class="h-8 w-8 rounded-full bg-[#5865F2] flex items-center justify-center mr-2 cursor-pointer hover:opacity-80">
-        <i class="fa-brands fa-discord text-white"></i>
+      <div class="h-8 w-8 rounded-full bg-[#F39C3B] flex items-center justify-center mr-2 cursor-pointer hover:opacity-80">
+        <i class="fa-brands fa-discord text-white scale-75"></i>
       </div>
       <div class="flex flex-col flex-1 cursor-pointer">
         <span class="text-sm font-semibold leading-none mb-1">Giám khảo</span>
@@ -93,19 +84,16 @@
         <i class="fa-solid fa-gear hover:text-[#DBDEE1] cursor-pointer"></i>
       </div>
     </div>
-
   </aside>
 
   <!-- Main Chat Area -->
   <main class="flex-1 flex flex-col bg-[#313338] relative min-w-0">
-    
     <!-- Header with Toggle -->
     <header class="h-12 border-b border-[#1E1F22] flex justify-between items-center px-4 shadow-sm z-10 flex-shrink-0">
       <div class="flex items-center gap-2 text-white font-bold">
         <i class="fa-solid fa-hashtag text-[#80848E] text-xl"></i>
         general
       </div>
-      
       <!-- Old vs New Toggle -->
       <div class="flex items-center gap-3 bg-[#1E1F22] px-3 py-1.5 rounded-lg border border-[#3F4147]">
         <span class="text-xs font-semibold text-[#949BA4]" id="label-old">Bot Cũ (Lỗi)</span>
@@ -118,137 +106,158 @@
 
     <!-- Chat Messages -->
     <div id="chat-container" class="flex-1 overflow-y-auto px-4 py-6 space-y-4">
-      <!-- Welcome Message -->
       <div class="chat-bubble flex gap-4 mt-2">
-        <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white flex-shrink-0 cursor-pointer hover:opacity-80">
+        <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white flex-shrink-0">
           <i class="fa-solid fa-robot"></i>
         </div>
-        <div class="flex-1">
+        <div>
           <div class="flex items-baseline gap-2">
-            <span class="font-semibold text-[#F2F3F5] cursor-pointer hover:underline">Trợ Lý AI</span>
-            <span class="bg-[#5865F2] text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1">
-               <i class="fa-solid fa-check"></i> BOT
-            </span>
+            <span class="font-semibold text-white">Bot Trợ Lý</span>
+            <span class="bg-[#5865F2] text-[10px] px-1 rounded uppercase font-bold text-white tracking-wide">Bot</span>
             <span class="text-xs text-[#949BA4]">Hôm nay lúc 08:00</span>
           </div>
           <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed">
-            <p id="welcome-text">Xin chào! Hiện tại hệ thống đang chạy ở phiên bản <b>Bot Cũ</b> (Trả lời hay đoán mò, sai thông tin).</p>
-            <p class="mt-2 text-sm text-[#949BA4]"><i>Hãy dùng nút gạt ở phía trên bên phải để chuyển sang Bot Mới nhé. Nhấn vào các kênh bên trái để gửi câu hỏi mẫu.</i></p>
+            Chào mừng bạn đến với kênh Thảo luận chung! Vui lòng chọn kịch bản ở **Bảng Điều Khiển** bên phải để demo nhé.
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Input Area -->
-    <div class="px-4 pb-6 pt-2 flex-shrink-0">
-      <div class="bg-[#383A40] rounded-lg flex items-center px-4 py-3 gap-3">
-        <div class="w-6 h-6 rounded-full bg-[#4E5058] flex items-center justify-center text-[#B5BAC1] cursor-pointer hover:text-[#DBDEE1]">
-          <i class="fa-solid fa-circle-plus"></i>
+    <!-- Message Input -->
+    <div class="px-4 pb-6 pt-2 shrink-0">
+      <div class="bg-[#383A40] rounded-lg flex items-center px-4 py-3 relative">
+        <i class="fa-solid fa-circle-plus text-[#B5BAC1] text-xl mr-4 cursor-pointer hover:text-[#DBDEE1]"></i>
+        <input type="text" id="chat-input" disabled placeholder="Vui lòng bấm chọn kịch bản demo ở cột bên phải..." 
+               class="bg-transparent border-none outline-none text-[#DBDEE1] w-full text-[15px] placeholder-[#80848E]" />
+        <div class="flex gap-4 text-[#B5BAC1]">
+          <i class="fa-solid fa-gift hover:text-[#DBDEE1] cursor-pointer"></i>
+          <i class="fa-solid fa-file-image hover:text-[#DBDEE1] cursor-pointer"></i>
+          <i class="fa-solid fa-face-smile hover:text-[#DBDEE1] cursor-pointer"></i>
         </div>
-        <input type="text" id="chat-input"
-          class="flex-1 bg-transparent border-none outline-none text-[#DBDEE1] placeholder-[#87898F]"
-          placeholder="Nhắn tin vào #general..."
-          onkeypress="if(event.key === 'Enter') processInput()">
       </div>
     </div>
   </main>
 
+  <!-- Right Sidebar: Demo Control Panel -->
+  <aside class="w-72 bg-[#2B2D31] flex flex-col flex-shrink-0 z-10 border-l border-[#1E1F22]">
+    <div class="h-12 border-b border-[#1E1F22] flex items-center px-4 font-bold shadow-sm">
+      <i class="fa-solid fa-gamepad text-[#949BA4] mr-2"></i> Bảng Điều Khiển Demo
+    </div>
+    
+    <div class="p-3 flex-1 overflow-y-auto">
+      <div class="text-[11px] font-bold text-[#80848E] uppercase tracking-wider mb-2 mt-2">
+        Kịch bản Test (Golden Set)
+      </div>
+      
+      <button onclick="sendScenario('lab2')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
+        <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+        <div class="flex-1">
+          <span class="block text-[13px] font-medium leading-tight">M40677: Nộp trễ VLearn</span>
+          <span class="block text-[10px] text-[#949BA4] mt-1">Hỏi về quy chế nộp bài (G11)</span>
+        </div>
+      </button>
+
+      <button onclick="sendScenario('lab7')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
+        <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+        <div class="flex-1">
+          <span class="block text-[13px] font-medium leading-tight">M19124: Ghép đội tự do</span>
+          <span class="block text-[10px] text-[#949BA4] mt-1">Thông tin ngoài luồng (G10)</span>
+        </div>
+      </button>
+
+      <button onclick="sendScenario('no_bot')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-4">
+        <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+        <div class="flex-1">
+          <span class="block text-[13px] font-medium leading-tight">M13974: Hỏi điểm danh</span>
+          <span class="block text-[10px] text-[#949BA4] mt-1">Trôi tin do không tag (Insight)</span>
+        </div>
+      </button>
+      
+      <hr class="border-[#3F4147] my-4" />
+      
+      <button onclick="clearChat()" class="w-full flex items-center justify-center gap-2 px-2 py-2 rounded border border-[#DA373C] text-[#DA373C] hover:bg-[#DA373C] hover:text-white transition font-semibold">
+        <i class="fa-solid fa-trash text-sm"></i> Làm lại từ đầu
+      </button>
+    </div>
+  </aside>
+
   <script>
-    const chatContainer = document.getElementById('chat-container');
-    const chatInput = document.getElementById('chat-input');
+    let isNewBot = false;
+    
+    // Toggle Logic
     const toggleBtn = document.getElementById('toggle-btn');
     const toggleKnob = document.getElementById('toggle-knob');
-    const welcomeText = document.getElementById('welcome-text');
     const labelOld = document.getElementById('label-old');
     const labelNew = document.getElementById('label-new');
-    
-    let isNewBot = false;
 
-    // Toggle Logic
     toggleBtn.addEventListener('click', () => {
       isNewBot = !isNewBot;
       if (isNewBot) {
-        toggleBtn.style.backgroundColor = '#23A559';
-        toggleKnob.style.transform = 'translateX(20px)';
-        labelNew.style.color = '#FFFFFF';
-        labelOld.style.color = '#949BA4';
-        
-        welcomeText.innerHTML = "Xin chào! Hiện tại hệ thống đang chạy ở phiên bản <b>Bot Mới (Tối ưu)</b>.<br>Áp dụng nguyên tắc HAX: Không đoán bừa, trích xuất chuẩn nguồn, nhường quyền cho TA.";
+        toggleBtn.classList.replace('bg-[#DA373C]', 'bg-[#249858]');
+        toggleKnob.classList.add('translate-x-5');
+        labelOld.classList.remove('text-white');
+        labelNew.classList.add('text-white');
       } else {
-        toggleBtn.style.backgroundColor = '#DA373C';
-        toggleKnob.style.transform = 'translateX(0px)';
-        labelOld.style.color = '#FFFFFF';
-        labelNew.style.color = '#949BA4';
-        
-        welcomeText.innerHTML = "Xin chào! Hiện tại hệ thống đang chạy ở phiên bản <b>Bot Cũ</b> (Trả lời hay đoán mò, sai thông tin).";
+        toggleBtn.classList.replace('bg-[#249858]', 'bg-[#DA373C]');
+        toggleKnob.classList.remove('translate-x-5');
+        labelNew.classList.remove('text-white');
+        labelOld.classList.add('text-white');
       }
-      clearChat();
     });
 
-    labelOld.style.color = '#FFFFFF'; // Init highlight
-
-    const presetQuestions = {
-      lab2: "[@BOT] tôi nộp codelab trên vlearn đúng giờ deadline như thông báo nhưng commit bị lỗi thì có được tính là nộp đúng hạn không?",
-      lab7: "[@BOT] a ơi sao deadline ghép đội tự do end sớm vậy a?",
-      diemdanh: "[@BOT] cho mình hỏi việc mình được điểm danh hay chưa có thể check ở đâu ạ"
-    };
-
-    function sendScenario(key) {
-      chatInput.value = presetQuestions[key];
-      processInput();
-    }
-
-    function clearChat() {
-      while (chatContainer.children.length > 1) {
-        chatContainer.removeChild(chatContainer.lastChild);
-      }
-    }
+    const chatContainer = document.getElementById('chat-container');
 
     function appendUserMessage(text) {
       const time = new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'});
-      const div = document.createElement('div');
-      div.className = "chat-bubble flex gap-4 mt-1";
-      div.innerHTML = `
-        <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white flex-shrink-0">
-          <i class="fa-solid fa-user"></i>
+      const html = `
+      <div class="chat-bubble flex gap-4 mt-4">
+        <div class="w-10 h-10 rounded-full bg-[#F39C3B] flex items-center justify-center text-white flex-shrink-0">
+          <i class="fa-brands fa-discord"></i>
         </div>
         <div class="flex-1">
           <div class="flex items-baseline gap-2">
-            <span class="font-semibold text-[#F2F3F5]">Học Viên (D7496)</span>
+            <span class="font-semibold text-[#F2F3F5]">Học Viên</span>
             <span class="text-xs text-[#949BA4]">Hôm nay lúc ${time}</span>
           </div>
           <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed">
             ${text}
           </div>
         </div>
-      `;
-      chatContainer.appendChild(div);
+      </div>`;
+      chatContainer.insertAdjacentHTML('beforeend', html);
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
-    function appendBotMessage(htmlContent) {
+    function appendBotMessage(text) {
       const time = new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'});
-      const div = document.createElement('div');
-      div.className = "chat-bubble flex gap-4 mt-1";
-      
-      div.innerHTML = `
+      const html = `
+      <div class="chat-bubble flex gap-4 mt-2">
         <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white flex-shrink-0">
           <i class="fa-solid fa-robot"></i>
         </div>
         <div class="flex-1">
           <div class="flex items-baseline gap-2">
-            <span class="font-semibold text-[#F2F3F5]">Trợ Lý AI</span>
-            <span class="bg-[#5865F2] text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1">
-               <i class="fa-solid fa-check"></i> BOT
+            <span class="font-semibold text-[#F2F3F5] hover:underline cursor-pointer">Bot Trợ Lý</span>
+            <span class="bg-[#5865F2] text-[10px] px-1 rounded uppercase font-bold text-white tracking-wide flex items-center gap-1">
+              <i class="fa-solid fa-check text-[8px]"></i> Bot
             </span>
             <span class="text-xs text-[#949BA4]">Hôm nay lúc ${time}</span>
           </div>
           <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed">
-            ${htmlContent}
+            ${text}
+          </div>
+          <!-- Reaction Toolbar -->
+          <div class="flex gap-2 mt-2">
+            <div class="bg-[#2B2D31] hover:bg-[#35373C] border border-[#1E1F22] rounded px-2 py-0.5 text-xs cursor-pointer flex items-center gap-1 text-[#B5BAC1]">
+               👍 1
+            </div>
+            <div class="bg-[#2B2D31] hover:bg-[#35373C] border border-[#1E1F22] rounded px-2 py-0.5 text-xs cursor-pointer flex items-center gap-1 text-[#B5BAC1]">
+               ❌ Báo sai
+            </div>
           </div>
         </div>
-      `;
-      chatContainer.appendChild(div);
+      </div>`;
+      chatContainer.insertAdjacentHTML('beforeend', html);
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
@@ -260,61 +269,85 @@
           return "Chào bạn! Về vấn đề nộp bài codelab trên **Vlearn** bị trễ do lỗi commit, mình không có thông tin cụ thể về quy định châm chước cho trường hợp này trong dữ liệu hiện tại.";
         } else {
           return `
-            Chào bạn, theo quy định chính thức thì bài làm trên Vlearn chỉ được ghi nhận thành công khi **đã commit lên hệ thống**. Nếu bạn gặp lỗi kỹ thuật, bạn cần báo ngay cho các TA hỗ trợ kỹ thuật tại #technical-support nhé.
+            Chào bạn, theo quy định chính thức thì bài làm trên Vlearn chỉ được ghi nhận thành công khi **đã commit lên hệ thống**. Nếu bạn gặp lỗi kỹ thuật, bạn cần báo ngay cho các TA hỗ trợ kỹ thuật tại <span class="text-[#00A8FC] hover:underline cursor-pointer">#technical-support</span> nhé.
             
-            <!-- Discord Embed Mock -->
             <div class="mt-2 border-l-4 border-[#5865F2] bg-[#2B2D31] rounded p-3 max-w-lg">
                <div class="font-bold text-sm text-[#F2F3F5] mb-1">Trích xuất nguồn (HAX G11)</div>
                <div class="text-sm text-[#DBDEE1]">Quy định nộp bài tập - Section 2.3</div>
-               <a href="#" class="text-xs text-[#00A8FC] hover:underline">Nhấn để xem quy chế gốc tại #announcement</a>
+               <a href="#" class="text-xs text-[#00A8FC] hover:underline">Nhấn để xem quy chế gốc tại #announcements</a>
+            </div>
+          `;
+        }
+      } else if (lower.includes('ghép đội')) {
+        if (!isNewBot) {
+          return "Chào bạn! Thường thì các bài tập sẽ có chung deadline cho cả nhóm nhé.";
+        } else {
+          return "Câu hỏi của bạn liên quan đến quy định ghép đội nằm ngoài Cơ sở dữ liệu hiện tại của mình (HAX G10). Mình xin phép tag <span class="bg-[#3C4270] text-[#C9CDFB] px-1 rounded hover:bg-[#5865F2] hover:text-white cursor-pointer">@TA</span> vào hỗ trợ bạn giải đáp nhé!";
+        }
+      } else if (lower.includes('điểm danh')) {
+        if (!isNewBot) {
+          return "<i>(Không có phản hồi — Tin nhắn bị trôi do học viên không tag @BOT)</i>";
+        } else {
+          return `Chào bạn! Để check điểm danh, bạn có thể xem trên hệ thống VLearn nhé.
+            <div class="mt-2 border-l-4 border-[#5865F2] bg-[#2B2D31] rounded p-3 max-w-lg">
+               <div class="font-bold text-sm text-[#F2F3F5] mb-1">Cải tiến UX/UI</div>
+               <div class="text-sm text-[#DBDEE1]">Bot mới tự động nhận diện câu hỏi từ khóa mà không cần bắt buộc phải tag @BOT</div>
             </div>
           `;
         }
       }
-      
-      if (lower.includes('ghép đội')) {
-        if (!isNewBot) {
-          return "Thường thì deadline ghép đội sẽ kéo dài thêm nếu nhiều bạn chưa có nhóm. Bạn cứ từ từ tìm đồng đội nha.";
-        } else {
-          return `
-            Chào bạn, thông tin về việc kéo dài deadline ghép đội hiện chưa có quyết định chính thức từ BTC trên hệ thống. 
-            
-            Mình đã chuyển thắc mắc của bạn cho @Trợ Giảng (TA) giải đáp thêm! *(Nguyên tắc HAX G10)*
-          `;
-        }
-      }
-      
-      if (lower.includes('điểm danh')) {
-        if (!isNewBot) {
-          return 'Chào bạn nhé! Để đảm bảo mình được tính điểm danh và nhận XP sau mỗi buổi Workshop, bạn lưu ý giúp mình 2 điều kiện "vàng" này trước đã nha: ... (Bot lan man dài dòng)';
-        } else {
-          return "Xin lỗi bạn, mình là AI công cộng (Public) nên không được cấp quyền truy cập vào CSDL điểm danh cá nhân của học viên. Vui lòng liên hệ trực tiếp TA phụ trách lớp nhé.";
-        }
-      }
-      
-      return isNewBot ? "Xin lỗi, mình chưa hiểu rõ ý bạn. Bạn hỏi lại chi tiết hơn nhé." : "Để mình xem lại đã, câu này khó quá.";
+      return "Xin lỗi, mình không hiểu ý bạn.";
     }
 
-    function processInput() {
-      const text = chatInput.value.trim();
-      if(!text) return;
+    function sendScenario(type) {
+      let q = "";
+      if (type === 'lab2') q = "[@BOT] tôi nộp codelab trên vlearn đúng giờ deadline như thông báo (23:59) nhưng trên hệ thống báo trễ do lỗi mạng commit. Cho hỏi có được châm chước không?";
+      if (type === 'lab7') q = "[@BOT] a ơi sao deadline ghép đội tự do end sớm vậy a?";
+      if (type === 'no_bot') q = "cho mình hỏi việc mình được điểm danh hay chưa có thể check ở đâu ạ";
       
-      appendUserMessage(text);
-      chatInput.value = "";
+      appendUserMessage(q);
       
-      // Loading indicator (Discord typing...)
-      const loadingId = 'loading-' + Date.now();
-      const div = document.createElement('div');
-      div.id = loadingId;
-      div.className = "text-xs font-bold text-[#949BA4] mt-2 ml-14 chat-bubble";
-      div.innerHTML = `<i class="fa-solid fa-pen animate-pulse"></i> Trợ Lý AI đang gõ...`;
-      chatContainer.appendChild(div);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+      const isNoBotAndOld = (type === 'no_bot' && !isNewBot);
       
+      // Typing effect
       setTimeout(() => {
-        document.getElementById(loadingId).remove();
-        appendBotMessage(getRuleBaseResponse(text));
-      }, 800);
+        if(isNoBotAndOld) {
+             appendBotMessage(getRuleBaseResponse(q));
+        } else {
+             const html = `<div id="typing" class="text-xs text-[#949BA4] mt-1 ml-14 font-medium flex items-center gap-1">
+               <div class="w-1.5 h-1.5 bg-[#949BA4] rounded-full animate-bounce"></div>
+               <div class="w-1.5 h-1.5 bg-[#949BA4] rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+               <div class="w-1.5 h-1.5 bg-[#949BA4] rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+               Bot Trợ Lý đang nhập...
+             </div>`;
+             chatContainer.insertAdjacentHTML('beforeend', html);
+             chatContainer.scrollTop = chatContainer.scrollHeight;
+             
+             setTimeout(() => {
+               document.getElementById('typing').remove();
+               appendBotMessage(getRuleBaseResponse(q));
+             }, 800);
+        }
+      }, 300);
+    }
+
+    function clearChat() {
+      chatContainer.innerHTML = `
+      <div class="chat-bubble flex gap-4 mt-2">
+        <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white flex-shrink-0">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div>
+          <div class="flex items-baseline gap-2">
+            <span class="font-semibold text-white">Bot Trợ Lý</span>
+            <span class="bg-[#5865F2] text-[10px] px-1 rounded uppercase font-bold text-white tracking-wide">Bot</span>
+            <span class="text-xs text-[#949BA4]">Hôm nay lúc ${new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'})}</span>
+          </div>
+          <div class="text-[#DBDEE1] mt-1 text-[15px] leading-relaxed">
+            Đã xóa lịch sử chat! Vui lòng chọn lại kịch bản bên phải.
+          </div>
+        </div>
+      </div>`;
     }
   </script>
 </body>
