@@ -147,32 +147,62 @@
       <i class="fa-solid fa-gamepad text-[#949BA4] mr-2"></i> Bảng Điều Khiển Demo
     </div>
     
-    <div class="p-3 flex-1 overflow-y-auto">
+        <div class="p-3 flex-1 overflow-y-auto">
       <div class="text-[11px] font-bold text-[#80848E] uppercase tracking-wider mb-2 mt-2">
-        Kịch bản Test (Golden Set)
+        Data thật (Lỗi từ k4_messages)
       </div>
       
-      <button onclick="sendScenario('lab2')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
+      <button onclick="sendScenario('M19124')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
         <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
         <div class="flex-1">
-          <span class="block text-[13px] font-medium leading-tight">M40677: Nộp trễ VLearn</span>
-          <span class="block text-[10px] text-[#949BA4] mt-1">Hỏi về quy chế nộp bài (G11)</span>
+          <span class="block text-[13px] font-medium leading-tight">M19124: Quên tag Bot</span>
+          <span class="block text-[10px] text-[#949BA4] mt-1">Hỏi về ghép đội tự do (G10)</span>
         </div>
       </button>
 
-      <button onclick="sendScenario('lab7')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
+      <button onclick="sendScenario('M88027')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
         <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
         <div class="flex-1">
-          <span class="block text-[13px] font-medium leading-tight">M19124: Ghép đội tự do</span>
-          <span class="block text-[10px] text-[#949BA4] mt-1">Thông tin ngoài luồng (G10)</span>
+          <span class="block text-[13px] font-medium leading-tight">M88027: Quên tag Bot</span>
+          <span class="block text-[10px] text-[#949BA4] mt-1">Hỏi về gia hạn Lab2</span>
         </div>
       </button>
 
-      <button onclick="sendScenario('no_bot')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-4">
+      <button onclick="sendScenario('M40677')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
         <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
         <div class="flex-1">
-          <span class="block text-[13px] font-medium leading-tight">M13974: Hỏi điểm danh</span>
-          <span class="block text-[10px] text-[#949BA4] mt-1">Trôi tin do không tag (Insight)</span>
+          <span class="block text-[13px] font-medium leading-tight">M40677: Bịa luật VLearn</span>
+          <span class="block text-[10px] text-[#949BA4] mt-1">Lỗi nộp bài trễ (G11 - Hallucination)</span>
+        </div>
+      </button>
+
+      <button onclick="sendScenario('M49945')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-2">
+        <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+        <div class="flex-1">
+          <span class="block text-[13px] font-medium leading-tight">M49945: Hỏi mập mờ</span>
+          <span class="block text-[10px] text-[#949BA4] mt-1">Hỏi điểm XP</span>
+        </div>
+      </button>
+
+      <button onclick="sendScenario('M56777')" class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#35373C] text-[#DBDEE1] hover:bg-[#404249] transition group text-left mb-4">
+        <i class="fa-solid fa-play text-[12px] mt-1 text-[#249858]"></i>
+        <div class="flex-1">
+          <span class="block text-[13px] font-medium leading-tight">M56777: Trả lời sai kênh</span>
+          <span class="block text-[10px] text-[#949BA4] mt-1">Hạn thành lập team</span>
+        </div>
+      </button>
+
+      <hr class="border-[#3F4147] my-4" />
+
+      <div class="text-[11px] font-bold text-[#80848E] uppercase tracking-wider mb-2">
+        Golden Set (Sẽ tạo sau)
+      </div>
+
+      <button disabled class="w-full flex items-start gap-2 px-2 py-2 rounded bg-[#2B2D31] text-[#949BA4] border border-[#3F4147] cursor-not-allowed text-left mb-4 opacity-50">
+        <i class="fa-solid fa-lock text-[12px] mt-1"></i>
+        <div class="flex-1">
+          <span class="block text-[13px] font-medium leading-tight">Chưa có kịch bản</span>
+          <span class="block text-[10px] mt-1">Vui lòng chờ Codelab 2...</span>
         </div>
       </button>
       
