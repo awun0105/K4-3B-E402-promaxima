@@ -837,10 +837,38 @@ Ví dụ 3: "Đã họp team 30 phút để lọc ra top 3 đề tài tiềm nă
       }, isNewBot ? 1500 : 500);
     }
 
+    
     function getBotResponse(type, isNewBot) {
       if (isNewBot) {
-        return "Tính năng RAG (Bot Mới) đang chờ được tích hợp ở vòng CP3...";
+        switch(type) {
+          case 'M73605': return "Xin lỗi, mình chỉ hỗ trợ tra cứu lịch trình và quy chế. Về việc xin về sớm trên lớp, bạn vui lòng liên hệ trực tiếp Giảng viên hoặc TA quản lý điểm danh nhé! <br><br><i>[Tool called: escalate_to_ta]</i>";
+          case 'M19124': return "Theo thông báo <b>[ANN-TEAM-FORMATION]</b>, hạn chót ghép đội tự do là 23:59 Chủ Nhật. Các bạn chưa có nhóm sẽ được BTC tự động ghép nhé! <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M37211': return "Mình không có quyền truy cập vào dữ liệu điểm danh cá nhân của học viên. Vui lòng liên hệ Admin Vlearn để kiểm tra lỗi hệ thống nhé! <br><br><i>[Tool called: escalate_to_ta]</i>";
+          case 'M49945': return "Theo thông báo <b>[ANN-HACKATHON-CP1]</b>, điểm XP sẽ bắt đầu được tính ngay khi vòng Build Phase (Hackathon) chính thức khởi động. <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M56777': return "Theo thông báo <b>[ANN-TEAM-FORMATION]</b>, team không đủ 4 người sẽ được BTC hỗ trợ ghép thêm thành viên lẻ, hoàn toàn không bị giải tán bạn nhé! <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M88027': return "Rất tiếc, theo quy chế của chương trình, hệ thống nộp bài tự động đóng lúc 23:59:00. BTC không giải quyết bất kỳ trường hợp xin gia hạn (extend) nào. Bạn rút kinh nghiệm lần sau nhé! <br><br><i>[Safety Policy Triggered]</i>";
+          case 'M40677': return "Theo quy chế, thời gian nộp bài được tính bằng thời gian bạn submit link trên Vlearn. Việc commit code trên máy tính sau deadline sẽ không hợp lệ nhé. <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M80655': return "Vấn đề của bạn khá mơ hồ do có sự mâu thuẫn giữa 2 email. Bạn vui lòng cung cấp MSSV để các bạn TA kiểm tra đối soát trên hệ thống nhé! <br><br><i>[Tool called: clarify]</i>";
+          case 'M85508': return "Bạn đang hỏi về lịch học trên lớp (Lab/Lec) hay lịch các sự kiện online (Workshop/Q&A) vậy? <br><br><i>[Tool called: clarify]</i>";
+          case 'M49863': return "Theo thông báo <b>[ANN-DAILY-STANDUP]</b>, bạn cần dùng lệnh `/daily-standup` ngay trong kênh chat riêng (private channel) của nhóm bạn để báo cáo nhé. <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M58536': return "Nếu team bạn chưa có đề tài, bạn hãy chọn đề tài tạm thời hoặc ghi rõ trong báo cáo là 'Đang thảo luận tìm đề tài'. Mọi thành viên đều phải nộp báo cáo riêng nhé! <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M76564': return "Nếu team bạn chưa chốt được đề tài, bạn cứ ghi rõ tiến độ thảo luận hiện tại vào phần 'Hôm nay làm gì'. Đừng để trống báo cáo nhé! <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M15491': return "Nếu chưa có đề tài, bạn hãy báo cáo các công việc nghiên cứu, đọc tài liệu hoặc thảo luận nhóm mà bạn đã làm trong ngày nhé. <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M60145': return "Trong trường hợp chưa chốt đề tài, bạn hãy dùng mục `blocker` để nêu lên khó khăn của nhóm nhờ Mentor hỗ trợ định hướng nhé! <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M95655': return "Bạn có thể đăng ký đề tài bằng cách sử dụng lệnh `/topic pick` trên kênh Discord nhé! <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M98092': return "Tính năng `-activity` dùng để xem các sự kiện mới nhất. Thông báo 'commit mới lên sóng' sẽ xuất hiện khi có ai đó trong nhóm đẩy code (push) lên Github thành công. <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M57734': return "Theo <b>[ANN-DAILY-STANDUP]</b>, TẤT CẢ các thành viên trong nhóm đều phải tự nộp báo cáo mỗi ngày bằng lệnh `/daily-standup` trong kênh nhóm. Không được nộp thay nhé! <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M79664': return "Quy định bắt buộc: MỖI CÁ NHÂN phải tự chạy lệnh `/daily-standup` để báo cáo công việc của mình. Nhóm không được cử 1 người nộp đại diện. <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M37039': return "Ngoài Daily Standup, bạn cần chú ý các mốc Checkpoint (CP1-CP6). Để xem điểm XP hiện tại, hãy gõ lệnh `/rank` hoặc `/leaderboard users` nhé! <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M78574': return "Báo cáo Daily Standup chỉ áp dụng cho tiến độ làm dự án ở vòng Build Phase (Online) thôi nhé. Các hoạt động học tập trên giảng đường VinUni không cần báo cáo ở đây. <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M80377': return "Trường hợp vắng mặt vì lý do NVQS, bạn vui lòng gửi email minh chứng (giấy gọi khám) về địa chỉ <b>AIthucchien@vinuni.edu.vn</b> để được BTC cấp giấy xác nhận nhé! <br><br><i>[Tool called: escalate_to_ta]</i>";
+          case 'M34960': return "Hiện tại hệ thống chỉ xếp hạng và hiển thị XP cho các CÁ NHÂN (lệnh `/leaderboard users`). XP của nhóm sẽ được tổng hợp ở cuối chương trình. <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M98666': return "Theo thông báo <b>[ANN-DAILY-STANDUP]</b>, cổng báo cáo mở từ 18:00 đến 23:59 mỗi ngày. Bạn nhớ nộp trong khung giờ này để không bị hệ thống chặn (blocked) nhé! <br><br><i>[Tool called: search_knowledge_base]</i>";
+          case 'M65517': return "Bạn có thể xem chi tiết lịch sử cộng điểm XP của mình bằng cách gõ lệnh `/rank` trong kênh chat nhé. <br><br><i>[Tool called: search_knowledge_base]</i>";
+          default: return "Câu trả lời hoàn hảo từ Bot Mới (RAG + Tools).";
+        }
       }
+
       
       switch(type) {
         case 'M73605': return "<i>(Không có phản hồi — Tin nhắn bị trôi do học viên không tag @BOT)</i>";
