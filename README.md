@@ -12,7 +12,7 @@
 | Bùi Văn Quang | 2A202602688 | QA & Eval Benchmark Engineer | Xây dựng Golden Set 24 cases, Eval runner, Thiết kế Slide CP5 |
 | Nguyễn Văn Diện | 2A202602615 | Lead Engineer & Agent Architecture | Kiến trúc Agent Loop, Tool Calling, System Prompt, Decoupled Providers |
 
-> Chi tiết phân công và bản tự nhận xét cá nhân xem tại [TEAM.md](TEAM.md) và báo cáo kỹ thuật [codebase/artifacts/REPORT.md](codebase/artifacts/REPORT.md).
+> Chi tiết phân công và bản tự nhận xét cá nhân xem tại thư mục [reflection/](reflection/) và báo cáo kỹ thuật [codebase/artifacts/REPORT.md](codebase/artifacts/REPORT.md).
 
 ---
 
@@ -66,8 +66,6 @@ python run_eval.py --provider openrouter --version v3 --suite base --eval-cases 
 # 5. Khởi động Chat CLI tương tác trực tiếp
 python chat.py --provider openrouter --model openai/gpt-4o-mini --version v3
 
-# 6. Chạy CLI Test tương tác trực quan cho giám khảo & học viên (hiển thị tool calls)
-python interactive_test.py
 ```
 
 ## Tài Liệu & Artifacts Dự Án
@@ -76,9 +74,9 @@ python interactive_test.py
 |---|---|
 | [`spec.md`](spec.md) | AI Spec hoàn chỉnh: Bằng chứng (§1-§2) · Lát cắt (§4) · HAX Principles · 4 lớp chỗ khó (§5) · Kiểm thử (§7) |
 | [`canvas.md`](canvas.md) | Canvas 7 dòng chốt bài toán, JTBD và phân công vai trò tại CP1 |
-| [`TEAM.md`](TEAM.md) | Danh sách thành viên, cam kết phân công, tự nhận xét đóng góp cá nhân (INDIVIDUAL) |
-| [`flow-diagram-cp2.md`](flow-diagram-cp2.md) | Sơ đồ luồng hội thoại & kiến trúc điều phối Agent CP2 |
-| [`mock-cp2.html`](mock-cp2.html) | Web App giao diện giả lập Discord tương tác trực quan |
+| [`reflection/`](reflection/) | Bản tự nhận xét đóng góp cá nhân của từng thành viên (INDIVIDUAL) |
+| [`codebase/flow.md`](codebase/flow.md) | Sơ đồ luồng hội thoại & kiến trúc điều phối Agent CP2 |
+| [`codebase/mock.html`](codebase/mock.html) | Web App giao diện giả lập Discord tương tác trực quan |
 | [`codebase/artifacts/REPORT.md`](codebase/artifacts/REPORT.md) | Báo cáo kỹ thuật chi tiết v0-v3, failure analysis và bảng đối chiếu metric |
 
 ## Lịch — 6 checkpoint (ca 3B · 39 giờ)
