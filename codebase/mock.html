@@ -688,7 +688,7 @@
              bot_type: isNewBot ? "new" : "old"
            };
            
-           fetch('http://localhost:8000/chat', {
+           fetch('http://localhost:8081/chat', {
              method: 'POST',
              headers: { 'Content-Type': 'application/json' },
              body: JSON.stringify(payload)
@@ -700,7 +700,7 @@
            })
            .catch(err => {
              document.getElementById(typingId).remove();
-             appendBotMessage("⚠️ **[LỖI MẠNG]** Không thể kết nối tới Backend API tại `http://localhost:8000/chat`. Hãy đảm bảo server Python đang chạy nhé!");
+             appendBotMessage("⚠️ **[LỖI MẠNG]** Không thể kết nối tới Backend API tại `http://localhost:8081/chat`. Hãy đảm bảo server Python đang chạy nhé!");
            });
          }
       }
@@ -1162,7 +1162,7 @@
           bot_type: isNewBot ? "new" : "old"
         };
         
-        fetch('http://localhost:8000/chat', {
+        fetch('http://localhost:8081/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -1174,7 +1174,7 @@
         })
         .catch(err => {
           document.getElementById(typingId).remove();
-          appendBotMessage("⚠️ **[LỖI MẠNG]** Không thể kết nối tới Backend API tại `http://localhost:8000/chat`. Hãy đảm bảo server Python đang chạy nhé!");
+          appendBotMessage("⚠️ **[LỖI MẠNG]** Không thể kết nối tới Backend API tại `http://localhost:8081/chat`. Hãy đảm bảo server Python đang chạy nhé!");
         });
         
       } else {
@@ -1253,10 +1253,33 @@ Ví dụ 3: "Đã họp team 30 phút để lọc ra top 3 đề tài tiềm nă
       getActiveChatContainer().insertAdjacentHTML('beforeend', typingHtml);
       getActiveChatContainer().scrollTop = getActiveChatContainer().scrollHeight;
 
-      setTimeout(() => {
-        document.getElementById(typingId).remove();
-        appendBotMessage(getBotResponse(type, isNewBot));
-      }, isNewBot ? 1500 : 500);
+      if (typeof isLiveApiMode !== 'undefined' && isLiveApiMode) {
+        // SERVER 2: SEND TO BACKEND
+        const payload = {
+          message: userText,
+          bot_type: isNewBot ? "new" : "old"
+        };
+        fetch('http://localhost:8081/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById(typingId).remove();
+          appendBotMessage(data.response || "Lỗi: Backend không trả về response.");
+        })
+        .catch(err => {
+          document.getElementById(typingId).remove();
+          appendBotMessage("⚠️ **[LỖI MẠNG]** Không thể kết nối tới Backend API tại `http://localhost:8081/chat`. Hãy đảm bảo server Python đang chạy nhé!");
+        });
+      } else {
+        // SERVER 1: DEMO HARDCODE
+        setTimeout(() => {
+          document.getElementById(typingId).remove();
+          appendBotMessage(getBotResponse(type, isNewBot));
+        }, isNewBot ? 1500 : 500);
+      }
     }
 
     
