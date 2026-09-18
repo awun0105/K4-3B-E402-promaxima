@@ -391,6 +391,99 @@
 
   <script>
 
+    let isLiveApiMode = false;
+    
+    function switchServer(mode) {
+      const demoIcon = document.getElementById('server-demo');
+      const liveIcon = document.getElementById('server-live');
+      const pillDemo = document.getElementById('pill-demo');
+      const pillLive = document.getElementById('pill-live');
+      const rightSidebar = document.getElementById('demo-sidebar');
+      const chatInput = document.getElementById('chat-input-box');
+      const serverName = document.getElementById('server-name');
+      
+      if (mode === 'live') {
+        isLiveApiMode = true;
+        
+        // Update Server Icons
+        demoIcon.classList.remove('bg-[#5865F2]', 'rounded-[16px]');
+        demoIcon.classList.add('bg-[#313338]', 'rounded-[24px]');
+        pillDemo.classList.add('hidden');
+        
+        liveIcon.classList.remove('bg-[#313338]', 'rounded-[24px]');
+        liveIcon.classList.add('bg-[#249858]', 'rounded-[16px]');
+        pillLive.classList.remove('hidden');
+        
+        // Hide right sidebar
+        rightSidebar.style.display = 'none';
+        
+        // Update Header
+        serverName.innerText = 'AI20K Live (API)';
+        
+        // Enable Chat Input
+        chatInput.disabled = false;
+        chatInput.placeholder = 'Gõ tin nhắn gửi tới Bot... (Nhấn Enter để gửi API)';
+        chatInput.classList.remove('cursor-not-allowed', 'opacity-50');
+        chatInput.focus();
+        
+      } else {
+        isLiveApiMode = false;
+        
+        // Update Server Icons
+        liveIcon.classList.remove('bg-[#249858]', 'rounded-[16px]');
+        liveIcon.classList.add('bg-[#313338]', 'rounded-[24px]');
+        pillLive.classList.add('hidden');
+        
+        demoIcon.classList.remove('bg-[#313338]', 'rounded-[24px]');
+        demoIcon.classList.add('bg-[#5865F2]', 'rounded-[16px]');
+        pillDemo.classList.remove('hidden');
+        
+        // Show right sidebar
+        rightSidebar.style.display = 'flex';
+        
+        // Update Header
+        serverName.innerText = 'AI20K Build Phase';
+        
+        // Disable Chat Input
+        chatInput.disabled = true;
+        chatInput.placeholder = 'Vui lòng chọn Kịch bản Demo ở cột bên phải...';
+        chatInput.classList.add('cursor-not-allowed', 'opacity-50');
+      }
+      
+      // Clear chat on switch
+      clearChat();
+    }
+    
+    function handleEnterApi(e) {
+      if(e.key === 'Enter' && isLiveApiMode) {
+         const val = e.target.value.trim();
+         if(val) {
+           appendUserMessage(val);
+           e.target.value = '';
+           
+           const typingId = 'typing-' + Date.now();
+           const typingHtml = `
+           <div id="${typingId}" class="chat-bubble flex gap-4 mt-2 opacity-70">
+             <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white">
+               <i class="fa-solid fa-robot"></i>
+             </div>
+             <div class="flex items-center text-[#949BA4] text-sm italic">
+               Đang chờ phản hồi từ API Backend...
+             </div>
+           </div>`;
+           document.getElementById('chat-container').insertAdjacentHTML('beforeend', typingHtml);
+           document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
+           
+           // TODO: Real fetch call to backend API will go here!
+           setTimeout(() => {
+              document.getElementById(typingId).remove();
+              appendBotMessage('Tính năng gọi API đang chờ kết nối Backend Python...');
+           }, 1500);
+         }
+      }
+    }
+
+
     function switchDemoTab(tab) {
       const btnReal = document.getElementById('tab-real');
       const btnGolden = document.getElementById('tab-golden');
