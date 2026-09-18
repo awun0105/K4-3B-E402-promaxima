@@ -29,8 +29,23 @@
       <i class="fa-brands fa-discord text-2xl"></i>
     </div>
     <div class="w-8 h-[2px] bg-[#313338] rounded-full my-1"></div>
-    <div class="w-12 h-12 bg-[#5865F2] rounded-[16px] flex items-center justify-center text-white font-bold cursor-pointer hover:rounded-xl transition-all">
+    
+    <!-- Demo Server (Rulebase) -->
+    <div id="server-demo" onclick="switchServer('demo')" class="w-12 h-12 bg-[#5865F2] rounded-[16px] flex items-center justify-center text-white font-bold cursor-pointer transition-all duration-200 relative group shadow-lg">
+      <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-2 h-10 bg-white rounded-r-full" id="pill-demo"></div>
       AI
+      <div class="absolute left-14 bg-black text-white text-sm px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 whitespace-nowrap z-50 pointer-events-none font-medium">
+        AI20K Demo (Rulebase)
+      </div>
+    </div>
+
+    <!-- Live Server (API) -->
+    <div id="server-live" onclick="switchServer('live')" class="w-12 h-12 bg-[#313338] rounded-[24px] hover:rounded-[16px] hover:bg-[#249858] flex items-center justify-center text-[#249858] hover:text-white cursor-pointer transition-all duration-200 relative group mt-2">
+      <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-2 h-10 bg-white rounded-r-full hidden" id="pill-live"></div>
+      <i class="fa-solid fa-code-branch text-xl"></i>
+      <div class="absolute left-14 bg-black text-white text-sm px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 whitespace-nowrap z-50 pointer-events-none font-medium">
+        AI20K Live (API)
+      </div>
     </div>
     <div class="w-12 h-12 bg-[#313338] rounded-[24px] flex items-center justify-center text-[#249858] cursor-pointer hover:rounded-[16px] hover:bg-[#249858] hover:text-white transition-all">
       <i class="fa-solid fa-plus text-xl"></i>
@@ -406,12 +421,10 @@
         isLiveApiMode = true;
         
         // Update Server Icons
-        demoIcon.classList.remove('bg-[#5865F2]', 'rounded-[16px]');
-        demoIcon.classList.add('bg-[#313338]', 'rounded-[24px]');
+        demoIcon.className = "w-12 h-12 bg-[#313338] rounded-[24px] hover:rounded-[16px] hover:bg-[#5865F2] flex items-center justify-center text-white font-bold cursor-pointer transition-all duration-200 relative group shadow-lg";
         pillDemo.classList.add('hidden');
         
-        liveIcon.classList.remove('bg-[#313338]', 'rounded-[24px]');
-        liveIcon.classList.add('bg-[#249858]', 'rounded-[16px]');
+        liveIcon.className = "w-12 h-12 bg-[#249858] rounded-[16px] flex items-center justify-center text-white cursor-pointer transition-all duration-200 relative group mt-2 shadow-lg";
         pillLive.classList.remove('hidden');
         
         // Hide right sidebar
@@ -430,19 +443,17 @@
         isLiveApiMode = false;
         
         // Update Server Icons
-        liveIcon.classList.remove('bg-[#249858]', 'rounded-[16px]');
-        liveIcon.classList.add('bg-[#313338]', 'rounded-[24px]');
+        liveIcon.className = "w-12 h-12 bg-[#313338] rounded-[24px] hover:rounded-[16px] hover:bg-[#249858] flex items-center justify-center text-[#249858] hover:text-white cursor-pointer transition-all duration-200 relative group mt-2";
         pillLive.classList.add('hidden');
         
-        demoIcon.classList.remove('bg-[#313338]', 'rounded-[24px]');
-        demoIcon.classList.add('bg-[#5865F2]', 'rounded-[16px]');
+        demoIcon.className = "w-12 h-12 bg-[#5865F2] rounded-[16px] flex items-center justify-center text-white font-bold cursor-pointer transition-all duration-200 relative group shadow-lg";
         pillDemo.classList.remove('hidden');
         
         // Show right sidebar
         rightSidebar.style.display = 'flex';
         
         // Update Header
-        serverName.innerText = 'AI20K Build Phase';
+        serverName.innerText = 'Khoá AI Thực Chiến';
         
         // Disable Chat Input
         chatInput.disabled = true;
@@ -453,7 +464,7 @@
       // Clear chat on switch
       clearChat();
     }
-    
+
     function handleEnterApi(e) {
       if(e.key === 'Enter' && isLiveApiMode) {
          const val = e.target.value.trim();
